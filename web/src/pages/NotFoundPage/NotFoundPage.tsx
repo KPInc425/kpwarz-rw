@@ -37,7 +37,7 @@ export default () => (
     />
     <section>
       <h1>
-        <span>404 Page Not Found</span>
+        <span>... 404 ... Where did it go...? Page Not Found</span>
       </h1>
     </section>
   </main>
