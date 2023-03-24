@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import KpWarzLayout from './KpWarzLayout'
+import KPWarzLayout from './KPWarzLayout'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('KpWarzLayout', () => {
+describe('KPWarzLayout', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<KpWarzLayout />)
+      render(<KPWarzLayout />)
     }).not.toThrow()
   })
 })

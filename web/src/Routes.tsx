@@ -9,7 +9,7 @@
 
 import { Private, Router, Route, Set } from '@redwoodjs/router'
 
-import KpWarzLayout from 'src/layouts/KPWarzLayout/KPWarzLayout'
+import KPWarzLayout from 'src/layouts/KPWarzLayout/KPWarzLayout'
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
 import { useAuth } from './auth'
@@ -29,7 +29,7 @@ const Routes = () => {
           <Route path="/admin/posts" page={PostPostsPage} name="posts" />
         </Set>
       </Private>
-      <Set wrap={KpWarzLayout}>
+      <Set wrap={KPWarzLayout}>
         <Route path="/article/{id:Int}" page={ArticlePage} name="article" />
         <Route path="/contact" page={ContactPage} name="contact" />
         <Route path="/about" page={AboutPage} name="about" />

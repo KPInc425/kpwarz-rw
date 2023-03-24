@@ -1,12 +1,12 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import KpWarzLayout from './KpWarzLayout'
+import KPWarzLayout from './KPWarzLayout'
 
-export const generated: ComponentStory<typeof KpWarzLayout> = (args) => {
-  return <KpWarzLayout {...args} />
+export const generated: ComponentStory<typeof KPWarzLayout> = (args) => {
+  return <KPWarzLayout {...args} />
 }
 
 export default {
-  title: 'Layouts/KpWarzLayout',
-  component: KpWarzLayout,
-} as ComponentMeta<typeof KpWarzLayout>
+  title: 'Layouts/KPWarzLayout',
+  component: KPWarzLayout,
+} as ComponentMeta<typeof KPWarzLayout>

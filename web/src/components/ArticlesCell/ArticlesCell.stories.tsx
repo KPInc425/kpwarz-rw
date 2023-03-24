@@ -16,7 +16,7 @@ export const failure: ComponentStory<typeof Failure> = (args) => {
 }
 
 export const success: ComponentStory<typeof Success> = (args) => {
-  return Success ? <Success {...standard()} {...args} /> : <></>
+  return Success ? <Success articles={standard().articles} /> : null
 }
 
 export default { title: 'Cells/ArticlesCell' }
