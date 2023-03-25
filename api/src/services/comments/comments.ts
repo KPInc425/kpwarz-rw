@@ -1,9 +1,10 @@
 import type { QueryResolvers, CommentRelationResolvers } from 'types/graphql'
 
+import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
-export const comments: QueryResolvers['comments'] = () => {
-  return db.comment.findMany()
+export const comments: QueryResolvers['comments'] = ({ postId }) => {
+  return db.comment.findMany({ where: { postId } })
 }
 
 export const comment: QueryResolvers['comment'] = ({ id }) => {
@@ -19,6 +20,7 @@ export const createComment = ({ input }) => {
 }
 
 export const deleteComment = ({ id }) => {
+  requireAuth({ roles: 'moderator admin' })
   return db.comment.delete({
     where: { id },
   })
