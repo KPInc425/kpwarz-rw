@@ -1,1 +1,56 @@
-{"version":"1.2.1","groups":[{"name":"First group: Sample","description":"First group of terminals and commands","enabled":true,"terminals":[{"name":"--1g-1c","path":".","cmd":["echo first group first console!"],"num":0},{"name":"--1g-2c","path":".","cmd":["echo first group second console!"],"num":0}]},{"name":"Second group: Sample","description":"Second group of terminals and commands","enabled":true,"terminals":[{"name":"--2g-1c","path":".","cmd":["echo Second group first console!"],"num":0},{"name":"--2g-2c","path":".","cmd":["echo Second group second console!"],"num":0}]}]}
+{
+  "version": "1.2.1",
+  "groups": [
+    {
+      "name": "Run-RW: Start Application",
+      "description": "Opening and starting the application",
+      "enabled": true,
+      "terminals": [
+        {
+          "name": "RW-KPWz",
+          "path": ".",
+          "cmd": ["yarn rw dev"],
+          "num": 0
+        }
+      ]
+    },
+    {
+      "name": "Tools: Dev & Analytics",
+      "description": "Starts Prisma Studio, Storybook, and Testing Suites",
+      "enabled": true,
+      "terminals": [
+        {
+          "name": "prz-studio",
+          "path": ".",
+          "cmd": ["yarn rw prisma studio"],
+          "num": 0
+        },
+        {
+          "name": "story-book",
+          "path": ".",
+          "cmd": ["yarn rw storybook"],
+          "num": 0
+        },
+        {
+          "name": "testing",
+          "path": ".",
+          "cmd": ["yarn rw test"],
+          "num": 0
+        }
+      ]
+    },
+    {
+      "name": "Working: Terminal",
+      "description": "terminal for manual commands",
+      "enabled": true,
+      "terminals": [
+        {
+          "name": "manual-term",
+          "path": ".",
+          "cmd": ["echo Run a command here"],
+          "num": 0
+        }
+      ]
+    }
+  ]
+}
