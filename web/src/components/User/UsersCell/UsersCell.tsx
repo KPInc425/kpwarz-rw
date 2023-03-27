@@ -1,17 +1,21 @@
-import type { FindPosts } from 'types/graphql'
+import type { FindUsers } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import Posts from 'src/components/Post/Posts'
+import Users from 'src/components/User/Users'
 
 export const QUERY = gql`
-  query FindPosts {
-    posts: adminPosts {
+  query FindUsers {
+    users {
       id
-      title
-      body
-      createdAt
+      name
+      email
+      hashedPassword
+      salt
+      resetToeken
+      resetTokenExpiresAt
+      roles
     }
   }
 `
@@ -21,8 +25,11 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No posts yet. '}
-      <Link to={routes.newPost()} className="rw-link">
+      {'No users yet. '}
+      <Link
+        to={routes.newUser()}
+        className="rw-link"
+      >
         {'Create one?'}
       </Link>
     </div>
@@ -33,6 +40,6 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ posts }: CellSuccessProps<FindPosts>) => {
-  return <Posts posts={posts} />
+export const Success = ({ users }: CellSuccessProps<FindUsers>) => {
+  return <Users users={users} />
 }

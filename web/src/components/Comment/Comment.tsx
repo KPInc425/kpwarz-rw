@@ -44,7 +44,7 @@ const Comment = ({ comment }) => {
         </time>
       </header>
       <p className="text.sm mt-2">{comment.body}</p>
-      {hasRole('moderator admin') && (
+      {hasRole(['moderator', 'admin']) && (
         <button
           type="button"
           onClick={moderate}
