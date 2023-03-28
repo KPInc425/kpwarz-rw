@@ -20,7 +20,7 @@ model User {
   salt                String
   resetToeken         String?
   resetTokenExpiresAt DateTime?
-  roles               String    @default("moderator")
+  roles               String    @default("player")
   posts               Post[]
 }
 
