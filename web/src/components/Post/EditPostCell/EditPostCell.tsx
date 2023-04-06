@@ -13,6 +13,7 @@ export const QUERY = gql`
       id
       title
       body
+      richBody
       createdAt
     }
   }
@@ -23,6 +24,7 @@ const UPDATE_POST_MUTATION = gql`
       id
       title
       body
+      richBody
       createdAt
     }
   }

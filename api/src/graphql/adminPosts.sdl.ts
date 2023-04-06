@@ -7,11 +7,13 @@ export const schema = gql`
   input CreatePostInput {
     title: String!
     body: String!
+    richBody: JSON!
   }
 
   input UpdatePostInput {
     title: String
     body: String
+    richBody: JSON
   }
 
   type Mutation {

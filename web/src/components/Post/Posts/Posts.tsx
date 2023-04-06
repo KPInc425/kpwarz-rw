@@ -1,11 +1,11 @@
+import type { DeletePostMutationVariables, FindPosts } from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Post/PostsCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type { DeletePostMutationVariables, FindPosts } from 'types/graphql'
 
 const DELETE_POST_MUTATION = gql`
   mutation DeletePostMutation($id: Int!) {
@@ -44,6 +44,7 @@ const PostsList = ({ posts }: FindPosts) => {
             <th>Id</th>
             <th>Title</th>
             <th>Body</th>
+            <th>RichBody</th>
             <th>Created at</th>
             <th>&nbsp;</th>
           </tr>
@@ -54,6 +55,7 @@ const PostsList = ({ posts }: FindPosts) => {
               <td>{truncate(post.id)}</td>
               <td>{truncate(post.title)}</td>
               <td>{truncate(post.body)}</td>
+              <td>{truncate(JSON.stringify(post.richBody))}</td>
               <td>{timeTag(post.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">

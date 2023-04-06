@@ -16,6 +16,9 @@ const formattedDate = (datetime) => {
 
 const Article = ({ article, summary = false }) => {
   console.log(article)
+  console.log(typeof article.body)
+
+  // if (article.body)
   return (
     <article>
       <header>

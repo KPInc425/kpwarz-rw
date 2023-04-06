@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import { createEditor } from 'slate'
+import { Slate, Editable, withReact } from 'slate-react'
 import type { EditPostById, UpdatePostInput } from 'types/graphql'
 
 import {
@@ -11,6 +15,8 @@ import {
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
 
+import RichText from '../Editor/RichText'
+
 type FormPost = NonNullable<EditPostById['post']>
 
 interface PostFormProps {
@@ -21,7 +27,15 @@ interface PostFormProps {
 }
 
 const PostForm = (props: PostFormProps) => {
+  const [bodyContent, setBodyContent] = useState()
+  const setPostBody = (content) => {
+    setBodyContent(content)
+    console.log('setPostBody', content)
+  }
+
   const onSubmit = (data: FormPost) => {
+    data.richBody = bodyContent
+    console.log('Data', data)
     props.onSave(data, props?.post?.id)
   }
 
@@ -58,15 +72,20 @@ const PostForm = (props: PostFormProps) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Body
+          Subtitle
         </Label>
 
-        <TextAreaField
+        <TextField
           name="body"
           defaultValue={props.post?.body}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+        />
+
+        <RichText
+          setPostBody={setPostBody}
+          postRichBody={props.post?.richBody}
         />
 
         <FieldError name="body" className="rw-field-error" />
