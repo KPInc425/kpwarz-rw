@@ -1,6 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 
 import CommentsCell from 'src/components/CommentsCell'
+import serializeSlateJsonToHtml from 'src/lib/slate-serialize'
 
 import CommentForm from '../CommentForm/CommentForm'
 
@@ -18,7 +19,6 @@ const Article = ({ article, summary = false }) => {
   console.log(article)
   console.log(typeof article.body)
 
-  // if (article.body)
   return (
     <article>
       <header>
@@ -30,7 +30,19 @@ const Article = ({ article, summary = false }) => {
         </h2>
       </header>
       <div className="mt-2 font-light text-gray-900">
-        {summary ? truncate(article.body, 100) : article.body}
+        {summary ? (
+          truncate(article.body, 100)
+        ) : (
+          <>
+            <p>{article.body}</p>
+            <br />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: serializeSlateJsonToHtml(article.richBody),
+              }}
+            ></div>
+          </>
+        )}
       </div>
       <div>Posted on: {formattedDate(article.createdAt)}</div>
       {!summary && (

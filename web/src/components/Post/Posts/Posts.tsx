@@ -6,6 +6,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Post/PostsCell'
 import { timeTag, truncate } from 'src/lib/formatters'
+import serializeSlateJsonToHtml from 'src/lib/slate-serialize'
 
 const DELETE_POST_MUTATION = gql`
   mutation DeletePostMutation($id: Int!) {
@@ -55,7 +56,7 @@ const PostsList = ({ posts }: FindPosts) => {
               <td>{truncate(post.id)}</td>
               <td>{truncate(post.title)}</td>
               <td>{truncate(post.body)}</td>
-              <td>{truncate(JSON.stringify(post.richBody))}</td>
+              <td>{truncate(serializeSlateJsonToHtml(post.richBody))}</td>
               <td>{timeTag(post.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">
