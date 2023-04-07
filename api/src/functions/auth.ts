@@ -112,6 +112,7 @@ export const handler = async (
       return db.user.create({
         data: {
           email: username,
+          name: username.split('@')[0],
           hashedPassword: hashedPassword,
           salt: salt,
           // name: userAttributes.name
