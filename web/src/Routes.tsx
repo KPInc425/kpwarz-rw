@@ -17,6 +17,7 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
       <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
         <Route path="/users/new" page={UserNewUserPage} name="newUser" />
         <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
@@ -41,6 +42,9 @@ const Routes = () => {
         <Route path="/about" page={AboutPage} name="about" />
         <Route path="/" page={HomePage} name="home" />
       </Set>
+      {/* <Set wrap={KPWarzGameLayout}> */}
+      <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
+      {/* </Set> */}
       <Route notfound page={NotFoundPage} />
     </Router>
   )

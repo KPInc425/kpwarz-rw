@@ -21,7 +21,7 @@ export const QUERY = gql`
 
 export const Loading = () => (
   <div>
-    <img src="https://i.imgur.com/koKqpPx.gif" />
+    <img className="mx-auto block" src="https://i.imgur.com/koKqpPx.gif" />
     Loading...
   </div>
 )
