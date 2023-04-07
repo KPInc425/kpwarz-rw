@@ -57,7 +57,7 @@ const Post = ({ post }: Props) => {
               <td>{post.title}</td>
             </tr>
             <tr>
-              <th>Body</th>
+              <th>Subtitle</th>
               <td>{post.body}</td>
             </tr>
             <tr>

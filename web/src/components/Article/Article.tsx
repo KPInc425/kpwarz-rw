@@ -20,23 +20,29 @@ const Article = ({ article, summary = false }) => {
   console.log(typeof article.body)
 
   return (
-    <article>
+    <article className="rounded-lg border-2 border-black p-8 shadow-2xl drop-shadow">
       <header>
-        <h2 className="text-xl font-semibold text-blue-700">
-          <Link to={routes.article({ id: article.id })}>{article.title}</Link>
-          <span className="ml-2 font-normal text-gray-400">
-            by {article.user.name}
-          </span>
+        <h2 className="text-3xl font-semibold text-blue-700 hover:text-blue-400 dark:text-green-700 dark:hover:text-green-400">
+          <Link to={routes.article({ id: article.id })}>
+            {article.title}
+            <sub>
+              {' '}
+              <span className="text-xs font-normal text-gray-400 dark:text-slate-300">
+                by {article.user.name}
+              </span>
+            </sub>
+          </Link>
         </h2>
       </header>
-      <div className="mt-2 font-light text-gray-900">
+      <div className="mt-2 font-light text-gray-900 dark:text-slate-200">
         {summary ? (
           truncate(article.body, 100)
         ) : (
           <>
-            <p>{article.body}</p>
+            <p className="text-base font-thin italic">{article.body}</p>
             <br />
             <div
+              className="text-base font-semibold"
               dangerouslySetInnerHTML={{
                 __html: serializeSlateJsonToHtml(article.richBody),
               }}

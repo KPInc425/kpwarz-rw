@@ -13,7 +13,7 @@
  */
 
 @layer base {
-  ul, ol {
+  article ul, article ol {
     list-style: revert;
     padding: revert;
   }

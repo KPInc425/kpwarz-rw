@@ -39,31 +39,36 @@ const CommentForm = ({ postId }) => {
   }
   return (
     <div className={hasPosted ? 'hidden' : ''}>
-      <h3 className="text-lg font-light text-gray-600">Leave a Comment</h3>
+      <h3 className="text-lg font-light font-semibold text-gray-600 dark:text-slate-100">
+        Leave a Comment
+      </h3>
       <Form className="mt-4 w-full" onSubmit={onSubmit}>
         <FormError
           error={error}
           titleClassName="font-semibold"
           wrapperClassName="bg-red-100 text-red-900 text-sm p-3 rounded"
         />
-        <Label name="name" className="block text-sm uppercase text-gray-600">
+        <Label
+          name="name"
+          className="block text-sm uppercase text-gray-600 dark:text-slate-300"
+        >
           Name
         </Label>
         <TextField
           name="name"
-          className="block w-full rounded border p-1 text-xs"
+          className="block w-full rounded border p-1 text-xs dark:bg-slate-800"
           validation={{ required: true }}
         />
 
         <Label
           name="body"
-          className="mt-4 block text-sm uppercase text-gray-600"
+          className="mt-4 block text-sm uppercase text-gray-600 dark:text-slate-300"
         >
           Comment
         </Label>
         <TextAreaField
           name="body"
-          className="block h-24 w-full rounded border p-1 text-xs"
+          className="block h-24 w-full rounded border p-1 text-xs dark:bg-slate-800"
           validation={{ required: true }}
         />
 
