@@ -13,6 +13,7 @@ import KPWarzLayout from 'src/layouts/KPWarzLayout/KPWarzLayout'
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
 import { useAuth } from './auth'
+import KPWarzGameLayout from './layouts/KPWarzGameLayout/KPWarzGameLayout'
 
 const Routes = () => {
   return (
@@ -42,9 +43,9 @@ const Routes = () => {
         <Route path="/about" page={AboutPage} name="about" />
         <Route path="/" page={HomePage} name="home" />
       </Set>
-      {/* <Set wrap={KPWarzGameLayout}> */}
-      <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
-      {/* </Set> */}
+      <Set wrap={KPWarzGameLayout}>
+        <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
+      </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

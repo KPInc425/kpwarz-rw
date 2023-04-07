@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import KPWarzGameLayout from './KPWarzGameLayout'
+import GameMenu from './GameMenu'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//   https://redwoodjs.com/docs/testing#testing-pages-layouts
+//    https://redwoodjs.com/docs/testing#testing-components
 
-describe('KPWarzGameLayout', () => {
+describe('GameMenu', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<KPWarzGameLayout />)
+      render(<GameMenu />)
     }).not.toThrow()
   })
 })

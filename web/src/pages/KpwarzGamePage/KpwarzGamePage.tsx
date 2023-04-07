@@ -1,7 +1,17 @@
-import { Link, routes } from '@redwoodjs/router'
+import { useState } from 'react'
+
 import { MetaTags } from '@redwoodjs/web'
 
+import CurrentGameView from 'src/components/CurrentGameView/CurrentGameView'
+import GameMenu from 'src/components/GameMenu/GameMenu'
+
 const KpwarzGamePage = () => {
+  const [currentView, setCurrentView] = useState(0)
+
+  const updateCurrentView = (view) => {
+    setCurrentView(view)
+  }
+
   const testGrid = () => {
     const grid = []
     for (let i = 0; i < 72; i++) {
@@ -28,15 +38,11 @@ const KpwarzGamePage = () => {
         <div className="col-span-1 col-start-6 row-span-6 row-start-7 rounded-md border-2 border-gray-300">
           Social Media Ticker
         </div>
-        <div className="col-span-1 row-[span_7_/_span_7] row-start-3 rounded-md border-2 border-gray-300">
-          Menu
-        </div>
+        <GameMenu updateCurrentView={updateCurrentView} />
         <div className="row-start-10 col-span-1 col-start-1 row-span-3 rounded-md border-2 border-gray-300">
           Settings/Extra
         </div>
-        <div className="col-span-4 col-start-2 row-[span_7_/_span_7] row-start-2 rounded-md border-2 border-gray-300">
-          Current View
-        </div>
+        <CurrentGameView currentView={currentView} />
         <div className="col-span-2 col-start-2 row-span-2 row-start-[9] rounded-md border-2 border-gray-300">
           Current Story Plot
         </div>

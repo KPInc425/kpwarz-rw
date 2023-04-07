@@ -1,9 +1,9 @@
-type KpWarzGameLayoutProps = {
+type KPWarzGameLayoutProps = {
   children?: React.ReactNode
 }
 
-const KpWarzGameLayout = ({ children }: KpWarzGameLayoutProps) => {
+const KPWarzGameLayout = ({ children }: KPWarzGameLayoutProps) => {
   return <>{children}</>
 }
 
-export default KpWarzGameLayout
+export default KPWarzGameLayout
