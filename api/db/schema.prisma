@@ -13,15 +13,17 @@ generator client {
 // TODO: Please remove the following example:
 
 model User {
-  id                  Int       @id @default(autoincrement())
+  id                  Int         @id @default(autoincrement())
   name                String?
-  email               String    @unique
+  email               String      @unique
   hashedPassword      String
   salt                String
   resetToeken         String?
   resetTokenExpiresAt DateTime?
-  roles               String    @default("player")
+  roles               String      @default("player")
   posts               Post[]
+  characters          Character[]
+  games               Game[]
 }
 
 model Post {
@@ -50,6 +52,116 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int
   createdAt DateTime @default(now())
+}
+
+model Game {
+  id              Int       @id @default(autoincrement())
+  name            String
+  description     String
+  startLocation   String
+  currentLocation String
+  currentCity     String
+  maxDays         Int
+  currentDay      Int
+  timeOfDay       String
+  lostItems       Item[]
+  character       Character @relation(fields: [characterId], references: [id])
+  characterId     Int       @unique
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
+  createdAt       DateTime  @default(now())
+}
+
+model Character {
+  id             Int                 @id @default(autoincrement())
+  name           String
+  bio            String
+  description    String
+  user           User                @relation(fields: [userId], references: [id])
+  userId         Int
+  health         Int
+  maxHealth      Int
+  currentItems   Int
+  maxItems       Int
+  luck           Int
+  storageType    String
+  finances       CharacterFinances[]
+  items          Item[]
+  transportation Transport[]
+  game           Game?
+  createdAt      DateTime            @default(now())
+}
+
+model Region {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  control     String
+  cities      City[]
+  createdAt   DateTime @default(now())
+}
+
+model City {
+  id                Int       @id @default(autoincrement())
+  name              String
+  description       String
+  avgQuality        Int
+  avgPrice          Int
+  minQuantity       Int
+  maxQuantity       Int
+  authorityPresence Int
+  region            Region    @relation(fields: [regionId], references: [id])
+  regionId          Int
+  services          Service[]
+  createdAt         DateTime  @default(now())
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  city        City     @relation(fields: [cityId], references: [id])
+  cityId      Int
+  createdAt   DateTime @default(now())
+}
+
+model CharacterFinances {
+  id          Int       @id @default(autoincrement())
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  cashOnHand  Int
+  bankAccount Int
+  debt        Int
+  createdAt   DateTime  @default(now())
+}
+
+model Transport {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  speed       Int
+  price       Int
+  storage     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  createdAt   DateTime  @default(now())
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String
+  quantity    Int
+  price       Int
+  quality     String
+  ability     String
+  description String
+  type        String
+  uses        Int
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  game        Game      @relation(fields: [gameId], references: [id])
+  gameId      Int
+  createdAt   DateTime  @default(now())
 }
 
 model RW_DataMigration {
