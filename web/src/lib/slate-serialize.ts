@@ -20,28 +20,28 @@ function serializeSlateJsonToHtml(json) {
       if (element.align) {
         paragraphHtml = `<span style="text-align: ${element.align}; display: block;">${paragraphHtml}</span>`
       }
-      html += `${paragraphHtml}<br><br>`
+      html += `${paragraphHtml}<br>`
     } else if (element.type === 'block-quote') {
       if (element.children.length > 0) {
-        html += `"${element.children[0].text}" -${element.children[0].text}<br><br>`
+        html += `"${element.children[0].text}" -${element.children[0].text}<br>`
       } else {
         html += `<br>`
       }
     } else if (element.type === 'numbered-list') {
-      // html += `Numbered List<br><ol>`;
+      html += `<ol>`
       element.children.forEach((child) => {
         html += `<li>${child.children[0].text}</li>`
       })
-      html += `</ol><br>`
+      html += `</ol>`
     } else if (element.type === 'bulleted-list') {
-      // html += `Bullet List<br><ul>`;
+      html += `<ul>`
       element.children.forEach((child) => {
         html += `<li>${child.children[0].text}</li>`
       })
-      html += `</ul><br>`
+      html += `</ul>`
     }
   })
-
+  console.log(html)
   return html
 }
 

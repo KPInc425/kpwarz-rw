@@ -11,17 +11,24 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
+
+@layer base {
+  ul, ol {
+    list-style: revert;
+    padding: revert;
+  }
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 ul {
-  list-style-type: none;
+  /* list-style-type: none; */
   margin: 1rem 0;
-  padding: 0;
+  /* padding: 0; */
 }
 li {
-  display: inline-block;
+  /* display: inline-block; */
   margin: 0 1rem 0 0;
 }
 h1 > a {
