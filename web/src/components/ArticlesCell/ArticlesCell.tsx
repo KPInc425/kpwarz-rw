@@ -34,7 +34,7 @@ export const Failure = ({ error }: CellFailureProps) => (
 
 export const Success = ({ articles }: CellSuccessProps<ArticlesQuery>) => {
   return (
-    <div className="space-y-10">
+    <div className="max-h-[60vh] space-y-10 overflow-auto border-2 border-black p-4 shadow-lg">
       {articles
         .slice(0)
         .reverse()

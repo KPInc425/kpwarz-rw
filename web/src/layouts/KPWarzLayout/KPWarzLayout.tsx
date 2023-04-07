@@ -27,7 +27,7 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
   return (
     <>
       <Toaster />
-      <header className="relative flex items-center justify-between bg-blue-700 py-4 px-8 text-white dark:bg-green-900">
+      <header className="relative sticky top-0 flex items-center justify-between bg-blue-700/75 py-4 px-8 text-white dark:bg-green-900/75">
         <div className="flex-between">
           <h1 className="text-5xl font-semibold tracking-tight">
             <Link

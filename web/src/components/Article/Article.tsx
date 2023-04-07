@@ -20,7 +20,7 @@ const Article = ({ article, summary = false }) => {
   console.log(typeof article.body)
 
   return (
-    <article className="rounded-lg border-2 border-black p-8 shadow-2xl drop-shadow">
+    <article className="box-shadow-inset rounded-lg border-2 border-black p-8 shadow-2xl drop-shadow">
       <header>
         <h2 className="text-3xl font-semibold text-blue-700 hover:text-blue-400 dark:text-green-700 dark:hover:text-green-400">
           <Link to={routes.article({ id: article.id })}>

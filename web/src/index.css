@@ -11,6 +11,10 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
+ :root {
+  --primary: green;
+  --secondary: lime;
+}
 
 @layer base {
   article ul, article ol {
@@ -18,6 +22,29 @@
     padding: revert;
   }
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 7.5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -72,4 +99,8 @@ textarea.error {
 }
 .flex-between button {
   display: inline;
+}
+
+.box-shadow-inset {
+  box-shadow: inset 0 0 20px 0 rgb(0 255 0 / 50%);
 }
