@@ -82,7 +82,7 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
           )}
         </nav>
       </header>
-      <main className="bg-white-400 mx-auto mt-4 max-w-4xl rounded-xl p-12 text-slate-900 shadow dark:bg-slate-800 dark:text-slate-200">
+      <main className="bg-white-400 mx-auto mt-4 max-w-4xl rounded-xl p-12 text-slate-900 shadow dark:bg-slate-700 dark:text-slate-200">
         {children}
       </main>
     </>
