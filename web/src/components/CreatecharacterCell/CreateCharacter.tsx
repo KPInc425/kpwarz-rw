@@ -20,7 +20,7 @@ const CreateCharacter = () => {
     {
       onCompleted: () => {
         toast.success('Character created')
-        navigate(routes.kpwarzGame())
+        navigate(routes.characterIntro())
       },
       onError: (error) => {
         toast.error(error.message)
