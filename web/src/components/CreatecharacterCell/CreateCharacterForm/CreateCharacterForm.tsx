@@ -14,6 +14,8 @@ import {
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
 
+import { useAuth } from 'src/auth'
+
 type FormCharacter = NonNullable<EditCharacterById['character']>
 
 interface CharacterFormProps {
@@ -24,9 +26,32 @@ interface CharacterFormProps {
 }
 
 const CharacterForm = (props: CharacterFormProps) => {
+  const { currentUser } = useAuth()
   const onSubmit = (data: FormCharacter) => {
-    data.userId = currentUser.id
+    generateCharacter(data)
     props.onSave(data, props?.character?.id)
+  }
+
+  const generateCharacter = (data) => {
+    data.userId = currentUser.id
+    data.health = 100
+    data.maxHealth = 100
+    data.currentItems = 0
+    data.maxItems = 100
+    data.luck = generateLuck(data)
+    data.storageType = 'Pockets'
+  }
+
+  const generateLuck = (data) => {
+    let modifier = 0
+    if (data.background === 'Plebian') {
+      modifier = 3
+    } else if (data.background === 'Suburban Kid') {
+      modifier = 2
+    } else if (data.background === 'Affluenza') {
+      modifier = 1
+    }
+    return Math.floor((Math.random() * 100) / modifier)
   }
 
   return (
