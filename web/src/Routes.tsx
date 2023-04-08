@@ -18,6 +18,12 @@ import KPWarzGameLayout from './layouts/KPWarzGameLayout/KPWarzGameLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Set wrap={ScaffoldLayout} title="TestStuffs" titleTo="testStuffs" buttonLabel="New TestStuff" buttonTo="newTestStuff">
+        <Route path="/test-stuffs/new" page={TestStuffNewTestStuffPage} name="newTestStuff" />
+        <Route path="/test-stuffs/{id:Int}/edit" page={TestStuffEditTestStuffPage} name="editTestStuff" />
+        <Route path="/test-stuffs/{id:Int}" page={TestStuffTestStuffPage} name="testStuff" />
+        <Route path="/test-stuffs" page={TestStuffTestStuffsPage} name="testStuffs" />
+      </Set>
       <Route path="/login" page={LoginPage} name="login" />
       <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
@@ -65,6 +71,36 @@ const Routes = () => {
           <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
           <Route path="/admin/users" page={UserUsersPage} name="users" />
         </Set>
+        <Set wrap={ScaffoldLayout} title="AvailableTransports" titleTo="availableTransports" buttonLabel="New AvailableTransport" buttonTo="newAvailableTransport">
+          <Route path="/available-transports/new" page={AvailableTransportNewAvailableTransportPage} name="newAvailableTransport" />
+          <Route path="/available-transports/{id:Int}/edit" page={AvailableTransportEditAvailableTransportPage} name="editAvailableTransport" />
+          <Route path="/available-transports/{id:Int}" page={AvailableTransportAvailableTransportPage} name="availableTransport" />
+          <Route path="/available-transports" page={AvailableTransportAvailableTransportsPage} name="availableTransports" />
+        </Set>
+        <Set wrap={ScaffoldLayout} title="AvailableServices" titleTo="availableServices" buttonLabel="New AvailableService" buttonTo="newAvailableService">
+          <Route path="/available-services/new" page={AvailableServiceNewAvailableServicePage} name="newAvailableService" />
+          <Route path="/available-services/{id:Int}/edit" page={AvailableServiceEditAvailableServicePage} name="editAvailableService" />
+          <Route path="/available-services/{id:Int}" page={AvailableServiceAvailableServicePage} name="availableService" />
+          <Route path="/available-services" page={AvailableServiceAvailableServicesPage} name="availableServices" />
+        </Set>
+        <Set wrap={ScaffoldLayout} title="AvailableCities" titleTo="availableCities" buttonLabel="New AvailableCity" buttonTo="newAvailableCity">
+          <Route path="/available-cities/new" page={AvailableCityNewAvailableCityPage} name="newAvailableCity" />
+          <Route path="/available-cities/{id:Int}/edit" page={AvailableCityEditAvailableCityPage} name="editAvailableCity" />
+          <Route path="/available-cities/{id:Int}" page={AvailableCityAvailableCityPage} name="availableCity" />
+          <Route path="/available-cities" page={AvailableCityAvailableCitiesPage} name="availableCities" />
+        </Set>
+        <Set wrap={ScaffoldLayout} title="AvailableRegions" titleTo="availableRegions" buttonLabel="New AvailableRegion" buttonTo="newAvailableRegion">
+          <Route path="/available-regions/new" page={AvailableRegionNewAvailableRegionPage} name="newAvailableRegion" />
+          <Route path="/available-regions/{id:Int}/edit" page={AvailableRegionEditAvailableRegionPage} name="editAvailableRegion" />
+          <Route path="/available-regions/{id:Int}" page={AvailableRegionAvailableRegionPage} name="availableRegion" />
+          <Route path="/available-regions" page={AvailableRegionAvailableRegionsPage} name="availableRegions" />
+        </Set>
+        <Set wrap={ScaffoldLayout} title="AvailableItemses" titleTo="availableItemses" buttonLabel="New AvailableItems" buttonTo="newAvailableItems">
+          <Route path="/available-itemses/new" page={AvailableItemsNewAvailableItemsPage} name="newAvailableItems" />
+          <Route path="/available-itemses/{id:Int}/edit" page={AvailableItemsEditAvailableItemsPage} name="editAvailableItems" />
+          <Route path="/available-itemses/{id:Int}" page={AvailableItemsAvailableItemsPage} name="availableItems" />
+          <Route path="/available-itemses" page={AvailableItemsAvailableItemsesPage} name="availableItemses" />
+        </Set>
       </Private>
       <Set wrap={KPWarzLayout}>
         <Route path="/article/{id:Int}" page={ArticlePage} name="article" />
@@ -72,9 +108,12 @@ const Routes = () => {
         <Route path="/about" page={AboutPage} name="about" />
         <Route path="/" page={HomePage} name="home" />
       </Set>
-      <Set wrap={KPWarzGameLayout}>
-        <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
-      </Set>
+      <Private unauthenticated="home" roles="player">
+        <Set wrap={KPWarzGameLayout}>
+          <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
+          <Route path="/character-creation" page={CharacterCreationPage} name="characterCreation" />
+        </Set>
+      </Private>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

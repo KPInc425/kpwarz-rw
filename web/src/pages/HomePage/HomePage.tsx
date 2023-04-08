@@ -14,7 +14,7 @@ const HomePage = () => {
       <ArticlesCell />
       <p className="mt-4 text-center">And this is where the party begins!</p>
       <Link
-        to={routes.kpwarzGame()}
+        to={routes.characterCreation()}
         className="mx-auto mt-2 block rounded-lg bg-blue-700 p-2 text-center hover:bg-blue-400 dark:bg-green-700 dark:hover:bg-green-500 dark:hover:text-slate-700 dark:hover:shadow-lg dark:hover:shadow-green-700"
       >
         Begin Game

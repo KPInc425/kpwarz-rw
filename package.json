@@ -24,6 +24,7 @@
   },
   "packageManager": "yarn@3.4.1",
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
     "@emotion/css": "^11.10.6",
     "slate": "^0.93.0",
     "slate-history": "^0.93.0",

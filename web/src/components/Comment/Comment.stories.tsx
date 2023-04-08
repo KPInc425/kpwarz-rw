@@ -32,7 +32,7 @@ export const moderatorView = () => {
   mockCurrentUser({
     id: 1,
     email: 'iLGAdmin@iLG.net',
-    roles: 'moderator',
+    roles: ['moderator'],
   })
   return (
     <Comment

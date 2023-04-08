@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     name: String!
     bio: String!
+    background: String!
     description: String!
     user: User!
     userId: Int!
@@ -27,6 +28,7 @@ export const schema = gql`
   input CreateCharacterInput {
     name: String!
     bio: String!
+    background: String!
     description: String!
     userId: Int!
     health: Int!
@@ -40,6 +42,7 @@ export const schema = gql`
   input UpdateCharacterInput {
     name: String
     bio: String
+    background: String
     description: String
     userId: Int
     health: Int

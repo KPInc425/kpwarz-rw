@@ -5,9 +5,10 @@ import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
+import AdminMenu from 'src/components/AdminMenu/AdminMenu'
 
 const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser, logOut, hasRole } = useAuth()
   // console.log(currentUser?.email)
   const userRoutes = [
     {
@@ -41,6 +42,7 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
         </div>
         <nav>
           <ul className="relative flex items-center font-light">
+            {hasRole(['admin']) && <AdminMenu />}
             {userRoutes.map((userRoute, index) => {
               return (
                 <li key={index}>

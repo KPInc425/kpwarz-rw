@@ -20,7 +20,7 @@ model User {
   salt                String
   resetToeken         String?
   resetTokenExpiresAt DateTime?
-  roles               String      @default("player")
+  roles               String[]    @default(["player"])
   posts               Post[]
   characters          Character[]
   games               Game[]
@@ -76,13 +76,14 @@ model Character {
   id             Int                 @id @default(autoincrement())
   name           String
   bio            String
+  background     Background          @default(Plebian)
   description    String
   user           User                @relation(fields: [userId], references: [id])
   userId         Int
-  health         Int
-  maxHealth      Int
-  currentItems   Int
-  maxItems       Int
+  health         Int                 @default(100)
+  maxHealth      Int                 @default(100)
+  currentItems   Int                 @default(0)
+  maxItems       Int                 @default(100)
   luck           Int
   storageType    String
   finances       CharacterFinances[]
@@ -96,7 +97,7 @@ model Region {
   id          Int      @id @default(autoincrement())
   name        String
   description String
-  control     String
+  control     String?
   cities      City[]
   createdAt   DateTime @default(now())
 }
@@ -105,11 +106,11 @@ model City {
   id                Int       @id @default(autoincrement())
   name              String
   description       String
-  avgQuality        Int
+  avgQuality        Int?
   avgPrice          Int
   minQuantity       Int
   maxQuantity       Int
-  authorityPresence Int
+  authorityPresence Int?
   region            Region    @relation(fields: [regionId], references: [id])
   regionId          Int
   services          Service[]
@@ -141,7 +142,7 @@ model Transport {
   description String
   speed       Int
   price       Int
-  storage     Int
+  storage     Int?
   character   Character @relation(fields: [characterId], references: [id])
   characterId Int
   createdAt   DateTime  @default(now())
@@ -152,11 +153,11 @@ model Item {
   name        String
   quantity    Int
   price       Int
-  quality     String
-  ability     String
-  description String
-  type        String
-  uses        Int
+  quality     String?
+  ability     String?
+  description String?
+  type        String?
+  uses        Int?
   character   Character @relation(fields: [characterId], references: [id])
   characterId Int
   game        Game      @relation(fields: [gameId], references: [id])
@@ -164,9 +165,64 @@ model Item {
   createdAt   DateTime  @default(now())
 }
 
+model AvailableItems {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  type        String
+  ability     String
+  basePrice   Int      @default(0)
+  chance      Int      @default(100)
+  createdAt   DateTime @default(now())
+}
+
+model AvailableRegion {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model AvailableCity {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model AvailableService {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model AvailableTransport {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  speed       Int
+  price       Int
+  storage     Int
+  createdAt   DateTime @default(now())
+}
+
 model RW_DataMigration {
   version    String   @id
   name       String
   startedAt  DateTime
   finishedAt DateTime
+}
+
+model TestStuff {
+  id         Int        @id @default(autoincrement())
+  name       String
+  background Background @default(Plebian)
+  createdAt  DateTime   @default(now())
+}
+
+enum Background {
+  Plebian
+  Suburban_Kid
+  Affluenza
 }

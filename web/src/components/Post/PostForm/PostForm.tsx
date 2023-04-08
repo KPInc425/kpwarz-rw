@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { createEditor } from 'slate'
-import { Slate, Editable, withReact } from 'slate-react'
 import type { EditPostById, UpdatePostInput } from 'types/graphql'
 
 import {
