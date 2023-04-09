@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, Text } from '@chakra-ui/react'
 import type {
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables,
@@ -66,7 +66,8 @@ export const Success = ({
           border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          MugShot
+          MugShot (Coming Soon)
+          <p>{characterIntro.description}</p>
         </GridItem>
         <GridItem
           colSpan={{ base: '12', md: '6' }}
@@ -76,7 +77,7 @@ export const Success = ({
           border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          Chatacter Backstory: Inspired by Bio
+          Chatacter Backstory: Inspired by Bio (Coming Soon)
         </GridItem>
         <GridItem
           colSpan={{ base: '12', lg: '3' }}
@@ -85,16 +86,31 @@ export const Success = ({
           border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          Buffs/Debuffs
+          Buffs/Debuffs (Coming Soon)
         </GridItem>
         <GridItem
           colSpan={{ base: '12', lg: '9' }}
           rowSpan={{ base: '2', lg: '3' }}
           rowStart={{ base: '6', md: '4', lg: '7' }}
-          border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          Starting Info
+          <fieldset className="p-4">
+            <legend>
+              <Text fontSize="4xl">Starting Info</Text>
+            </legend>
+            <p>{characterIntro.name}</p>
+            <p>{characterIntro.background}</p>
+            <p>{characterIntro.health}</p>
+            <p>{characterIntro.maxHealth}</p>
+            <p>{characterIntro.currentItems}</p>
+            <p>{characterIntro.maxItems}</p>
+            <p>{characterIntro.luck}</p>
+            <p>{characterIntro.storageType}</p>
+            <p>{characterIntro.game.currentCity}</p>
+            <p>{characterIntro.game.currentDay}</p>
+            <p>{characterIntro.game.maxDays}</p>
+            <p>{characterIntro.game.timeOfDay}</p>
+          </fieldset>
         </GridItem>
         <GridItem
           colSpan={{ base: '12', lg: '9' }}
@@ -103,7 +119,7 @@ export const Success = ({
           border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          Current Plot Point
+          <h1>Current Plot Point (Coming Soon)</h1>
         </GridItem>
         <GridItem
           colSpan={{ base: '12', md: '6', lg: '3' }}
@@ -123,7 +139,7 @@ export const Success = ({
           border="4px solid rgb(184, 182, 182)"
           borderRadius="12px"
         >
-          First News
+          First News (Coming Soon)
         </GridItem>
       </Grid>
     </div>

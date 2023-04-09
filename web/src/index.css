@@ -21,6 +21,13 @@
     list-style: revert;
     padding: revert;
   }
+
+  fieldset {
+    border: revert;
+    border-radius: revert;
+    padding: revert;
+    height: 100%;
+  }
 }
 
 /* Firefox */
