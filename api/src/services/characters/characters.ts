@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { generateNewGame } from 'src/lib/generateNewGame'
 
 export const characters: QueryResolvers['characters'] = () => {
   return db.character.findMany()
@@ -23,6 +24,35 @@ export const createCharacter: MutationResolvers['createCharacter'] = ({
     data: input,
   })
 }
+
+// export const createCharacter: MutationResolvers['createCharacter'] = async ({
+//   input,
+// }) => {
+//   console.log(input)
+//   // const createCharacterResponse = await db.character.create({
+//   //   data: input,
+//   // })
+//   console.log('HI!')
+//   // console.log(createCharacterResponse.id)
+//   // const newGame = generateNewGame(createCharacterResponse.id)
+//   // const createGameResponse = await db.game.create({
+//   //   data: {
+//   //     characterId: newGame.characterId,
+//   //     currentCity: newGame.currentCity,
+//   //     currentDay: newGame.currentDay,
+//   //     maxDays: newGame.maxDays,
+//   //     currentLocation: newGame.currentLocation,
+//   //     description: newGame.description,
+//   //     name: newGame.gameName,
+//   //     startLocation: newGame.startLocation,
+//   //     timeOfDay: newGame.timeOfDay,
+//   //     userId: newGame.userId,
+//   //   },
+//   // })
+
+//   // return { createCharacterResponse, createGameResponse }
+//   // return { createCharacterResponse, createGameResponse }
+// }
 
 export const updateCharacter: MutationResolvers['updateCharacter'] = ({
   id,

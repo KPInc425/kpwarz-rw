@@ -29,10 +29,12 @@ const CharacterForm = (props: CharacterFormProps) => {
   const { currentUser } = useAuth()
   const onSubmit = (data: FormCharacter) => {
     generateCharacter(data)
+    console.log(data)
     props.onSave(data, props?.character?.id)
   }
 
   const generateCharacter = (data) => {
+    console.log(typeof currentUser.id)
     data.userId = currentUser.id
     data.health = 100
     data.maxHealth = 100
@@ -45,13 +47,16 @@ const CharacterForm = (props: CharacterFormProps) => {
   const generateLuck = (data) => {
     let modifier = 0
     if (data.background === 'Plebian') {
-      modifier = 3
-    } else if (data.background === 'Suburban Kid') {
-      modifier = 2
+      modifier = 0.33
+    } else if (data.background === 'Suburban_Kid') {
+      modifier = 0.5
     } else if (data.background === 'Affluenza') {
       modifier = 1
     }
-    return Math.floor((Math.random() * 100) / modifier)
+    // console.log(data.background)
+    // console.log(modifier)
+    // console.log(Math.floor(Math.random() * 100 * modifier))
+    return Math.floor(Math.random() * 100 * modifier)
   }
 
   return (

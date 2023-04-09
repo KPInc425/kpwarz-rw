@@ -112,7 +112,7 @@ const Routes = () => {
         <Set wrap={KPWarzGameLayout}>
           <Route path="/kpwarz-game" page={KpwarzGamePage} name="kpwarzGame" />
           <Route path="/character-creation" page={CharacterCreationPage} name="characterCreation" />
-          <Route path="/character-intro" page={CharacterIntroPage} name="characterIntro" />
+          <Route path="/character-intro/{id:int}" page={CharacterIntroPage} name="characterIntro" />
         </Set>
       </Private>
       <Route notfound page={NotFoundPage} />

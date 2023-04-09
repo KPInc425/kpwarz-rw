@@ -10,6 +10,7 @@ export const QUERY = gql`
       id
       name
       bio
+      background
       description
       userId
       health
