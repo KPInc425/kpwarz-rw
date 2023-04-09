@@ -53,7 +53,7 @@ export const Success = ({
 >) => {
   return (
     <div>
-      {JSON.stringify(characterIntro)}
+      {/* {JSON.stringify(characterIntro)} */}
       <Grid
         h="100vh"
         templateColumns="repeat(12, minmax(0, 1fr))"
