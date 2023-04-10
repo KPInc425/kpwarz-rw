@@ -15,6 +15,7 @@ import {
   StatLabel,
   StatNumber,
   Text,
+  useColorMode,
 } from '@chakra-ui/react'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -23,6 +24,7 @@ import { MetaTags } from '@redwoodjs/web'
 import CharacterIntroCell from 'src/components/CharacterIntroCell'
 
 const CharacterIntroPage = ({ id }) => {
+  const { colorMode, toggleColorMode } = useColorMode()
   const [introView, setIntroView] = useState(1)
 
   const handleClick = (view) => {
@@ -70,6 +72,9 @@ const CharacterIntroPage = ({ id }) => {
               </Button>
               <Button onClick={() => handleClick(7)} colorScheme="green">
                 Locations
+              </Button>
+              <Button size="sm" colorScheme="blue" onClick={toggleColorMode}>
+                Toggle Mode
               </Button>
             </Stack>
           </GridItem>

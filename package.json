@@ -26,6 +26,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.18",
     "@emotion/css": "^11.10.6",
+    "react-icons": "^4.8.0",
     "slate": "^0.93.0",
     "slate-history": "^0.93.0",
     "slate-react": "^0.93.0"

@@ -7,14 +7,18 @@ import {
   StatLabel,
   StatNumber,
   Text,
+  Badge,
 } from '@chakra-ui/react'
-import { Badge } from '@chakra-ui/react'
+// import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import type {
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables,
 } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
+import ProductCard from '../ProductCard/ProductCard'
+import StatCard from '../StatCard/StatCard'
 
 export const QUERY = gql`
   query FindCharacterIntroQuery($id: Int!) {
@@ -44,7 +48,6 @@ export const QUERY = gql`
     }
   }
 `
-
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => <div>Empty</div>
@@ -66,50 +69,59 @@ export const Success = ({
       <Box>
         <Text fontSize="4xl">Starting Info</Text>
         <Stack direction="row" alignItems={'center'} spacing={4} wrap={'wrap'}>
-          <Stat>
-            <StatLabel>
-              <Badge>Name</Badge>
-            </StatLabel>
-            <StatNumber>{characterIntro.name}</StatNumber>
-          </Stat>
-          <Box>
-            <Badge>Upbringing</Badge>
-            <p>{characterIntro.background}</p>
-          </Box>
-          <Box>
-            <Badge>Health</Badge>
-            <p>
-              {characterIntro.health} / {characterIntro.maxHealth}
-            </p>
-          </Box>
-          <Box>
-            <Badge>Storage Type</Badge>
-            <p>{characterIntro.storageType}</p>
-          </Box>
-          <Box>
-            <Badge>Items Held</Badge>
-            <p>
-              {characterIntro.currentItems} / {characterIntro.maxItems}
-            </p>
-          </Box>
-          <Box>
-            <Badge>Luck</Badge>
-            <p>{characterIntro.luck}</p>
-          </Box>
-          <Box>
-            <Badge>Starting City</Badge>
-            <p>{characterIntro.game.currentCity}</p>
-          </Box>
-          <Box>
-            <Badge>Day Count</Badge>
-            <p>
-              {characterIntro.game.currentDay} / {characterIntro.game.maxDays}
-            </p>
-          </Box>
-          <Box>
-            <Badge>Time of Day</Badge>
-            <p>{characterIntro.game.timeOfDay}</p>
-          </Box>
+          <StatCard
+            statTitle={'Name'}
+            statData={characterIntro.name}
+            statInfo={"It's the name you were born with."}
+          />
+          <StatCard
+            statTitle={'Upbringing'}
+            statData={characterIntro.background}
+            statInfo={'How did you grow up?'}
+          />
+          <StatCard
+            statTitle={'Health'}
+            statData={[characterIntro.health, '/', characterIntro.maxHealth]}
+            statInfo={"Can't be losing too much of this."}
+          />
+          <StatCard
+            statTitle={'Storage Type'}
+            statData={characterIntro.storageType}
+            statInfo={'How are you gonna hold it?'}
+          />
+          <StatCard
+            statTitle={'Items Held'}
+            statData={[
+              characterIntro.currentItems,
+              '/',
+              characterIntro.maxItems,
+            ]}
+            statInfo={'What you got on ya?'}
+          />
+          <StatCard
+            statTitle={'Luck'}
+            statData={characterIntro.luck}
+            statInfo={'Are ya feeling lucky? Huh?'}
+          />
+          <StatCard
+            statTitle={'Starting City'}
+            statData={characterIntro.game.currentCity}
+            statInfo={'Where you startin?'}
+          />
+          <StatCard
+            statTitle={'Day Count'}
+            statData={[
+              characterIntro.game.currentDay,
+              '/',
+              characterIntro.game.maxDays,
+            ]}
+            statInfo={'Where you startin?'}
+          />
+          <StatCard
+            statTitle={'Time of Day'}
+            statData={characterIntro.game.timeOfDay}
+            statInfo={'Do you know what time it is?'}
+          />
         </Stack>
       </Box>
     </div>

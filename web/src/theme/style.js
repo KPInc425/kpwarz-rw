@@ -1,9 +1,6 @@
-// This object will be used to override Chakra-UI theme defaults.
-// See https://chakra-ui.com/docs/styled-system/theming/theme for theming options
 import { mode } from '@chakra-ui/theme-tools'
+
 export const globalStyles = {
-  initialColorMode: 'system',
-  useSystemColorMode: true,
   colors: {
     gray: {
       700: '#1f2733',
@@ -32,7 +29,6 @@ export const globalStyles = {
       800: '#130156',
       900: '#0e0042',
     },
-    darkBg: '#111c44',
   },
   styles: {
     global: (props) => ({
