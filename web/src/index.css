@@ -57,7 +57,7 @@ body {
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 ul {
-  /* list-style-type: none; */
+  list-style-type: none;
   margin: 1rem 0;
   /* padding: 0; */
 }
