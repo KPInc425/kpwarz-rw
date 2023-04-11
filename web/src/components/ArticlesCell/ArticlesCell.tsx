@@ -2,6 +2,8 @@ import type { ArticlesQuery } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
+import sortById from 'src/lib/sortById'
+
 import Article from '../Article/Article'
 
 export const QUERY = gql`
@@ -33,14 +35,12 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ articles }: CellSuccessProps<ArticlesQuery>) => {
+  const sortedArticles = [...articles].sort(sortById)
   return (
     <div className="max-h-[60vh] space-y-10 overflow-auto border-2 border-black p-4 shadow-lg">
-      {articles
-        .slice(0)
-        .reverse()
-        .map((article) => (
-          <Article key={article.id} article={article} summary={true} />
-        ))}
+      {sortedArticles.reverse().map((article) => (
+        <Article key={article.id} article={article} summary={true} />
+      ))}
     </div>
   )
 }
