@@ -91,15 +91,6 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
       data: regionInput,
     })
 
-    const updatedGame = await db.game.update({
-      where: { id: game.id },
-      data: {
-        currentRegionId: region.id,
-      },
-    })
-
-    console.log('updatedGame', updatedGame)
-    console.log('region', region)
     // Create cities for the region
     const cityInputs = []
     for (let i = 0; i < 6; i++) {
@@ -124,6 +115,23 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
       })
       cities.push(city)
     }
+
+    const getRandomCity = () => {
+      const randomIndex = Math.floor(Math.random() * cities.length)
+      return cities[randomIndex]
+    }
+
+    const updatedGame = await db.game.update({
+      where: { id: game.id },
+      data: {
+        currentRegionId: region.id,
+        currentCity: getRandomCity().name,
+        startLocation: region.name,
+      },
+    })
+
+    console.log('updatedGame', updatedGame)
+    console.log('region', region)
 
     // Return created character, game, and region
     return {
