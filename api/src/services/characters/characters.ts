@@ -5,7 +5,10 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { generateNewGame } from 'src/lib/generateNewGame'
+import generateNewCity from 'src/lib/generateNewCity'
+import generateNewFinances from 'src/lib/generateNewFinances'
+import generateNewGame from 'src/lib/generateNewGame'
+import generateNewRegion from 'src/lib/generateNewRegion'
 
 export const characters: QueryResolvers['characters'] = () => {
   return db.character.findMany()
@@ -44,17 +47,18 @@ export const deleteCharacter: MutationResolvers['deleteCharacter'] = ({
 }
 
 export const createCharacterAndGame: MutationResolvers['createCharacterAndGame'] =
-  async (input) => {
+  async ({ input }) => {
     // Create character
+    console.log('input', input)
     const character = await db.character.create({
-      data: input.characterInput,
+      data: input,
     })
 
     // Create game
+    const gameInput = generateNewGame(character.id)
     const game = await db.game.create({
       data: {
-        characterId: character.id,
-        ...input.gameInput,
+        gameInput,
       },
     })
 
@@ -62,8 +66,7 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
     const financeInput = generateNewFinances(character.id)
     await db.characterFinances.create({
       data: {
-        character: { connect: { id: character.id } },
-        ...financeInput,
+        financeInput,
       },
     })
 
@@ -71,17 +74,20 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
     const regionInput = generateNewRegion(game.id)
     const region = await db.region.create({
       data: {
-        game: { connect: { id: game.id } },
-        ...regionInput,
+        regionInput,
       },
     })
 
     // Create cities for the region
-    const cities = input.cityInputs.map(async (cityInput) => {
+    const cityInputs = []
+    for (let i = 0; i < 6; i++) {
+      cityInputs.push(generateNewCity(region.id))
+    }
+
+    const cities = cityInputs.map(async (cityInput) => {
       const city = await db.city.create({
         data: {
-          region: { connect: { id: region.id } },
-          ...cityInput,
+          cityInput,
         },
       })
       return city
