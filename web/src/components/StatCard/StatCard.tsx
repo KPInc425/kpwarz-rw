@@ -39,8 +39,8 @@ const StatCard = ({ statTitle, statData, statInfo }) => {
         direction="column"
       >
         <Box p="20px">
-          <Flex w="100%" gap={4} w={{ base: '100%', md: '300px' }}>
-            <Image src="https://i.ibb.co/ZWxRPRq/Venus-Logo.png" me="auto" />
+          <Flex alignItems={'center'} gap={4}>
+            <Image src="https://i.ibb.co/ZWxRPRq/Venus-Logo.png" />
             {/* <Button
               w="38px"
               h="38px"

@@ -25,7 +25,7 @@ import CharacterIntroCell from 'src/components/CharacterIntroCell'
 
 const CharacterIntroPage = ({ id }) => {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [introView, setIntroView] = useState(1)
+  const [introView, setIntroView] = useState(5)
 
   const handleClick = (view) => {
     console.log('view', view)
@@ -52,22 +52,42 @@ const CharacterIntroPage = ({ id }) => {
           >
             <Heading textAlign={'center'}>Character Intro</Heading>
             <Stack px={2}>
-              <Button onClick={() => handleClick(1)} colorScheme="green">
+              <Button
+                disabled={true}
+                onClick={() => handleClick(1)}
+                colorScheme="green"
+              >
                 Mug Shot
               </Button>
-              <Button onClick={() => handleClick(2)} colorScheme="green">
+              <Button
+                disabled={true}
+                onClick={() => handleClick(2)}
+                colorScheme="green"
+              >
                 Character Backstory
               </Button>
-              <Button onClick={() => handleClick(3)} colorScheme="green">
+              <Button
+                disabled={true}
+                onClick={() => handleClick(3)}
+                colorScheme="green"
+              >
                 Plot Thickens
               </Button>
-              <Button onClick={() => handleClick(4)} colorScheme="green">
+              <Button
+                disabled={true}
+                onClick={() => handleClick(4)}
+                colorScheme="green"
+              >
                 Buffs/Debuffs
               </Button>
               <Button onClick={() => handleClick(5)} colorScheme="green">
                 Starting Info
               </Button>
-              <Button onClick={() => handleClick(6)} colorScheme="green">
+              <Button
+                disabled={true}
+                onClick={() => handleClick(6)}
+                colorScheme="green"
+              >
                 Breaking Newz!
               </Button>
               <Button onClick={() => handleClick(7)} colorScheme="green">

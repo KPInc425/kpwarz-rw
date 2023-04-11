@@ -59,7 +59,8 @@ model Game {
   name            String
   description     String
   startLocation   String
-  currentLocation String
+  currentRegion   Region?
+  currentRegionId Int
   currentCity     String
   maxDays         Int
   currentDay      Int
@@ -85,12 +86,13 @@ model Character {
   currentItems   Int                 @default(0)
   maxItems       Int                 @default(100)
   luck           Int
-  storageType    String
+  storageType    StorageType         @default(Pockets)
   finances       CharacterFinances[]
   items          Item[]
-  transportation Transport[]
+  transportation TransportOptions    @default(Bootz)
   game           Game?
   createdAt      DateTime            @default(now())
+  Transport      Transport[]
 }
 
 model Region {
@@ -99,6 +101,8 @@ model Region {
   description String
   control     String?
   cities      City[]
+  game        Game     @relation(fields: [gameId], references: [id])
+  gameId      Int      @unique
   createdAt   DateTime @default(now())
 }
 
@@ -112,7 +116,7 @@ model City {
   maxQuantity       Int
   authorityPresence Int?
   region            Region    @relation(fields: [regionId], references: [id])
-  regionId          Int
+  regionId          Int       @unique
   services          Service[]
   createdAt         DateTime  @default(now())
 }
@@ -156,7 +160,7 @@ model Item {
   quality     String?
   ability     String?
   description String?
-  type        String?
+  type        ItemType
   uses        Int?
   character   Character @relation(fields: [characterId], references: [id])
   characterId Int
@@ -169,7 +173,7 @@ model AvailableItems {
   id          Int      @id @default(autoincrement())
   name        String   @unique
   description String
-  type        String
+  type        ItemType @default(Drug)
   ability     String
   basePrice   Int      @default(0)
   chance      Int      @default(100)
@@ -207,6 +211,37 @@ model AvailableTransport {
   createdAt   DateTime @default(now())
 }
 
+enum Background {
+  Plebian
+  Suburban_Kid
+  Affluenza
+}
+
+enum StorageType {
+  Pockets
+  BackPack
+  Trench_Coat
+  Suitcase
+}
+
+enum TransportOptions {
+  Bootz
+  Bike
+  Bus
+  Uber
+  Whip
+  Car_Service
+}
+
+enum ItemType {
+  Food
+  Weapon
+  Clothing
+  Medicine
+  Drug
+  Misc
+}
+
 model RW_DataMigration {
   version    String   @id
   name       String
@@ -219,10 +254,4 @@ model TestStuff {
   name       String
   background Background @default(Plebian)
   createdAt  DateTime   @default(now())
-}
-
-enum Background {
-  Plebian
-  Suburban_Kid
-  Affluenza
 }

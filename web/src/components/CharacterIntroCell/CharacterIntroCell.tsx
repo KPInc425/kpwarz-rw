@@ -8,6 +8,7 @@ import {
   StatNumber,
   Text,
   Badge,
+  SimpleGrid,
 } from '@chakra-ui/react'
 // import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import type {
@@ -67,8 +68,10 @@ export const Success = ({
   return (
     <div>
       <Box>
-        <Text fontSize="4xl">Starting Info</Text>
-        <Stack direction="row" alignItems={'center'} spacing={4} wrap={'wrap'}>
+        <Badge m={4} p={4} borderRadius={'12px'}>
+          <Text fontSize="4xl">Starting Info</Text>
+        </Badge>
+        <SimpleGrid columns={5} spacing={4} p={4}>
           <StatCard
             statTitle={'Name'}
             statData={characterIntro.name}
@@ -122,7 +125,7 @@ export const Success = ({
             statData={characterIntro.game.timeOfDay}
             statInfo={'Do you know what time it is?'}
           />
-        </Stack>
+        </SimpleGrid>
       </Box>
     </div>
   )
