@@ -14,7 +14,7 @@ export const QUERY = gql`
       name
       description
       startLocation
-      currentLocation
+      currentRegionId
       currentCity
       maxDays
       currentDay
@@ -32,7 +32,7 @@ const UPDATE_GAME_MUTATION = gql`
       name
       description
       startLocation
-      currentLocation
+      currentRegionId
       currentCity
       maxDays
       currentDay

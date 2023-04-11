@@ -4,12 +4,13 @@ export const schema = gql`
     name: String!
     description: String!
     startLocation: String!
-    currentLocation: String!
+    currentRegionId: Int!
     currentCity: String!
     maxDays: Int!
     currentDay: Int!
     timeOfDay: String!
     lostItems: [Item]!
+    regions: [Region]!
     character: Character!
     characterId: Int!
     user: User!
@@ -26,7 +27,7 @@ export const schema = gql`
     name: String!
     description: String!
     startLocation: String!
-    currentLocation: String!
+    currentRegionId: Int!
     currentCity: String!
     maxDays: Int!
     currentDay: Int!
@@ -39,7 +40,7 @@ export const schema = gql`
     name: String
     description: String
     startLocation: String
-    currentLocation: String
+    currentRegionId: Int
     currentCity: String
     maxDays: Int
     currentDay: Int

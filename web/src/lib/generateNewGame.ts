@@ -4,7 +4,6 @@ const generateNewGame = (characterId, userId) => {
     description: 'This is a random game',
     currentCity: 'Random City 1',
     startLocation: 'Random Region',
-    currentLocation: 'Random Region',
     currentDay: 1,
     maxDays: 30,
     timeOfDay: 'Morning',

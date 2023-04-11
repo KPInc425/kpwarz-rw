@@ -1,7 +1,10 @@
-const generateNewFinances = (regionId) => {
+const generateNewCity = (regionId) => {
   return {
     regionId: regionId,
     name: 'Random City ' + Math.floor(Math.random() * 10000),
+    description: `This is a random city Number ${Math.floor(
+      Math.random() * 10000
+    )}`,
     avgQuality: Math.floor(Math.random() * 10),
     avgPrice: Math.floor(Math.random() * 10),
     minQuantity: Math.floor(Math.random() * 100),
@@ -10,4 +13,4 @@ const generateNewFinances = (regionId) => {
   }
 }
 
-export default generateNewFinances
+export default generateNewCity

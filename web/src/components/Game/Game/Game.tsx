@@ -1,10 +1,10 @@
+import type { DeleteGameMutationVariables, FindGameById } from 'types/graphql'
+
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { timeTag } from 'src/lib/formatters'
-
-import type { DeleteGameMutationVariables, FindGameById } from 'types/graphql'
 
 const DELETE_GAME_MUTATION = gql`
   mutation DeleteGameMutation($id: Int!) {
@@ -62,8 +62,8 @@ const Game = ({ game }: Props) => {
               <td>{game.startLocation}</td>
             </tr>
             <tr>
-              <th>Current location</th>
-              <td>{game.currentLocation}</td>
+              <th>Current Region ID</th>
+              <td>{game.currentRegionId}</td>
             </tr>
             <tr>
               <th>Current city</th>

@@ -27,18 +27,18 @@ describe('cities', () => {
       input: {
         name: 'String',
         description: 'String',
-        avgPrice: 5475862,
-        minQuantity: 9394327,
-        maxQuantity: 694466,
+        avgPrice: 8873915,
+        minQuantity: 3380129,
+        maxQuantity: 7564993,
         regionId: scenario.city.two.regionId,
       },
     })
 
     expect(result.name).toEqual('String')
     expect(result.description).toEqual('String')
-    expect(result.avgPrice).toEqual(5475862)
-    expect(result.minQuantity).toEqual(9394327)
-    expect(result.maxQuantity).toEqual(694466)
+    expect(result.avgPrice).toEqual(8873915)
+    expect(result.minQuantity).toEqual(3380129)
+    expect(result.maxQuantity).toEqual(7564993)
     expect(result.regionId).toEqual(scenario.city.two.regionId)
   })
 

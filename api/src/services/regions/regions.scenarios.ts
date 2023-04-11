@@ -12,21 +12,20 @@ export const standard = defineScenario<Prisma.RegionCreateArgs>({
             name: 'String',
             description: 'String',
             startLocation: 'String',
-            currentRegionId: 4959558,
+            currentRegionId: 2006212,
             currentCity: 'String',
-            maxDays: 8600653,
-            currentDay: 5599648,
+            maxDays: 163383,
+            currentDay: 5565098,
             timeOfDay: 'String',
             character: {
               create: {
                 name: 'String',
                 bio: 'String',
                 description: 'String',
-                luck: 12132,
-                storageType: 'String',
+                luck: 3021167,
                 user: {
                   create: {
-                    email: 'String430344',
+                    email: 'String7634775',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -35,7 +34,7 @@ export const standard = defineScenario<Prisma.RegionCreateArgs>({
             },
             user: {
               create: {
-                email: 'String3147872',
+                email: 'String5682344',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -53,21 +52,20 @@ export const standard = defineScenario<Prisma.RegionCreateArgs>({
             name: 'String',
             description: 'String',
             startLocation: 'String',
-            currentRegionId: 8461815,
+            currentRegionId: 1583866,
             currentCity: 'String',
-            maxDays: 4609091,
-            currentDay: 3241540,
+            maxDays: 4618404,
+            currentDay: 5439339,
             timeOfDay: 'String',
             character: {
               create: {
                 name: 'String',
                 bio: 'String',
                 description: 'String',
-                luck: 8609072,
-                storageType: 'String',
+                luck: 7763591,
                 user: {
                   create: {
-                    email: 'String2568681',
+                    email: 'String345100',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -76,7 +74,7 @@ export const standard = defineScenario<Prisma.RegionCreateArgs>({
             },
             user: {
               create: {
-                email: 'String8139970',
+                email: 'String8361495',
                 hashedPassword: 'String',
                 salt: 'String',
               },

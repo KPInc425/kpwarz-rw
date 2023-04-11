@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import generateCharacter from 'src/lib/generateNewCharacter'
 import generateNewCity from 'src/lib/generateNewCity'
 import generateNewFinances from 'src/lib/generateNewFinances'
 import generateNewGame from 'src/lib/generateNewGame'
@@ -49,49 +50,80 @@ export const deleteCharacter: MutationResolvers['deleteCharacter'] = ({
 export const createCharacterAndGame: MutationResolvers['createCharacterAndGame'] =
   async ({ input }) => {
     // Create character
+    console.log('Hello from createCharacterAndGame')
     console.log('input', input)
+    const characterInput = generateCharacter(input)
     const character = await db.character.create({
-      data: input,
+      data: characterInput,
     })
 
     // Create game
     const gameInput = generateNewGame(character.id)
+    console.log('gameInput', gameInput)
     const game = await db.game.create({
       data: {
-        gameInput,
+        name: gameInput.name,
+        description: gameInput.description,
+        currentCity: gameInput.currentCity,
+        startLocation: gameInput.startLocation,
+        currentRegionId: 99, // Add the missing `currentRegionId` field with a value
+        currentDay: gameInput.currentDay,
+        maxDays: gameInput.maxDays,
+        timeOfDay: gameInput.timeOfDay,
+        character: {
+          connect: { id: character.id }, // Use `connect` to reference an existing character by its `id`
+        },
+        user: {
+          connect: { id: context.currentUser.id }, // Use `connect` to reference an existing user by their `id`
+        },
       },
     })
 
     // Generate new finances for character
     const financeInput = generateNewFinances(character.id)
     await db.characterFinances.create({
-      data: {
-        financeInput,
-      },
+      data: financeInput,
     })
 
     // Generate new region for game
     const regionInput = generateNewRegion(game.id)
     const region = await db.region.create({
+      data: regionInput,
+    })
+
+    const updatedGame = await db.game.update({
+      where: { id: game.id },
       data: {
-        regionInput,
+        currentRegionId: region.id,
       },
     })
 
+    console.log('updatedGame', updatedGame)
+    console.log('region', region)
     // Create cities for the region
     const cityInputs = []
     for (let i = 0; i < 6; i++) {
       cityInputs.push(generateNewCity(region.id))
     }
 
-    const cities = cityInputs.map(async (cityInput) => {
+    const cities = []
+    for (const cityInput of cityInputs) {
       const city = await db.city.create({
         data: {
-          cityInput,
+          name: cityInput.name,
+          description: cityInput.description,
+          avgQuality: cityInput.avgQuality,
+          avgPrice: cityInput.avgPrice,
+          minQuantity: cityInput.minQuantity,
+          maxQuantity: cityInput.maxQuantity,
+          authorityPresence: cityInput.authorityPresence,
+          region: {
+            connect: { id: region.id },
+          },
         },
       })
-      return city
-    })
+      cities.push(city)
+    }
 
     // Return created character, game, and region
     return {

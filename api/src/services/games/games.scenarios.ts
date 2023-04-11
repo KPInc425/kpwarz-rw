@@ -1,4 +1,5 @@
 import type { Prisma, Game } from '@prisma/client'
+
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.GameCreateArgs>({
@@ -8,7 +9,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentLocation: 'String',
+        currentRegionId: 132,
         currentCity: 'String',
         maxDays: 6676609,
         currentDay: 364487,
@@ -47,7 +48,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentLocation: 'String',
+        currentRegionId: 1235,
         currentCity: 'String',
         maxDays: 4076504,
         currentDay: 5341931,

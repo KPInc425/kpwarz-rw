@@ -28,7 +28,7 @@ describe('games', () => {
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentLocation: 'String',
+        currentRegionId: 1235,
         currentCity: 'String',
         maxDays: 6441362,
         currentDay: 9329621,
@@ -41,7 +41,7 @@ describe('games', () => {
     expect(result.name).toEqual('String')
     expect(result.description).toEqual('String')
     expect(result.startLocation).toEqual('String')
-    expect(result.currentLocation).toEqual('String')
+    expect(result.currentRegionId).toEqual(21136)
     expect(result.currentCity).toEqual('String')
     expect(result.maxDays).toEqual(6441362)
     expect(result.currentDay).toEqual(9329621)

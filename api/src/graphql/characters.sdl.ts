@@ -25,6 +25,13 @@ export const schema = gql`
     character(id: Int!): Character @requireAuth
   }
 
+  type CreateCharacterAndGameResponse {
+    character: Character!
+    game: Game!
+    region: Region!
+    cities: [City!]!
+  }
+
   input CreateCharacterInput {
     name: String!
     bio: String!
@@ -44,13 +51,6 @@ export const schema = gql`
     bio: String!
     background: String!
     description: String!
-    userId: Int!
-    health: Int!
-    maxHealth: Int!
-    currentItems: Int!
-    maxItems: Int!
-    luck: Int!
-    storageType: String!
   }
 
   input UpdateCharacterInput {
@@ -69,8 +69,9 @@ export const schema = gql`
 
   type Mutation {
     createCharacter(input: CreateCharacterInput!): Character! @requireAuth
-    CreateCharacterAndGame(input: CreateCharacterAndGameInput!): Character!
-      @requireAuth
+    createCharacterAndGame(
+      input: CreateCharacterAndGameInput!
+    ): CreateCharacterAndGameResponse! @requireAuth
     updateCharacter(id: Int!, input: UpdateCharacterInput!): Character!
       @requireAuth
     deleteCharacter(id: Int!): Character! @requireAuth

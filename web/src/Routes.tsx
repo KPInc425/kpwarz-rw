@@ -18,6 +18,24 @@ import KPWarzGameLayout from './layouts/KPWarzGameLayout/KPWarzGameLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Set wrap={ScaffoldLayout} title="Services" titleTo="services" buttonLabel="New Service" buttonTo="newService">
+        <Route path="/services/new" page={ServiceNewServicePage} name="newService" />
+        <Route path="/services/{id:Int}/edit" page={ServiceEditServicePage} name="editService" />
+        <Route path="/services/{id:Int}" page={ServiceServicePage} name="service" />
+        <Route path="/services" page={ServiceServicesPage} name="services" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Regions" titleTo="regions" buttonLabel="New Region" buttonTo="newRegion">
+        <Route path="/regions/new" page={RegionNewRegionPage} name="newRegion" />
+        <Route path="/regions/{id:Int}/edit" page={RegionEditRegionPage} name="editRegion" />
+        <Route path="/regions/{id:Int}" page={RegionRegionPage} name="region" />
+        <Route path="/regions" page={RegionRegionsPage} name="regions" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Cities" titleTo="cities" buttonLabel="New City" buttonTo="newCity">
+        <Route path="/cities/new" page={CityNewCityPage} name="newCity" />
+        <Route path="/cities/{id:Int}/edit" page={CityEditCityPage} name="editCity" />
+        <Route path="/cities/{id:Int}" page={CityCityPage} name="city" />
+        <Route path="/cities" page={CityCitiesPage} name="cities" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="TestStuffs" titleTo="testStuffs" buttonLabel="New TestStuff" buttonTo="newTestStuff">
         <Route path="/test-stuffs/new" page={TestStuffNewTestStuffPage} name="newTestStuff" />
         <Route path="/test-stuffs/{id:Int}/edit" page={TestStuffEditTestStuffPage} name="editTestStuff" />

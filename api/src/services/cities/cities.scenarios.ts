@@ -7,9 +7,9 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
       data: {
         name: 'String',
         description: 'String',
-        avgPrice: 2752455,
-        minQuantity: 2155053,
-        maxQuantity: 645073,
+        avgPrice: 3325448,
+        minQuantity: 2425574,
+        maxQuantity: 2292131,
         region: {
           create: {
             name: 'String',
@@ -19,20 +19,20 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
                 name: 'String',
                 description: 'String',
                 startLocation: 'String',
-                currentRegionId: 2763145,
+                currentRegionId: 1920178,
                 currentCity: 'String',
-                maxDays: 9994133,
-                currentDay: 8184513,
+                maxDays: 8389124,
+                currentDay: 8743012,
                 timeOfDay: 'String',
                 character: {
                   create: {
                     name: 'String',
                     bio: 'String',
                     description: 'String',
-                    luck: 8652224,
+                    luck: 5502323,
                     user: {
                       create: {
-                        email: 'String6650234',
+                        email: 'String9502909',
                         hashedPassword: 'String',
                         salt: 'String',
                       },
@@ -41,7 +41,7 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
                 },
                 user: {
                   create: {
-                    email: 'String3003840',
+                    email: 'String7253144',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -56,9 +56,9 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
       data: {
         name: 'String',
         description: 'String',
-        avgPrice: 5054469,
-        minQuantity: 6105728,
-        maxQuantity: 9271144,
+        avgPrice: 2419432,
+        minQuantity: 8589984,
+        maxQuantity: 5310666,
         region: {
           create: {
             name: 'String',
@@ -68,20 +68,20 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
                 name: 'String',
                 description: 'String',
                 startLocation: 'String',
-                currentRegionId: 4666099,
+                currentRegionId: 2830924,
                 currentCity: 'String',
-                maxDays: 9571647,
-                currentDay: 3086504,
+                maxDays: 1177394,
+                currentDay: 3612866,
                 timeOfDay: 'String',
                 character: {
                   create: {
                     name: 'String',
                     bio: 'String',
                     description: 'String',
-                    luck: 310039,
+                    luck: 8044990,
                     user: {
                       create: {
-                        email: 'String107429',
+                        email: 'String288028',
                         hashedPassword: 'String',
                         salt: 'String',
                       },
@@ -90,7 +90,7 @@ export const standard = defineScenario<Prisma.CityCreateArgs>({
                 },
                 user: {
                   create: {
-                    email: 'String2153108',
+                    email: 'String7274844',
                     hashedPassword: 'String',
                     salt: 'String',
                   },

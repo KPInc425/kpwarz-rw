@@ -1,3 +1,5 @@
+import type { EditGameById, UpdateGameInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -7,8 +9,6 @@ import {
   NumberField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type { EditGameById, UpdateGameInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormGame = NonNullable<EditGameById['game']>
@@ -90,7 +90,7 @@ const GameForm = (props: GameFormProps) => {
         <FieldError name="startLocation" className="rw-field-error" />
 
         <Label
-          name="currentLocation"
+          name="currentRegionId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
@@ -98,14 +98,14 @@ const GameForm = (props: GameFormProps) => {
         </Label>
 
         <TextField
-          name="currentLocation"
-          defaultValue={props.game?.currentLocation}
+          name="currentRegionId"
+          defaultValue={props.game?.currentRegionId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="currentLocation" className="rw-field-error" />
+        <FieldError name="currentRegionId" className="rw-field-error" />
 
         <Label
           name="currentCity"

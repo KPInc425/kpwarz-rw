@@ -59,13 +59,13 @@ model Game {
   name            String
   description     String
   startLocation   String
-  currentRegion   Region?
   currentRegionId Int
   currentCity     String
   maxDays         Int
   currentDay      Int
   timeOfDay       String
   lostItems       Item[]
+  regions         Region[]
   character       Character @relation(fields: [characterId], references: [id])
   characterId     Int       @unique
   user            User      @relation(fields: [userId], references: [id])
@@ -116,7 +116,7 @@ model City {
   maxQuantity       Int
   authorityPresence Int?
   region            Region    @relation(fields: [regionId], references: [id])
-  regionId          Int       @unique
+  regionId          Int
   services          Service[]
   createdAt         DateTime  @default(now())
 }

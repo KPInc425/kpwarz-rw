@@ -65,62 +65,6 @@ const CREATE_CHARACTER_AND_GAME_MUTATION = gql`
 
 const CreateCharacter = () => {
   const { currentUser } = useAuth()
-  // const [createCharacter, { loading, error }] = useMutation(
-  //   CREATE_CHARACTER_MUTATION,
-  //   {
-  //     onCompleted: (r) => {
-  //       // console.log(r)
-  //       toast.success('Character created')
-  //       console.log('Character Created', r.createCharacter.id)
-  //       console.log('Setting Character Id')
-  //       // generateNewGame(r.data.createCharacter.id)
-  //       const characterId = r.createCharacter.id
-  //       const financeInput = generateNewFinances(characterId)
-  //       const gameInput = generateNewGame(characterId, currentUser.id)
-  //       console.log(gameInput)
-  //       createCharacterFinances({ variables: { financeInput } })
-  //       createGame({ variables: { gameInput } })
-  //     },
-  //     onError: (error) => {
-  //       console.log(error)
-  //       toast.error(error.message)
-  //     },
-  //   }
-  // )
-
-  // const [createCharacterFinances] = useMutation(
-  //   CREATE_CHARACTER_FINANCES_MUTATION,
-  //   {
-  //     onCompleted: () => {
-  //       toast.success('CharacterFinances created')
-  //     },
-  //     onError: (error) => {
-  //       toast.error(error.message)
-  //     },
-  //   }
-  // )
-  // const [createRegion] = useMutation(CREATE_REGION_MUTATION, {
-  //   onCompleted: () => {
-  //     toast.success('Region created')
-  //   },
-  //   onError: (error) => {
-  //     toast.error(error.message)
-  //   },
-  // })
-
-  // const [createGame] = useMutation(CREATE_GAME_MUTATION, {
-  //   onCompleted: (r) => {
-  //     toast.success('Game created')
-  //     console.log(r.createGame.characterId)
-  //     const input = generateNewRegion(r.createGame.id)
-  //     createRegion({ variables: { input } })
-  //     navigate(routes.characterIntro({ id: r.createGame.characterId }))
-  //   },
-  //   onError: (error) => {
-  //     console.log(error)
-  //     toast.error(error.message)
-  //   },
-  // })
   const [createCharacterAndGame, { loading, error }] = useMutation(
     CREATE_CHARACTER_AND_GAME_MUTATION,
     {
