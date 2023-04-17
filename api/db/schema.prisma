@@ -114,6 +114,7 @@ model City {
   avgPrice          Int
   minQuantity       Int
   maxQuantity       Int
+  localBoss         String?   @default("Free-for-all")
   authorityPresence Int?
   region            Region    @relation(fields: [regionId], references: [id])
   regionId          Int

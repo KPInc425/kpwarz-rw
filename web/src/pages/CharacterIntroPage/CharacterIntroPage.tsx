@@ -3,25 +3,18 @@
 import { useState } from 'react'
 
 import {
-  Box,
   Button,
   Grid,
   GridItem,
   Heading,
-  Menu,
-  MenuButton,
   Stack,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
   useColorMode,
 } from '@chakra-ui/react'
 
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import CharacterIntroCell from 'src/components/CharacterIntroCell'
+import CurrentRegionCell from 'src/components/CurrentRegionCell'
 
 const CharacterIntroPage = ({ id }) => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -179,7 +172,7 @@ const CharacterIntroPage = ({ id }) => {
               border="4px solid rgb(184, 182, 182)"
               borderRadius="12px"
             >
-              Starting Locations
+              <CurrentRegionCell id={1} />
             </GridItem>
           )}
         </Grid>

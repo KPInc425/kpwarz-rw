@@ -2,6 +2,7 @@ const generateNewCity = (regionId) => {
   return {
     regionId: regionId,
     name: 'Random City ' + Math.floor(Math.random() * 10000),
+    localBoss: 'Random Boss ' + Math.floor(Math.random() * 10000),
     description: `This is a random city Number ${Math.floor(
       Math.random() * 10000
     )}`,

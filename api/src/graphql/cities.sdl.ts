@@ -11,6 +11,7 @@ export const schema = gql`
     region: Region!
     regionId: Int!
     services: [Service]!
+    localBoss: String!
     createdAt: DateTime!
   }
 
@@ -26,6 +27,7 @@ export const schema = gql`
     avgPrice: Int!
     minQuantity: Int!
     maxQuantity: Int!
+    localBoss: String
     authorityPresence: Int
     regionId: Int!
   }
@@ -37,6 +39,7 @@ export const schema = gql`
     avgPrice: Int
     minQuantity: Int
     maxQuantity: Int
+    localBoss: String
     authorityPresence: Int
     regionId: Int
   }

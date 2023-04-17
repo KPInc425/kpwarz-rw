@@ -1,5 +1,3 @@
-import type { CreateCharacterInput } from 'types/graphql'
-import type { CreateGameInput } from 'types/graphql'
 import type { CreateCharacterAndGameInput } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -8,38 +6,6 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 import CreateCharacterForm from 'src/components/CreatecharacterCell/CreateCharacterForm/CreateCharacterForm'
-import generateNewFinances from 'src/lib/generateNewFinances'
-import generateNewGame from 'src/lib/generateNewGame'
-
-// const CREATE_CHARACTER_MUTATION = gql`
-//   mutation CreateCharacterMutation($input: CreateCharacterInput!) {
-//     createCharacter(input: $input) {
-//       id
-//     }
-//   }
-// `
-// const CREATE_GAME_MUTATION = gql`
-//   mutation CreateGameMutation($input: CreateGameInput!) {
-//     createGame(input: $input) {
-//       id
-//       characterId
-//     }
-//   }
-// `
-// const CREATE_CHARACTER_FINANCES_MUTATION = gql`
-//   mutation createCharacterFinances($input: CreateCharacterFinancesInput!) {
-//     createGame(input: $input) {
-//       id
-//     }
-//   }
-// `
-// const CREATE_REGION_MUTATION = gql`
-//   mutation createrRegion($input: CreateRegionInput!) {
-//     createRegion(input: $input) {
-//       id
-//     }
-//   }
-// `
 
 const CREATE_CHARACTER_AND_GAME_MUTATION = gql`
   mutation CreateCharacterAndGameMutation(
@@ -64,7 +30,6 @@ const CREATE_CHARACTER_AND_GAME_MUTATION = gql`
 `
 
 const CreateCharacter = () => {
-  const { currentUser } = useAuth()
   const [createCharacterAndGame, { loading, error }] = useMutation(
     CREATE_CHARACTER_AND_GAME_MUTATION,
     {
@@ -85,11 +50,6 @@ const CreateCharacter = () => {
       },
     }
   )
-
-  // const onSave = (input: CreateCharacterInput) => {
-  //   console.log(input)
-  //   createCharacter({ variables: { input } })
-  // }
 
   const onSave = (input: CreateCharacterAndGameInput) => {
     console.log(input)

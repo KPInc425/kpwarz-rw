@@ -13,10 +13,15 @@ import {
   DarkMode,
 } from '@chakra-ui/react'
 // Assets
-import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
-import { MdTimer, MdVideoLibrary } from 'react-icons/md'
 
-const ProductCard = () => {
+import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
+
+const ProductCard = ({
+  productTitle,
+  productDescription,
+  productControl,
+  services,
+}) => {
   return (
     <DarkMode>
       <Flex
@@ -57,7 +62,7 @@ const ProductCard = () => {
               w="100%"
               fontSize="2xl"
             >
-              Venus Product
+              {productTitle}
             </Text>
             <AvatarGroup
               size="sm"
@@ -96,40 +101,46 @@ const ProductCard = () => {
             fontWeight="500"
             mb="auto"
           >
-            You have the opportunity to play this game of life you need to
-            appreciate every moment.
+            Description: {productDescription}
+          </Text>
+          <Text
+            fontSize="sm"
+            color="gray.500"
+            lineHeight="24px"
+            pe="40px"
+            fontWeight="500"
+            mb="auto"
+          >
+            Control: {productControl}
+          </Text>
+          <Text
+            fontSize="sm"
+            color="gray.500"
+            lineHeight="24px"
+            pe="40px"
+            fontWeight="500"
+            mb="auto"
+          >
+            Services
           </Text>
           <Flex>
-            <Flex me="25px">
-              <Icon as={MdTimer} w="20px" h="20px" me="6px" color="green.400" />
-              <Text
-                color="gray.800"
-                _dark={{ color: 'white' }}
-                fontSize="sm"
-                my="auto"
-                fontWeight="500"
-              >
-                85 mins
-              </Text>
-            </Flex>
-            <Flex>
-              <Icon
-                as={MdVideoLibrary}
-                w="20px"
-                h="20px"
-                me="6px"
-                color="red.500"
-              />
-              <Text
-                color="gray.800"
-                _dark={{ color: 'white' }}
-                fontSize="sm"
-                my="auto"
-                fontWeight="500"
-              >
-                Video Format
-              </Text>
-            </Flex>
+            {services.map((service, index) => {
+              console.log(service)
+              return (
+                <Flex key={index} me="25px">
+                  {service.serviceIcon}
+                  <Text
+                    color="gray.800"
+                    _dark={{ color: 'white' }}
+                    fontSize="sm"
+                    my="auto"
+                    fontWeight="500"
+                  >
+                    {service.name}
+                  </Text>
+                </Flex>
+              )
+            })}
           </Flex>
         </Flex>
       </Flex>
