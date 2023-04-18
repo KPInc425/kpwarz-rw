@@ -73,10 +73,9 @@ export const Success = ({
   FindCurrentRegionQuery,
   FindCurrentRegionQueryVariables
 >) => {
-  const [currentCity, setCurrentCity] = useState(currentRegion.game.currentCity)
-  useEffect(() => {
-    console.log('currentCity', currentCity)
-  }, [currentCity])
+  const [currentCity, setCurrentCity] = useState(
+    currentRegion.cities.find((c) => c.name === currentRegion.game.currentCity)
+  )
   const [updateCurrentCity, { loading, error }] = useMutation(
     UPDATE_GAME_MUTATION,
     {
@@ -84,7 +83,9 @@ export const Success = ({
         toast.success('Game updated')
         console.log(r)
         console.log('navigating')
-        setCurrentCity(r.updateGame.currentCity)
+        setCurrentCity(
+          currentRegion.cities.find((c) => c.name === r.updateGame.currentCity)
+        )
       },
       onError: (error) => {
         toast.error(error.message)
@@ -147,7 +148,7 @@ export const Success = ({
           },
         ]}
       />
-      <Stack direction="column" spacing={2} ml={4}>
+      <Stack direction="column" spacing={2} m={4}>
         {currentRegion.cities.map((city) => {
           let color = 'green'
           if (city.name === currentRegion.game.currentCity) {
@@ -164,6 +165,40 @@ export const Success = ({
           )
         })}
       </Stack>
+
+      <LocationCard
+        productTitle={currentCity.name}
+        productDescription={currentCity.description}
+        productControl={currentCity.localBoss}
+        services={[
+          {
+            name: 'Bank',
+            description: 'Banking services',
+            serviceIcon: (
+              <Icon
+                as={RiBankFill}
+                w="20px"
+                h="20px"
+                me="6px"
+                color={'green.400'}
+              />
+            ),
+          },
+          {
+            name: 'Store',
+            description: 'Market services',
+            serviceIcon: (
+              <Icon
+                as={BiStore}
+                w="20px"
+                h="20px"
+                me="6px"
+                color={'blue.400'}
+              />
+            ),
+          },
+        ]}
+      />
     </Flex>
   )
 }
