@@ -15,7 +15,7 @@ import { useMutation } from '@redwoodjs/web'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import ProductCard from '../ProductCard/ProductCard'
+import LocationCard from '../LocationCard/LocationCard'
 
 export const QUERY = gql`
   query FindCurrentRegionQuery($id: Int!) {
@@ -114,7 +114,7 @@ export const Success = ({
 
   return (
     <Flex alignItems={'center'}>
-      <ProductCard
+      <LocationCard
         productTitle={currentRegion.name}
         productDescription={currentRegion.description}
         productControl={currentRegion.control}
