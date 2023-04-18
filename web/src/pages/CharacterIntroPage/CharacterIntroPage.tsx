@@ -3,11 +3,13 @@
 import { useState } from 'react'
 
 import {
+  Badge,
   Button,
   Grid,
   GridItem,
   Heading,
   Stack,
+  Text,
   useColorMode,
 } from '@chakra-ui/react'
 
@@ -148,6 +150,9 @@ const CharacterIntroPage = ({ id }) => {
               border="4px solid rgb(184, 182, 182)"
               borderRadius="12px"
             >
+              <Badge m={4} p={4} borderRadius={'12px'}>
+                <Text fontSize="4xl">Starting Info</Text>
+              </Badge>
               <CharacterIntroCell id={Number(id)} />
             </GridItem>
           )}

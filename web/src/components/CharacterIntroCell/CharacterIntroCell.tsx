@@ -18,7 +18,6 @@ import type {
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import ProductCard from '../ProductCard/ProductCard'
 import StatCard from '../StatCard/StatCard'
 
 export const QUERY = gql`
@@ -61,16 +60,19 @@ export const Failure = ({
 
 export const Success = ({
   characterIntro,
+  reRender,
+  refetch,
 }: CellSuccessProps<
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables
 >) => {
+  if (reRender === true) {
+    refetch()
+  }
+
   return (
     <div>
       <Box>
-        <Badge m={4} p={4} borderRadius={'12px'}>
-          <Text fontSize="4xl">Starting Info</Text>
-        </Badge>
         <SimpleGrid columns={5} spacing={4} p={4}>
           <StatCard
             statTitle={'Name'}
@@ -107,7 +109,7 @@ export const Success = ({
             statInfo={'Are ya feeling lucky? Huh?'}
           />
           <StatCard
-            statTitle={'Starting City'}
+            statTitle={'Current City'}
             statData={characterIntro.game.currentCity}
             statInfo={'Where you startin?'}
           />

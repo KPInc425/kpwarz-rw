@@ -15,6 +15,7 @@ import { useMutation } from '@redwoodjs/web'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import CharacterIntroCell from '../CharacterIntroCell'
 import LocationCard from '../LocationCard/LocationCard'
 
 export const QUERY = gql`
@@ -76,6 +77,7 @@ export const Success = ({
   const [currentCity, setCurrentCity] = useState(
     currentRegion.cities.find((c) => c.name === currentRegion.game.currentCity)
   )
+  const [reRender, setReRender] = useState(false)
   const [updateCurrentCity, { loading, error }] = useMutation(
     UPDATE_GAME_MUTATION,
     {
@@ -83,6 +85,8 @@ export const Success = ({
         toast.success('Game updated')
         console.log(r)
         console.log('navigating')
+        setReRender(true)
+        setReRender(false)
         setCurrentCity(
           currentRegion.cities.find((c) => c.name === r.updateGame.currentCity)
         )
@@ -114,91 +118,97 @@ export const Success = ({
   }
 
   return (
-    <Flex alignItems={'center'}>
-      <LocationCard
-        productTitle={currentRegion.name}
-        productDescription={currentRegion.description}
-        productControl={currentRegion.control}
-        services={[
-          {
-            name: 'Bank',
-            description: 'Banking services',
-            serviceIcon: (
-              <Icon
-                as={RiBankFill}
-                w="20px"
-                h="20px"
-                me="6px"
-                color={'green.400'}
-              />
-            ),
-          },
-          {
-            name: 'Store',
-            description: 'Market services',
-            serviceIcon: (
-              <Icon
-                as={BiStore}
-                w="20px"
-                h="20px"
-                me="6px"
-                color={'blue.400'}
-              />
-            ),
-          },
-        ]}
-      />
-      <Stack direction="column" spacing={2} m={4}>
-        {currentRegion.cities.map((city) => {
-          let color = 'green'
-          if (city.name === currentRegion.game.currentCity) {
-            color = 'blue'
-          }
-          return (
-            <Button
-              onClick={() => handleClick(city.name, currentRegion.game.id)}
-              key={city.id}
-              colorScheme={color}
-            >
-              {city.name}
-            </Button>
-          )
-        })}
-      </Stack>
+    <Stack>
+      <Flex alignItems={'center'}>
+        <LocationCard
+          productTitle={currentRegion.name}
+          productDescription={currentRegion.description}
+          productControl={currentRegion.control}
+          services={[
+            {
+              name: 'Bank',
+              description: 'Banking services',
+              serviceIcon: (
+                <Icon
+                  as={RiBankFill}
+                  w="20px"
+                  h="20px"
+                  me="6px"
+                  color={'green.400'}
+                />
+              ),
+            },
+            {
+              name: 'Store',
+              description: 'Market services',
+              serviceIcon: (
+                <Icon
+                  as={BiStore}
+                  w="20px"
+                  h="20px"
+                  me="6px"
+                  color={'blue.400'}
+                />
+              ),
+            },
+          ]}
+        />
+        <Stack direction="column" spacing={2} m={4}>
+          {currentRegion.cities.map((city) => {
+            let color = 'green'
+            if (city.name === currentRegion.game.currentCity) {
+              color = 'blue'
+            }
+            return (
+              <Button
+                onClick={() => handleClick(city.name, currentRegion.game.id)}
+                key={city.id}
+                colorScheme={color}
+              >
+                {city.name}
+              </Button>
+            )
+          })}
+        </Stack>
 
-      <LocationCard
-        productTitle={currentCity.name}
-        productDescription={currentCity.description}
-        productControl={currentCity.localBoss}
-        services={[
-          {
-            name: 'Bank',
-            description: 'Banking services',
-            serviceIcon: (
-              <Icon
-                as={RiBankFill}
-                w="20px"
-                h="20px"
-                me="6px"
-                color={'green.400'}
-              />
-            ),
-          },
-          {
-            name: 'Store',
-            description: 'Market services',
-            serviceIcon: (
-              <Icon
-                as={BiStore}
-                w="20px"
-                h="20px"
-                me="6px"
-                color={'blue.400'}
-              />
-            ),
-          },
-        ]}
+        <LocationCard
+          productTitle={currentCity.name}
+          productDescription={currentCity.description}
+          productControl={currentCity.localBoss}
+          services={[
+            {
+              name: 'Bank',
+              description: 'Banking services',
+              serviceIcon: (
+                <Icon
+                  as={RiBankFill}
+                  w="20px"
+                  h="20px"
+                  me="6px"
+                  color={'green.400'}
+                />
+              ),
+            },
+            {
+              name: 'Store',
+              description: 'Market services',
+              serviceIcon: (
+                <Icon
+                  as={BiStore}
+                  w="20px"
+                  h="20px"
+                  me="6px"
+                  color={'blue.400'}
+                />
+              ),
+            },
+          ]}
+        />
+      </Flex>
+      <CharacterIntroCell
+        id={currentRegion.game.characterId}
+        reRender={reRender}
       />
-    </Flex>
+    </Stack>
   )
 }
