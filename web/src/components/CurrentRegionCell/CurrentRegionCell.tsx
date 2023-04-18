@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 import { Button, Flex, Icon, Stack } from '@chakra-ui/react'
 import { BiStore } from 'react-icons/bi'
 import { RiBankFill } from 'react-icons/ri'
@@ -8,6 +10,7 @@ import type {
   UpdateGameInput,
 } from 'types/graphql'
 
+import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -28,6 +31,7 @@ export const QUERY = gql`
         timeOfDay
         currentDay
         maxDays
+        characterId
       }
       cities {
         id
@@ -69,15 +73,26 @@ export const Success = ({
   FindCurrentRegionQuery,
   FindCurrentRegionQueryVariables
 >) => {
+  const [currentCity, setCurrentCity] = useState(currentRegion.game.currentCity)
+  useEffect(() => {
+    console.log('currentCity', currentCity)
+  }, [currentCity])
   const [updateCurrentCity, { loading, error }] = useMutation(
     UPDATE_GAME_MUTATION,
     {
-      onCompleted: () => {
+      onCompleted: (r) => {
         toast.success('Game updated')
+        console.log(r)
+        console.log('navigating')
+        setCurrentCity(r.updateGame.currentCity)
       },
       onError: (error) => {
         toast.error(error.message)
       },
+      refetchQueries: [
+        { query: QUERY, variables: { id: currentRegion.id } },
+        'FindCurrentRegionQuery',
+      ],
     }
   )
 
@@ -86,15 +101,15 @@ export const Success = ({
     id: EditGameById['game']['id']
   ) => {
     console.log('clicked')
-    console.log(input.currentCity)
+    console.log(input)
 
     const newGameInput = {
-      currentCity: input.currentCity,
+      currentCity: input,
       currentDay: currentRegion.game.currentDay + 1,
       timeOfDay: 'Afternoon',
     }
     console.log(newGameInput)
-    // updateCurrentCity({ variables: { id, input: newGameInput } })
+    updateCurrentCity({ variables: { id, input: newGameInput } })
   }
 
   return (
