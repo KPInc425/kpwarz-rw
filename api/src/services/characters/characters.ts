@@ -121,12 +121,14 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
       return cities[randomIndex]
     }
 
+    const randomCity = getRandomCity()
+
     const updatedGame = await db.game.update({
       where: { id: game.id },
       data: {
         currentRegionId: region.id,
-        currentCity: getRandomCity().name,
-        startLocation: region.name,
+        currentCity: randomCity.name,
+        startLocation: randomCity.name,
       },
     })
 

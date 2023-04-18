@@ -23,6 +23,7 @@ export const createGame: MutationResolvers['createGame'] = ({ input }) => {
 }
 
 export const updateGame: MutationResolvers['updateGame'] = ({ id, input }) => {
+  console.log(input)
   return db.game.update({
     data: input,
     where: { id },

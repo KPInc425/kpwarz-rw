@@ -125,7 +125,7 @@ const ProductCard = ({
           </Text>
           <Flex>
             {services.map((service, index) => {
-              console.log(service)
+              // console.log(service)
               return (
                 <Flex key={index} me="25px">
                   {service.serviceIcon}

@@ -39,7 +39,6 @@ const UPDATE_GAME_MUTATION = gql`
       timeOfDay
       characterId
       userId
-      createdAt
     }
   }
 `
