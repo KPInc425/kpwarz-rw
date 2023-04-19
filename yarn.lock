@@ -8546,6 +8546,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@whatwg-node/fetch@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "@whatwg-node/fetch@npm:0.8.5"
+  dependencies:
+    "@peculiar/webcrypto": ^1.4.0
+    "@whatwg-node/node-fetch": ^0.3.3
+    busboy: ^1.6.0
+    urlpattern-polyfill: ^7.0.0
+    web-streams-polyfill: ^3.2.1
+  checksum: 29e9e0c5ca01fae2f3ec9255a6b493e52e6d85e4db3267f45b7a3251212b2ff2cea263ac36a1ec5358b4c494bcca9802c5614286c328a15b39e06609229063f7
+  languageName: node
+  linkType: hard
+
 "@whatwg-node/node-fetch@npm:^0.3.3":
   version: 0.3.4
   resolution: "@whatwg-node/node-fetch@npm:0.3.4"
@@ -9020,6 +9033,7 @@ __metadata:
     "@redwoodjs/api": 4.5.0
     "@redwoodjs/auth-dbauth-api": 4.5.0
     "@redwoodjs/graphql-server": 4.5.0
+    "@whatwg-node/fetch": ^0.8.5
   languageName: unknown
   linkType: soft
 
@@ -25249,6 +25263,15 @@ __metadata:
   dependencies:
     braces: ^3.0.2
   checksum: 28301775a23ae371ea02798d4a94d65ee894cdab4ede0d2b82f8d3642804febeb145900c1bce65d1d075ed942ac2ee58c193f3f6b2498f274a06e407cba5e019
+  languageName: node
+  linkType: hard
+
+"urlpattern-polyfill@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "urlpattern-polyfill@npm:7.0.0"
+  dependencies:
+    braces: ^3.0.2
+  checksum: d6538c4e7cd11f42deaa12816f16fdb2598a1cc9833ffc88febe7b4ec5b3c2fd68d33a12bf548bb51cc3f1b1eae9e43ca0f8177dbaa12f0ae442a1d1eabe12e4
   languageName: node
   linkType: hard
 

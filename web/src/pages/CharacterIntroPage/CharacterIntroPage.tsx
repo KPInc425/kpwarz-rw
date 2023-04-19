@@ -13,18 +13,59 @@ import {
   useColorMode,
 } from '@chakra-ui/react'
 
-import { MetaTags } from '@redwoodjs/web'
+import { navigate, routes } from '@redwoodjs/router'
+import { MetaTags, useQuery } from '@redwoodjs/web'
 
 import CharacterIntroCell from 'src/components/CharacterIntroCell'
 import CurrentRegionCell from 'src/components/CurrentRegionCell'
 
-const CharacterIntroPage = ({ id }) => {
+export const FIND_CHARACTER_INTRO_QUERY = gql`
+  query FindCharacterIntroQuery($id: Int!) {
+    characterIntro: character(id: $id) {
+      id
+      name
+      bio
+      background
+      description
+      userId
+      health
+      maxHealth
+      currentItems
+      maxItems
+      luck
+      storageType
+      createdAt
+      game {
+        name
+        description
+        startLocation
+        currentCity
+        currentRegionId
+        maxDays
+        currentDay
+        timeOfDay
+      }
+    }
+  }
+`
+
+const CharacterIntroPage = ({ id, regionId, gameId }) => {
+  // const { data } = useQuery(FIND_CHARACTER_INTRO_QUERY, id)
   const { colorMode, toggleColorMode } = useColorMode()
   const [introView, setIntroView] = useState(5)
 
   const handleClick = (view) => {
     console.log('view', view)
+    console.log(gameId)
+    console.log(regionId)
     setIntroView(view)
+  }
+
+  const startGame = () => {
+    console.log('start game')
+    navigate(
+      routes.kpwarzGame({ id: gameId, regionId: regionId, characterId: id })
+    )
   }
   return (
     <>
@@ -87,6 +128,9 @@ const CharacterIntroPage = ({ id }) => {
               </Button>
               <Button onClick={() => handleClick(7)} colorScheme="green">
                 Locations
+              </Button>
+              <Button size="sm" colorScheme="blue" onClick={startGame}>
+                Start Game
               </Button>
               <Button size="sm" colorScheme="blue" onClick={toggleColorMode}>
                 Toggle Mode
@@ -177,7 +221,7 @@ const CharacterIntroPage = ({ id }) => {
               border="4px solid rgb(184, 182, 182)"
               borderRadius="12px"
             >
-              <CurrentRegionCell id={1} />
+              <CurrentRegionCell id={Number(regionId)} />
             </GridItem>
           )}
         </Grid>

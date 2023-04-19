@@ -42,7 +42,14 @@ const CreateCharacter = () => {
         console.log(game)
         console.log(region)
         console.log(cities)
-        navigate(routes.characterIntro({ id: game.characterId }))
+        console.log(character)
+        navigate(
+          routes.characterIntro({
+            id: game.characterId,
+            regionId: region.id,
+            gameId: game.id,
+          })
+        )
       },
       onError: (error) => {
         console.log(error)

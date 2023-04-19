@@ -205,10 +205,10 @@ export const Success = ({
           ]}
         />
       </Flex>
-      <CharacterIntroCell
+      {/* <CharacterIntroCell
         id={currentRegion.game.characterId}
         reRender={reRender}
-      />
+      /> */}
     </Stack>
   )
 }

@@ -5,7 +5,7 @@ import { MetaTags } from '@redwoodjs/web'
 import CurrentGameView from 'src/components/CurrentGameView/CurrentGameView'
 import GameMenu from 'src/components/GameMenu/GameMenu'
 
-const KpwarzGamePage = () => {
+const KpwarzGamePage = ({ id, regionId, characterId }) => {
   const [currentView, setCurrentView] = useState(0)
 
   const updateCurrentView = (view) => {
@@ -42,7 +42,12 @@ const KpwarzGamePage = () => {
         <div className="row-start-10 col-span-1 col-start-1 row-span-3 rounded-md border-2 border-gray-300">
           Settings/Extra
         </div>
-        <CurrentGameView currentView={currentView} />
+        <CurrentGameView
+          currentView={currentView}
+          gameId={Number(id)}
+          regionId={Number(regionId)}
+          characterId={Number(characterId)}
+        />
         <div className="col-span-2 col-start-2 row-span-2 row-start-[9] rounded-md border-2 border-gray-300">
           Current Story Plot
         </div>

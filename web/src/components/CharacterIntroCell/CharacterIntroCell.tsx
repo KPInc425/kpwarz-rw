@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import {
   Box,
   Grid,
@@ -66,15 +64,10 @@ export const Success = ({
   characterIntro,
   reRender,
   refetch,
-  liftCharacterInfo,
 }: CellSuccessProps<
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables
 >) => {
-  useEffect(() => {
-    console.log('characterIntro', characterIntro)
-    liftCharacterInfo(characterIntro)
-  }, [])
   if (reRender === true) {
     refetch()
   }
