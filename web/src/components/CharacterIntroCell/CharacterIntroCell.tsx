@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import {
   Box,
   Grid,
@@ -9,6 +11,7 @@ import {
   Text,
   Badge,
   SimpleGrid,
+  Flex,
 } from '@chakra-ui/react'
 // import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import type {
@@ -41,6 +44,7 @@ export const QUERY = gql`
         description
         startLocation
         currentCity
+        currentRegionId
         maxDays
         currentDay
         timeOfDay
@@ -62,10 +66,15 @@ export const Success = ({
   characterIntro,
   reRender,
   refetch,
+  liftCharacterInfo,
 }: CellSuccessProps<
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables
 >) => {
+  useEffect(() => {
+    console.log('characterIntro', characterIntro)
+    liftCharacterInfo(characterIntro)
+  }, [])
   if (reRender === true) {
     refetch()
   }
@@ -73,7 +82,7 @@ export const Success = ({
   return (
     <div>
       <Box>
-        <SimpleGrid columns={5} spacing={4} p={4}>
+        <Flex gap={4} wrap={'wrap'} justifyContent={'center'}>
           <StatCard
             statTitle={'Name'}
             statData={characterIntro.name}
@@ -127,7 +136,7 @@ export const Success = ({
             statData={characterIntro.game.timeOfDay}
             statInfo={'Do you know what time it is?'}
           />
-        </SimpleGrid>
+        </Flex>
       </Box>
     </div>
   )

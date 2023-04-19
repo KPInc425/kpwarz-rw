@@ -119,7 +119,7 @@ export const Success = ({
 
   return (
     <Stack>
-      <Flex alignItems={'center'}>
+      <Flex alignItems={'center'} justifyContent={'center'} mt={4}>
         <LocationCard
           productTitle={currentRegion.name}
           productDescription={currentRegion.description}

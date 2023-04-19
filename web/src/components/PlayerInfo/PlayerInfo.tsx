@@ -1,8 +1,9 @@
-const PlayerInfo = () => {
+import CharacterIntroCell from '../CharacterIntroCell'
+
+const PlayerInfo = ({ id }) => {
   return (
     <div>
-      <h2>{'PlayerInfo'}</h2>
-      <p>{'Find me in ./web/src/components/PlayerInfo/PlayerInfo.tsx'}</p>
+      <CharacterIntroCell id={id} />
     </div>
   )
 }
