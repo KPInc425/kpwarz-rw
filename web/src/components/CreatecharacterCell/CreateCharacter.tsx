@@ -45,9 +45,7 @@ const CreateCharacter = () => {
         console.log(character)
         navigate(
           routes.characterIntro({
-            id: game.characterId,
-            regionId: region.id,
-            gameId: game.id,
+            id: game.id,
           })
         )
       },

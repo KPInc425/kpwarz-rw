@@ -71,6 +71,8 @@ model Game {
   user            User      @relation(fields: [userId], references: [id])
   userId          Int
   createdAt       DateTime  @default(now())
+
+  @@unique([userId, id])
 }
 
 model Character {
@@ -93,13 +95,15 @@ model Character {
   game           Game?
   createdAt      DateTime            @default(now())
   Transport      Transport[]
+
+  @@unique([userId, id])
 }
 
 model Region {
   id          Int      @id @default(autoincrement())
   name        String
   description String
-  control     String?
+  control     String?  @default("Open Season")
   cities      City[]
   game        Game     @relation(fields: [gameId], references: [id])
   gameId      Int      @unique

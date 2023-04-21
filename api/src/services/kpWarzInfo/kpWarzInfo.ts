@@ -6,10 +6,8 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const getCharacterIntro: QueryResolvers['getCharacterIntro'] = ({
-  id,
-}) => {
-  return db.character.findFirst({
+export const getGameInfo: QueryResolvers['getGameInfo'] = ({ id }) => {
+  return db.game.findFirst({
     where: { id, userId: context.currentUser.id },
   })
 }

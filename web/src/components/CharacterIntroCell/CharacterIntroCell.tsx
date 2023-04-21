@@ -23,7 +23,7 @@ import StatCard from '../StatCard/StatCard'
 
 export const QUERY = gql`
   query FindCharacterIntroQuery($id: Int!) {
-    characterIntro: character(id: $id) {
+    characterIntro: getCharacterIntro(id: $id) {
       id
       name
       bio

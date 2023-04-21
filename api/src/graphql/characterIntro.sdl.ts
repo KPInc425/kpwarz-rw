@@ -21,6 +21,6 @@ export const schema = gql`
   }
 
   type Query {
-    getCharacterIntro(id: Int!): Character @skipAuth
+    getCharacterIntro(id: Int!): Character @requireAuth
   }
 `
