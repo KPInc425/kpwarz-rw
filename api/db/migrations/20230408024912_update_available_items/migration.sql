@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "AvailableItems" ADD COLUMN     "basePrice" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "chance" INTEGER NOT NULL DEFAULT 100;
