@@ -1,4 +1,6 @@
 -- CreateEnum
+DROP TYPE IF EXISTS Background;
+
 CREATE TYPE "Background" AS ENUM ('Plebian', 'Suburban_Kid', 'Affluenza');
 
 -- CreateEnum
