@@ -3,11 +3,20 @@ export const schema = gql`
     id: Int!
     name: String!
     description: String!
-    type: String!
+    type: ItemType!
     ability: String!
     basePrice: Int!
     chance: Int!
     createdAt: DateTime!
+  }
+
+  enum ItemType {
+    Food
+    Weapon
+    Clothing
+    Medicine
+    Drug
+    Misc
   }
 
   type Query {
@@ -18,19 +27,19 @@ export const schema = gql`
   input CreateAvailableItemsInput {
     name: String!
     description: String!
-    type: String!
+    type: ItemType!
+    ability: String!
     basePrice: Int!
     chance: Int!
-    ability: String!
   }
 
   input UpdateAvailableItemsInput {
     name: String
     description: String
-    type: String
+    type: ItemType
+    ability: String
     basePrice: Int
     chance: Int
-    ability: String
   }
 
   type Mutation {

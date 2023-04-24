@@ -9,7 +9,9 @@ import generateCharacter from 'src/lib/generateNewCharacter'
 import generateNewCity from 'src/lib/generateNewCity'
 import generateNewFinances from 'src/lib/generateNewFinances'
 import generateNewGame from 'src/lib/generateNewGame'
+import generateNewMerchant from 'src/lib/generateNewMerchant'
 import generateNewRegion from 'src/lib/generateNewRegion'
+import pickRandomItems from 'src/lib/PickRandomItems'
 
 export const characters: QueryResolvers['characters'] = () => {
   return db.character.findMany()
@@ -64,7 +66,6 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
       data: {
         name: gameInput.name,
         description: gameInput.description,
-        currentCity: gameInput.currentCity,
         startLocation: gameInput.startLocation,
         currentRegionId: 99, // Add the missing `currentRegionId` field with a value
         currentDay: gameInput.currentDay,
@@ -99,6 +100,49 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
 
     const cities = []
     for (const cityInput of cityInputs) {
+      const merchantInput = generateNewMerchant(cityInput)
+      const avaiableItems = await db.availableItems.findMany()
+      const chosenItems = pickRandomItems(
+        avaiableItems,
+        Math.floor(Math.random() * (10 - 2 + 1) + 2)
+      )
+
+      // console.log('cityInput', cityInput)
+      console.log('chosenItems', chosenItems)
+      // console.log('merchantInput', merchantInput)
+      // console.log('availableItems', avaiableItems)
+
+      const merchant = await db.merchant.create({
+        data: {
+          name: merchantInput.name,
+          description: merchantInput.description,
+          bio: merchantInput.bio,
+          currentItems: merchantInput.currentItems,
+          maxItems: merchantInput.maxItems,
+          tempermant: merchantInput.tempermant,
+        },
+      })
+
+      for (const item of chosenItems) {
+        console.log('item', item)
+        const randomQty = Math.floor(
+          Math.random() * (merchant.maxItems - merchant.currentItems + 1) +
+            merchant.currentItems
+        )
+        await db.item.create({
+          data: {
+            name: item.name,
+            description: item.description,
+            price: item.basePrice * merchant.tempermant,
+            quantity: randomQty,
+            type: item.type,
+            merchant: {
+              connect: { id: merchant.id },
+            },
+          },
+        })
+      }
+
       const city = await db.city.create({
         data: {
           name: cityInput.name,
@@ -110,6 +154,9 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
           authorityPresence: cityInput.authorityPresence,
           region: {
             connect: { id: region.id },
+          },
+          merchant: {
+            connect: { id: merchant.id },
           },
         },
       })
@@ -127,8 +174,10 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
       where: { id: game.id },
       data: {
         currentRegionId: region.id,
-        currentCity: randomCity.name,
         startLocation: randomCity.name,
+        currentCity: {
+          connect: { id: randomCity.id },
+        },
       },
     })
 

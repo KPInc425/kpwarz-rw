@@ -61,7 +61,8 @@ model Game {
   description     String
   startLocation   String
   currentRegionId Int
-  currentCity     String
+  currentCity     City?     @relation(fields: [currentCityId], references: [id])
+  currentCityId   Int?
   maxDays         Int
   currentDay      Int
   timeOfDay       String
@@ -100,6 +101,19 @@ model Character {
   @@unique([userId, id])
 }
 
+model Merchant {
+  id           Int      @id @default(autoincrement())
+  name         String
+  bio          String?
+  description  String?
+  location     City?
+  currentItems Int      @default(0)
+  maxItems     Int      @default(500)
+  tempermant   Int?
+  items        Item[]
+  createdAt    DateTime @default(now())
+}
+
 model Region {
   id          Int      @id @default(autoincrement())
   name        String
@@ -124,7 +138,10 @@ model City {
   region            Region    @relation(fields: [regionId], references: [id])
   regionId          Int
   services          Service[]
+  merchant          Merchant? @relation(fields: [merchantId], references: [id])
+  merchantId        Int?      @unique @default(autoincrement())
   createdAt         DateTime  @default(now())
+  Game              Game[]
 }
 
 model Service {
@@ -159,7 +176,7 @@ model Transport {
 }
 
 model Item {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
   quantity    Int
   price       Int
@@ -168,11 +185,13 @@ model Item {
   description String?
   type        ItemType
   uses        Int?
-  character   Character @relation(fields: [characterId], references: [id])
-  characterId Int
-  game        Game      @relation(fields: [gameId], references: [id])
-  gameId      Int
-  createdAt   DateTime  @default(now())
+  character   Character? @relation(fields: [characterId], references: [id])
+  characterId Int?
+  game        Game?      @relation(fields: [gameId], references: [id])
+  gameId      Int?
+  merchant    Merchant?  @relation(fields: [merchantId], references: [id])
+  merchantId  Int?
+  createdAt   DateTime   @default(now())
 }
 
 model AvailableItems {

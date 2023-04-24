@@ -67,7 +67,7 @@ const Game = ({ game }: Props) => {
             </tr>
             <tr>
               <th>Current city</th>
-              <td>{game.currentCity}</td>
+              <td>{game.currentCity.name}</td>
             </tr>
             <tr>
               <th>Max days</th>

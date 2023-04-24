@@ -41,7 +41,10 @@ export const QUERY = gql`
         name
         description
         startLocation
-        currentCity
+        currentCity {
+          id
+          name
+        }
         currentRegionId
         maxDays
         currentDay
@@ -112,7 +115,7 @@ export const Success = ({
           />
           <StatCard
             statTitle={'Current City'}
-            statData={characterIntro.game.currentCity}
+            statData={characterIntro.game.currentCity.name}
             statInfo={'Where you startin?'}
           />
           <StatCard

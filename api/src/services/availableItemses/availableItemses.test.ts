@@ -39,18 +39,14 @@ describe('availableItemses', () => {
   scenario('creates a availableItems', async () => {
     const result = await createAvailableItems({
       input: {
-        name: 'String',
+        name: 'String7804789',
         description: 'String',
-        type: 'String',
         ability: 'String',
-        basePrice: 1,
-        chance: 1,
       },
     })
 
-    expect(result.name).toEqual('String')
+    expect(result.name).toEqual('String7804789')
     expect(result.description).toEqual('String')
-    expect(result.type).toEqual('String')
     expect(result.ability).toEqual('String')
   })
 
@@ -60,10 +56,10 @@ describe('availableItemses', () => {
     })) as AvailableItems
     const result = await updateAvailableItems({
       id: original.id,
-      input: { name: 'String2' },
+      input: { name: 'String38157802' },
     })
 
-    expect(result.name).toEqual('String2')
+    expect(result.name).toEqual('String38157802')
   })
 
   scenario('deletes a availableItems', async (scenario: StandardScenario) => {

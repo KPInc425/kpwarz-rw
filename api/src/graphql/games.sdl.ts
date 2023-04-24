@@ -5,7 +5,8 @@ export const schema = gql`
     description: String!
     startLocation: String!
     currentRegionId: Int!
-    currentCity: String!
+    currentCity: City
+    currentCityId: Int
     maxDays: Int!
     currentDay: Int!
     timeOfDay: String!
@@ -28,7 +29,7 @@ export const schema = gql`
     description: String!
     startLocation: String!
     currentRegionId: Int!
-    currentCity: String!
+    currentCityId: Int
     maxDays: Int!
     currentDay: Int!
     timeOfDay: String!
@@ -41,7 +42,7 @@ export const schema = gql`
     description: String
     startLocation: String
     currentRegionId: Int
-    currentCity: String
+    currentCityId: Int
     maxDays: Int
     currentDay: Int
     timeOfDay: String

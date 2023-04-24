@@ -17,7 +17,9 @@ export const QUERY = gql`
       name
       description
       currentRegionId
-      currentCity
+      currentCity {
+        id
+      }
       currentDay
       timeOfDay
       maxDays
@@ -72,6 +74,7 @@ export const Success = ({
         gameId={Number(kpWarzGamePlay.id)}
         regionId={Number(kpWarzGamePlay.currentRegionId)}
         characterId={Number(kpWarzGamePlay.characterId)}
+        cityId={Number(kpWarzGamePlay.currentCity.id)}
       />
       <div className="col-span-2 col-start-2 row-span-2 row-start-[9] rounded-md border-2 border-gray-300">
         Current Story Plot

@@ -28,7 +28,9 @@ export const QUERY = gql`
       name
       description
       currentRegionId
-      currentCity
+      currentCity {
+        id
+      }
       currentDay
       timeOfDay
       maxDays

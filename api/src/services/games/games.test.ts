@@ -28,10 +28,9 @@ describe('games', () => {
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentRegionId: 1235,
-        currentCity: 'String',
-        maxDays: 6441362,
-        currentDay: 9329621,
+        currentRegionId: 5820648,
+        maxDays: 8679241,
+        currentDay: 5655952,
         timeOfDay: 'String',
         characterId: scenario.game.two.characterId,
         userId: scenario.game.two.userId,
@@ -41,10 +40,9 @@ describe('games', () => {
     expect(result.name).toEqual('String')
     expect(result.description).toEqual('String')
     expect(result.startLocation).toEqual('String')
-    expect(result.currentRegionId).toEqual(21136)
-    expect(result.currentCity).toEqual('String')
-    expect(result.maxDays).toEqual(6441362)
-    expect(result.currentDay).toEqual(9329621)
+    expect(result.currentRegionId).toEqual(5820648)
+    expect(result.maxDays).toEqual(8679241)
+    expect(result.currentDay).toEqual(5655952)
     expect(result.timeOfDay).toEqual('String')
     expect(result.characterId).toEqual(scenario.game.two.characterId)
     expect(result.userId).toEqual(scenario.game.two.userId)

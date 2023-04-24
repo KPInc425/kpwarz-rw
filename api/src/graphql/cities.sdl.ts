@@ -13,6 +13,8 @@ export const schema = gql`
     services: [Service]!
     localBoss: String!
     createdAt: DateTime!
+    merchant: Merchant
+    merchantId: Int
   }
 
   type Query {

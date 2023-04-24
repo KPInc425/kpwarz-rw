@@ -1,14 +1,14 @@
-import type {
-  DeleteAvailableItemsMutationVariables,
-  FindAvailableItemses,
-} from 'types/graphql'
-
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/AvailableItems/AvailableItemsesCell'
-import { timeTag, truncate } from 'src/lib/formatters'
+import { formatEnum, timeTag, truncate } from 'src/lib/formatters'
+
+import type {
+  DeleteAvailableItemsMutationVariables,
+  FindAvailableItemses,
+} from 'types/graphql'
 
 const DELETE_AVAILABLE_ITEMS_MUTATION = gql`
   mutation DeleteAvailableItemsMutation($id: Int!) {
@@ -49,7 +49,7 @@ const AvailableItemsesList = ({ availableItemses }: FindAvailableItemses) => {
             <th>Description</th>
             <th>Type</th>
             <th>Ability</th>
-            <th>Base Price</th>
+            <th>Base price</th>
             <th>Chance</th>
             <th>Created at</th>
             <th>&nbsp;</th>
@@ -61,7 +61,7 @@ const AvailableItemsesList = ({ availableItemses }: FindAvailableItemses) => {
               <td>{truncate(availableItems.id)}</td>
               <td>{truncate(availableItems.name)}</td>
               <td>{truncate(availableItems.description)}</td>
-              <td>{truncate(availableItems.type)}</td>
+              <td>{formatEnum(availableItems.type)}</td>
               <td>{truncate(availableItems.ability)}</td>
               <td>{truncate(availableItems.basePrice)}</td>
               <td>{truncate(availableItems.chance)}</td>

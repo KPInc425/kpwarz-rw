@@ -1,5 +1,4 @@
 import type { Prisma, Game } from '@prisma/client'
-
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.GameCreateArgs>({
@@ -9,25 +8,19 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentRegionId: 132,
-        currentCity: 'String',
-        maxDays: 6676609,
-        currentDay: 364487,
+        currentRegionId: 8948006,
+        maxDays: 3020768,
+        currentDay: 3345451,
         timeOfDay: 'String',
         character: {
           create: {
             name: 'String',
             bio: 'String',
             description: 'String',
-            health: 6764914,
-            maxHealth: 9568014,
-            currentItems: 7810754,
-            maxItems: 4689493,
-            luck: 9552889,
-            storageType: 'String',
+            luck: 7132709,
             user: {
               create: {
-                email: 'String6902575',
+                email: 'String2032337',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -36,7 +29,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         },
         user: {
           create: {
-            email: 'String6806796',
+            email: 'String5425072',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -48,25 +41,19 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         name: 'String',
         description: 'String',
         startLocation: 'String',
-        currentRegionId: 1235,
-        currentCity: 'String',
-        maxDays: 4076504,
-        currentDay: 5341931,
+        currentRegionId: 9583947,
+        maxDays: 8169877,
+        currentDay: 2371817,
         timeOfDay: 'String',
         character: {
           create: {
             name: 'String',
             bio: 'String',
             description: 'String',
-            health: 2282486,
-            maxHealth: 2096526,
-            currentItems: 2845136,
-            maxItems: 9497001,
-            luck: 4519779,
-            storageType: 'String',
+            luck: 8729732,
             user: {
               create: {
-                email: 'String5356839',
+                email: 'String2327380',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -75,7 +62,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
         },
         user: {
           create: {
-            email: 'String9309805',
+            email: 'String5823267',
             hashedPassword: 'String',
             salt: 'String',
           },

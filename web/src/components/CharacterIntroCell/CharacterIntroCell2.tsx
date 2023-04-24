@@ -147,7 +147,7 @@ export const Success = ({
               </Box>
               <Box>
                 <Badge>Starting City</Badge>
-                <p>{characterIntro.game.currentCity}</p>
+                <p>{characterIntro.game.currentCity.name}</p>
               </Box>
               <Box>
                 <Badge>Day Count</Badge>

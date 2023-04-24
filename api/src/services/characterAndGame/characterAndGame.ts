@@ -5,7 +5,6 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { generateNewGame } from 'src/lib/generateNewGame'
 
 export const characters: QueryResolvers['characters'] = () => {
   return db.character.findMany()

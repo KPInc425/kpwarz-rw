@@ -64,7 +64,7 @@ const GamesList = ({ games }: FindGames) => {
               <td>{truncate(game.description)}</td>
               <td>{truncate(game.startLocation)}</td>
               <td>{truncate(game.currentRegionId)}</td>
-              <td>{truncate(game.currentCity)}</td>
+              <td>{truncate(game.currentCity.name)}</td>
               <td>{truncate(game.maxDays)}</td>
               <td>{truncate(game.currentDay)}</td>
               <td>{truncate(game.timeOfDay)}</td>

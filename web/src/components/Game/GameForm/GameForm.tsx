@@ -117,7 +117,7 @@ const GameForm = (props: GameFormProps) => {
 
         <TextField
           name="currentCity"
-          defaultValue={props.game?.currentCity}
+          defaultValue={props.game?.currentCity.name}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}

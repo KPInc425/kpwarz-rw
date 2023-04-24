@@ -8,7 +8,8 @@ export const schema = gql`
     character: Character!
     createdAt: DateTime!
     startLocation: String!
-    currentCity: String!
+    currentCity: City!
+    currentCityId: Int!
     currentDays: Int!
     maxDays: Int!
     timeOfDay: String!

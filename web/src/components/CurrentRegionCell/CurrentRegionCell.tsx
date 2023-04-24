@@ -28,7 +28,10 @@ export const QUERY = gql`
       game {
         id
         name
-        currentCity
+        currentCity {
+          id
+          name
+        }
         timeOfDay
         currentDay
         maxDays
@@ -75,7 +78,9 @@ export const Success = ({
   FindCurrentRegionQueryVariables
 >) => {
   const [currentCity, setCurrentCity] = useState(
-    currentRegion.cities.find((c) => c.name === currentRegion.game.currentCity)
+    currentRegion.cities.find(
+      (c) => c.name === currentRegion.game.currentCity.name
+    )
   )
   const [reRender, setReRender] = useState(false)
   const [updateCurrentCity, { loading, error }] = useMutation(
@@ -88,7 +93,9 @@ export const Success = ({
         setReRender(true)
         setReRender(false)
         setCurrentCity(
-          currentRegion.cities.find((c) => c.name === r.updateGame.currentCity)
+          currentRegion.cities.find(
+            (c) => c.name === r.updateGame.currentCity.name
+          )
         )
       },
       onError: (error) => {
@@ -156,7 +163,7 @@ export const Success = ({
         <Stack direction="column" spacing={2} m={4}>
           {currentRegion.cities.map((city) => {
             let color = 'green'
-            if (city.name === currentRegion.game.currentCity) {
+            if (city.name === currentRegion.game.currentCity.name) {
               color = 'blue'
             }
             return (

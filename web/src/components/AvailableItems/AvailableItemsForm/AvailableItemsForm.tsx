@@ -1,17 +1,18 @@
-import type {
-  EditAvailableItemsById,
-  UpdateAvailableItemsInput,
-} from 'types/graphql'
-
 import {
   Form,
   FormError,
   FieldError,
   Label,
   TextField,
-  Submit,
+  RadioField,
   NumberField,
+  Submit,
 } from '@redwoodjs/forms'
+
+import type {
+  EditAvailableItemsById,
+  UpdateAvailableItemsInput,
+} from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormAvailableItems = NonNullable<EditAvailableItemsById['availableItems']>
@@ -85,13 +86,77 @@ const AvailableItemsForm = (props: AvailableItemsFormProps) => {
           Type
         </Label>
 
-        <TextField
-          name="type"
-          defaultValue={props.availableItems?.type}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-0"
+            name="type"
+            defaultValue="Food"
+            defaultChecked={props.availableItems?.type?.includes('Food')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Food</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-1"
+            name="type"
+            defaultValue="Weapon"
+            defaultChecked={props.availableItems?.type?.includes('Weapon')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Weapon</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-2"
+            name="type"
+            defaultValue="Clothing"
+            defaultChecked={props.availableItems?.type?.includes('Clothing')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Clothing</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-3"
+            name="type"
+            defaultValue="Medicine"
+            defaultChecked={props.availableItems?.type?.includes('Medicine')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Medicine</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-4"
+            name="type"
+            defaultValue="Drug"
+            defaultChecked={props.availableItems?.type?.includes('Drug')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Drug</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <RadioField
+            id="availableItems-type-5"
+            name="type"
+            defaultValue="Misc"
+            defaultChecked={props.availableItems?.type?.includes('Misc')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Misc</div>
+        </div>
 
         <FieldError name="type" className="rw-field-error" />
 
@@ -114,11 +179,11 @@ const AvailableItemsForm = (props: AvailableItemsFormProps) => {
         <FieldError name="ability" className="rw-field-error" />
 
         <Label
-          name="ability"
+          name="basePrice"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Base Price
+          Base price
         </Label>
 
         <NumberField

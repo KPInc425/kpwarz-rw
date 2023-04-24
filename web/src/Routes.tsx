@@ -18,6 +18,12 @@ import KPWarzGameLayout from './layouts/KPWarzGameLayout/KPWarzGameLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Set wrap={ScaffoldLayout} title="AvailableItemses" titleTo="availableItemses" buttonLabel="New AvailableItems" buttonTo="newAvailableItems">
+        <Route path="/available-itemses/new" page={AvailableItemsNewAvailableItemsPage} name="newAvailableItems" />
+        <Route path="/available-itemses/{id:Int}/edit" page={AvailableItemsEditAvailableItemsPage} name="editAvailableItems" />
+        <Route path="/available-itemses/{id:Int}" page={AvailableItemsAvailableItemsPage} name="availableItems" />
+        <Route path="/available-itemses" page={AvailableItemsAvailableItemsesPage} name="availableItemses" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="Services" titleTo="services" buttonLabel="New Service" buttonTo="newService">
         <Route path="/services/new" page={ServiceNewServicePage} name="newService" />
         <Route path="/services/{id:Int}/edit" page={ServiceEditServicePage} name="editService" />
@@ -112,12 +118,6 @@ const Routes = () => {
           <Route path="/available-regions/{id:Int}/edit" page={AvailableRegionEditAvailableRegionPage} name="editAvailableRegion" />
           <Route path="/available-regions/{id:Int}" page={AvailableRegionAvailableRegionPage} name="availableRegion" />
           <Route path="/available-regions" page={AvailableRegionAvailableRegionsPage} name="availableRegions" />
-        </Set>
-        <Set wrap={ScaffoldLayout} title="AvailableItemses" titleTo="availableItemses" buttonLabel="New AvailableItems" buttonTo="newAvailableItems">
-          <Route path="/available-itemses/new" page={AvailableItemsNewAvailableItemsPage} name="newAvailableItems" />
-          <Route path="/available-itemses/{id:Int}/edit" page={AvailableItemsEditAvailableItemsPage} name="editAvailableItems" />
-          <Route path="/available-itemses/{id:Int}" page={AvailableItemsAvailableItemsPage} name="availableItems" />
-          <Route path="/available-itemses" page={AvailableItemsAvailableItemsesPage} name="availableItemses" />
         </Set>
       </Private>
       <Set wrap={KPWarzLayout}>

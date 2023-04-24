@@ -23,7 +23,6 @@ export const createGame: MutationResolvers['createGame'] = ({ input }) => {
 }
 
 export const updateGame: MutationResolvers['updateGame'] = ({ id, input }) => {
-  console.log(input)
   return db.game.update({
     data: input,
     where: { id },
@@ -37,8 +36,14 @@ export const deleteGame: MutationResolvers['deleteGame'] = ({ id }) => {
 }
 
 export const Game: GameRelationResolvers = {
+  currentCity: (_obj, { root }) => {
+    return db.game.findUnique({ where: { id: root?.id } }).currentCity()
+  },
   lostItems: (_obj, { root }) => {
     return db.game.findUnique({ where: { id: root?.id } }).lostItems()
+  },
+  regions: (_obj, { root }) => {
+    return db.game.findUnique({ where: { id: root?.id } }).regions()
   },
   character: (_obj, { root }) => {
     return db.game.findUnique({ where: { id: root?.id } }).character()
