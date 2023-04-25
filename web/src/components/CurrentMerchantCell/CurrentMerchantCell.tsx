@@ -7,35 +7,45 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`
   query FindCurrentMerchantQuery($id: Int!) {
-    currentMerchant: city(id: $id) {
+    currentMerchant: merchant(id: $id) {
       id
       name
+      bio
       description
-      avgQuality
-      avgPrice
-      minQuantity
-      maxQuantity
-      localBoss
-      authorityPresence
-      region {
-        id
-      }
-      merchant {
+      location {
         id
         name
-        bio
         description
-        currentItems
-        maxItems
-        items {
+        avgQuality
+        avgPrice
+        minQuantity
+        maxQuantity
+        localBoss
+        authorityPresence
+        region {
+          id
+          game {
+            id
+            characterId
+          }
+        }
+        services {
           id
           name
-          description
-          price
-          quality
-          quantity
-          type
         }
+      }
+      currentItems
+      maxItems
+      temperament
+      items {
+        id
+        name
+        quantity
+        price
+        quality
+        ability
+        type
+        uses
       }
     }
   }

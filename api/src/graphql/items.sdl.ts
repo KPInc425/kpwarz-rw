@@ -4,13 +4,13 @@ export const schema = gql`
     name: String!
     quantity: Int!
     price: Int!
-    quality: String!
-    ability: String!
+    quality: String
+    ability: String
     description: String!
     type: String!
-    uses: Int!
-    character: Character!
-    characterId: Int!
+    uses: Int
+    character: Character
+    characterId: Int
     game: Game!
     gameId: Int!
     createdAt: DateTime!
@@ -25,11 +25,11 @@ export const schema = gql`
     name: String!
     quantity: Int!
     price: Int!
-    quality: String!
-    ability: String!
+    quality: String
+    ability: String
     description: String!
     type: String!
-    uses: Int!
+    uses: Int
     characterId: Int!
     gameId: Int!
   }

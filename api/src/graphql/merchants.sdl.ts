@@ -7,7 +7,7 @@ export const schema = gql`
     location: City
     currentItems: Int!
     maxItems: Int!
-    tempermant: Int
+    temperament: Int
     items: [Item]!
     createdAt: DateTime!
   }
@@ -23,7 +23,7 @@ export const schema = gql`
     description: String
     currentItems: Int!
     maxItems: Int!
-    tempermant: Int
+    temperament: Int
   }
 
   input UpdateMerchantInput {
@@ -32,7 +32,7 @@ export const schema = gql`
     description: String
     currentItems: Int
     maxItems: Int
-    tempermant: Int
+    temperament: Int
   }
 
   type Mutation {

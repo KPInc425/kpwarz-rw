@@ -109,7 +109,7 @@ model Merchant {
   location     City?
   currentItems Int      @default(0)
   maxItems     Int      @default(500)
-  tempermant   Int?
+  temperament  Int?
   items        Item[]
   createdAt    DateTime @default(now())
 }
@@ -139,7 +139,7 @@ model City {
   regionId          Int
   services          Service[]
   merchant          Merchant? @relation(fields: [merchantId], references: [id])
-  merchantId        Int?      @unique @default(autoincrement())
+  merchantId        Int       @unique @default(autoincrement())
   createdAt         DateTime  @default(now())
   Game              Game[]
 }

@@ -126,6 +126,7 @@ export const Success = ({
 
   return (
     <Stack>
+      {/* <div>{JSON.stringify(currentRegion.cities)}</div> */}
       <Flex alignItems={'center'} justifyContent={'center'} mt={4}>
         <LocationCard
           productTitle={currentRegion.name}
