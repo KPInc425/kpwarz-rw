@@ -14,13 +14,20 @@ import {
 } from '@chakra-ui/react'
 // Assets
 
+import { CgDollar } from 'react-icons/Cg'
+import { GiHandBag } from 'react-icons/Gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 const ProductCard = ({
-  productTitle,
-  productDescription,
-  productControl,
-  services,
+  name,
+  description,
+  quantity,
+  price,
+  quality,
+  ability,
+  type,
+  uses,
+  // icon,
 }) => {
   return (
     <DarkMode>
@@ -28,13 +35,17 @@ const ProductCard = ({
         borderRadius="20px"
         bg="white"
         _dark={{ bg: '#111c44' }}
-        h="345px"
-        w={{ base: '315px', md: '345px' }}
+        h="300px"
+        w={{ base: '200px', md: '200px' }}
         direction="column"
       >
         <Box p="20px">
           <Flex w="100%" mb="10px">
-            <Image src="https://i.ibb.co/ZWxRPRq/Venus-Logo.png" me="auto" />
+            <Image
+              src="https://i.imgur.com/cCNYIXA.png"
+              boxSize="75px"
+              me="auto"
+            />
             <Button
               w="38px"
               h="38px"
@@ -62,25 +73,8 @@ const ProductCard = ({
               w="100%"
               fontSize="2xl"
             >
-              {productTitle}
+              {name}
             </Text>
-            <AvatarGroup
-              size="sm"
-              max={4}
-              color="brand.200"
-              _dark={{ color: 'white' }}
-              fontSize="9px"
-              fontWeight="700"
-            >
-              <Avatar src="https://i.ibb.co/CmxNdhQ/avatar1.png" />
-              <Avatar src="https://i.ibb.co/cFWc59B/avatar2.png" />
-              <Avatar src="https://i.ibb.co/vLQJVFy/avatar3.png" />
-              <Avatar src="https://i.ibb.co/8mcrvQk/avatar4.png" />
-              <Avatar src="https://i.ibb.co/CmxNdhQ/avatar1.png" />
-              <Avatar src="https://i.ibb.co/cFWc59B/avatar2.png" />
-              <Avatar src="https://i.ibb.co/vLQJVFy/avatar3.png" />
-              <Avatar src="https://i.ibb.co/8mcrvQk/avatar4.png" />
-            </AvatarGroup>
           </Box>
         </Box>
         <Flex
@@ -101,46 +95,31 @@ const ProductCard = ({
             fontWeight="500"
             mb="auto"
           >
-            Description: {productDescription}
+            Description: {description}
           </Text>
-          <Text
-            fontSize="sm"
-            color="gray.500"
-            lineHeight="24px"
-            pe="40px"
-            fontWeight="500"
-            mb="auto"
-          >
-            Control: {productControl}
-          </Text>
-          <Text
-            fontSize="sm"
-            color="gray.500"
-            lineHeight="24px"
-            pe="40px"
-            fontWeight="500"
-            mb="auto"
-          >
-            Services
-          </Text>
-          <Flex>
-            {services.map((service, index) => {
-              // console.log(service)
-              return (
-                <Flex key={index} me="25px">
-                  {service.serviceIcon}
-                  <Text
-                    color="gray.800"
-                    _dark={{ color: 'white' }}
-                    fontSize="sm"
-                    my="auto"
-                    fontWeight="500"
-                  >
-                    {service.name}
-                  </Text>
-                </Flex>
-              )
-            })}
+          <Flex alignItems={'center'}>
+            <Icon as={CgDollar} w="20px" h="20px" color={'green.400'} />
+            <Text
+              fontSize="sm"
+              color="gray.500"
+              lineHeight="22px"
+              pe="40px"
+              fontWeight="500"
+              mb="auto"
+            >
+              {price}
+            </Text>
+            <Icon as={GiHandBag} w="20px" h="20px" color={'blue.400'} me={1} />
+            <Text
+              fontSize="sm"
+              color="gray.500"
+              lineHeight="24px"
+              pe="40px"
+              fontWeight="500"
+              mb="auto"
+            >
+              {quantity}
+            </Text>
           </Flex>
         </Flex>
       </Flex>

@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import LocationCard from './LocationCard'
+import ProductCard from './ProfileCard'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('LocationCard', () => {
+describe('ProfileCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<LocationCard />)
+      render(<ProfileCard />)
     }).not.toThrow()
   })
 })

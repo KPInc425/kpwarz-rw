@@ -9,14 +9,13 @@ import {
   Icon,
   Image,
   Text,
-  useColorModeValue,
   DarkMode,
 } from '@chakra-ui/react'
 // Assets
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
-const LocationCard = ({ name, description, control, services }) => {
+const ProfileCard = ({ profileName, profileDescription, profileBio, misc }) => {
   return (
     <DarkMode>
       <Flex
@@ -30,9 +29,9 @@ const LocationCard = ({ name, description, control, services }) => {
         <Box p="20px">
           <Flex w="100%" mb="10px">
             <Image
-              src="https://i.imgur.com/koKqpPx.gif"
-              boxSize={'100px'}
-              borderRadius={'50%'}
+              src="https://i.imgur.com/H54NsMT.png"
+              boxSize="100px"
+              borderRadius="full"
               me="auto"
             />
             <Button
@@ -62,7 +61,7 @@ const LocationCard = ({ name, description, control, services }) => {
               w="100%"
               fontSize="2xl"
             >
-              {name}
+              {profileName}
             </Text>
             <AvatarGroup
               size="sm"
@@ -101,7 +100,7 @@ const LocationCard = ({ name, description, control, services }) => {
             fontWeight="500"
             mb="auto"
           >
-            Description: {description}
+            Description: {profileDescription}
           </Text>
           <Text
             fontSize="sm"
@@ -111,7 +110,7 @@ const LocationCard = ({ name, description, control, services }) => {
             fontWeight="500"
             mb="auto"
           >
-            Control: {control}
+            Bio: {profileBio}
           </Text>
           <Text
             fontSize="sm"
@@ -121,31 +120,12 @@ const LocationCard = ({ name, description, control, services }) => {
             fontWeight="500"
             mb="auto"
           >
-            Services
+            {misc}
           </Text>
-          <Flex>
-            {services.map((service, index) => {
-              // console.log(service)
-              return (
-                <Flex key={index} me="25px">
-                  {service.serviceIcon}
-                  <Text
-                    color="gray.800"
-                    _dark={{ color: 'white' }}
-                    fontSize="sm"
-                    my="auto"
-                    fontWeight="500"
-                  >
-                    {service.name}
-                  </Text>
-                </Flex>
-              )
-            })}
-          </Flex>
         </Flex>
       </Flex>
     </DarkMode>
   )
 }
 
-export default LocationCard
+export default ProfileCard

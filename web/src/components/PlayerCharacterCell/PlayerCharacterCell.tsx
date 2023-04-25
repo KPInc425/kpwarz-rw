@@ -27,7 +27,9 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div>These are not the droids you are looking for...</div>
+)
 
 export const Failure = ({
   error,

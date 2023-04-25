@@ -54,7 +54,10 @@ export const QUERY = gql`
 const UPDATE_GAME_MUTATION = gql`
   mutation UpdateGameMutation($id: Int!, $input: UpdateGameInput!) {
     updateGame(id: $id, input: $input) {
-      currentCity
+      currentCityId
+      currentCity {
+        name
+      }
       currentDay
       timeOfDay
     }
@@ -63,7 +66,9 @@ const UPDATE_GAME_MUTATION = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div>These are not the droids you are looking for...</div>
+)
 
 export const Failure = ({
   error,
@@ -116,7 +121,7 @@ export const Success = ({
     console.log(input)
 
     const newGameInput = {
-      currentCity: input,
+      currentCityId: input,
       currentDay: currentRegion.game.currentDay + 1,
       timeOfDay: 'Afternoon',
     }
@@ -129,9 +134,9 @@ export const Success = ({
       {/* <div>{JSON.stringify(currentRegion.cities)}</div> */}
       <Flex alignItems={'center'} justifyContent={'center'} mt={4}>
         <LocationCard
-          productTitle={currentRegion.name}
-          productDescription={currentRegion.description}
-          productControl={currentRegion.control}
+          name={currentRegion.name}
+          description={currentRegion.description}
+          control={currentRegion.control}
           services={[
             {
               name: 'Bank',
@@ -169,7 +174,7 @@ export const Success = ({
             }
             return (
               <Button
-                onClick={() => handleClick(city.name, currentRegion.game.id)}
+                onClick={() => handleClick(city.id, currentRegion.game.id)}
                 key={city.id}
                 colorScheme={color}
               >
@@ -180,9 +185,9 @@ export const Success = ({
         </Stack>
 
         <LocationCard
-          productTitle={currentCity.name}
-          productDescription={currentCity.description}
-          productControl={currentCity.localBoss}
+          name={currentCity.name}
+          description={currentCity.description}
+          control={currentCity.localBoss}
           services={[
             {
               name: 'Bank',
