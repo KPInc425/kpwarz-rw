@@ -56,6 +56,7 @@ const UPDATE_GAME_MUTATION = gql`
     updateGame(id: $id, input: $input) {
       currentCityId
       currentCity {
+        id
         name
       }
       currentDay
@@ -83,9 +84,7 @@ export const Success = ({
   FindCurrentRegionQueryVariables
 >) => {
   const [currentCity, setCurrentCity] = useState(
-    currentRegion.cities.find(
-      (c) => c.name === currentRegion.game.currentCity.name
-    )
+    currentRegion.cities.find((c) => c.id === currentRegion.game.currentCity.id)
   )
   const [reRender, setReRender] = useState(false)
   const [updateCurrentCity, { loading, error }] = useMutation(
@@ -98,10 +97,9 @@ export const Success = ({
         setReRender(true)
         setReRender(false)
         setCurrentCity(
-          currentRegion.cities.find(
-            (c) => c.name === r.updateGame.currentCity.name
-          )
+          currentRegion.cities.find((c) => c.id === r.updateGame.currentCity.id)
         )
+        console.log(currentCity)
       },
       onError: (error) => {
         toast.error(error.message)

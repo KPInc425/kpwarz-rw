@@ -8,7 +8,7 @@ const generateNewMerchant = (city) => {
       Math.random() * city.maxQuantity + city.minQuantity
     ),
     maxItems: city.maxQuantity,
-    tempermant: Math.floor(Math.random() * 10),
+    tempermant: Math.floor(Math.random() * 10) + 1,
   }
 }
 
