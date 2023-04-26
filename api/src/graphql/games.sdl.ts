@@ -21,6 +21,7 @@ export const schema = gql`
 
   type Query {
     games: [Game!]! @requireAuth
+    getGamesToLoad: [Game!]! @requireAuth
     game(id: Int!): Game @requireAuth
   }
 

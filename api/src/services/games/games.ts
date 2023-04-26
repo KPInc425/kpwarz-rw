@@ -10,6 +10,12 @@ export const games: QueryResolvers['games'] = () => {
   return db.game.findMany()
 }
 
+export const getGamesToLoad: QueryResolvers['games'] = () => {
+  return db.game.findMany({
+    where: { userId: context.currentUser.id },
+  })
+}
+
 export const game: QueryResolvers['game'] = ({ id }) => {
   return db.game.findUnique({
     where: { id },

@@ -121,6 +121,9 @@ const Routes = () => {
         </Set>
       </Private>
       <Set wrap={KPWarzLayout}>
+        <Private unauthenticated="home" roles="player">
+          <Route path="/kp-warz-load-game" page={KpWarzLoadGamePage} name="kpWarzLoadGame" />
+        </Private>
         <Route path="/article/{id:Int}" page={ArticlePage} name="article" />
         <Route path="/contact" page={ContactPage} name="contact" />
         <Route path="/about" page={AboutPage} name="about" />

@@ -23,6 +23,10 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
       route: routes.contact(),
       name: 'Contact',
     },
+    {
+      route: routes.kpWarzLoadGame(),
+      name: 'Games',
+    },
   ]
 
   return (

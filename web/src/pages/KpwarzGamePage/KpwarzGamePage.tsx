@@ -2,7 +2,7 @@ import { MetaTags } from '@redwoodjs/web'
 
 import KpWarzGamePlayCell from 'src/components/KpWarzGamePlayCell'
 
-const KpwarzGamePage = ({ id, regionId, characterId }) => {
+const KpwarzGamePage = ({ id }) => {
   return (
     <>
       <MetaTags title="KpwarzGame" description="KpwarzGame page" />
