@@ -1,6 +1,8 @@
 type KPWarzLayoutProps = {
   children?: React.ReactNode
 }
+import { Flex } from '@chakra-ui/react'
+
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
@@ -22,10 +24,6 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
     {
       route: routes.contact(),
       name: 'Contact',
-    },
-    {
-      route: routes.kpWarzLoadGame(),
-      name: 'Games',
     },
   ]
 
@@ -61,8 +59,15 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
             })}
             <li>
               {isAuthenticated ? (
-                <div>
+                <Flex>
                   {/* <span>Logged in as {currentUser.email}</span>{' '} */}
+                  <Link
+                    type="button"
+                    className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
+                    to={routes.kpWarzLoadGame()}
+                  >
+                    Games
+                  </Link>
                   <button
                     type="button"
                     className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
@@ -70,7 +75,7 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
                   >
                     Logout
                   </button>
-                </div>
+                </Flex>
               ) : (
                 <Link
                   className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
