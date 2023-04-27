@@ -19,14 +19,7 @@ import { GiHandBag } from 'react-icons/Gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 const ProductCard = ({
-  name,
-  description,
-  quantity,
-  price,
-  quality,
-  ability,
-  type,
-  uses,
+  props,
   // icon,
 }) => {
   return (
@@ -73,7 +66,7 @@ const ProductCard = ({
               w="100%"
               fontSize="2xl"
             >
-              {name}
+              {props.name}
             </Text>
           </Box>
         </Box>
@@ -95,7 +88,7 @@ const ProductCard = ({
             fontWeight="500"
             mb="auto"
           >
-            Description: {description}
+            {props.description}
           </Text>
           <Flex alignItems={'center'}>
             <Icon as={CgDollar} w="20px" h="20px" color={'green.400'} />
@@ -107,7 +100,7 @@ const ProductCard = ({
               fontWeight="500"
               mb="auto"
             >
-              {price}
+              {props.price}
             </Text>
             <Icon as={GiHandBag} w="20px" h="20px" color={'blue.400'} me={1} />
             <Text
@@ -118,7 +111,7 @@ const ProductCard = ({
               fontWeight="500"
               mb="auto"
             >
-              {quantity}
+              {props.quantity}
             </Text>
           </Flex>
         </Flex>

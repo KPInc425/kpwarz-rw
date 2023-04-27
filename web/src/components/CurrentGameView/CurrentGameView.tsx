@@ -20,7 +20,7 @@ const CurrentGameView = ({
     <div className="col-span-4 col-start-2 row-[span_7_/_span_7] row-start-2 rounded-md border-2 border-gray-300">
       Current View
       {currentView === 0 && <PlayerInfo id={characterId} />}
-      {currentView === 1 && <PlayerInventory />}
+      {currentView === 1 && <PlayerInventory id={characterId} />}
       {currentView === 2 && <PlayerActions />}
       {currentView === 3 && <Trader id={merchantId} />}
       {currentView === 4 && <Travel id={regionId} />}
