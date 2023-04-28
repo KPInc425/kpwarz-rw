@@ -38,6 +38,7 @@ const ProductCard = ({
   item,
   // icon,
   characterId,
+  merchantId,
 }) => {
   return (
     <DarkMode>
@@ -99,6 +100,7 @@ const ProductCard = ({
                           <TransactionBuy
                             item={item}
                             characterId={characterId}
+                            merchantId={merchantId}
                           />
                         </PopoverBody>
                         <PopoverFooter>Lookin to Buy?</PopoverFooter>

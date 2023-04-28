@@ -37,6 +37,12 @@ export const QUERY = gql`
       luck
       storageType
       createdAt
+      finances {
+        id
+        cashOnHand
+        bankAccount
+        debt
+      }
       game {
         name
         description
@@ -81,6 +87,7 @@ export const Success = ({
     <div>
       <Box>
         <Flex gap={4} wrap={'wrap'} justifyContent={'center'}>
+          {characterIntro.id}
           <StatCard
             statTitle={'Name'}
             statData={characterIntro.name}
@@ -133,6 +140,11 @@ export const Success = ({
             statTitle={'Time of Day'}
             statData={characterIntro.game.timeOfDay}
             statInfo={'Do you know what time it is?'}
+          />
+          <StatCard
+            statTitle={'Cash On Hand'}
+            statData={characterIntro.finances.cashOnHand}
+            statInfo={'Empty your pockets!'}
           />
         </Flex>
       </Box>

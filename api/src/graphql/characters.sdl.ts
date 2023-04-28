@@ -13,7 +13,7 @@ export const schema = gql`
     maxItems: Int!
     luck: Int!
     storageType: String!
-    finances: [CharacterFinances]!
+    finances: CharacterFinances
     items: [Item]!
     transportation: [Transport]!
     game: Game

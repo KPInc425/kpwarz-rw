@@ -130,6 +130,7 @@ export const Success = ({
               key={item.id}
               item={item}
               characterId={currentMerchant.location.region.game.characterId}
+              merchantId={currentMerchant.id}
             />
           )
         })}

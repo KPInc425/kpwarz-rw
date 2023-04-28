@@ -78,24 +78,24 @@ model Game {
 }
 
 model Character {
-  id              Int                 @id @default(autoincrement())
+  id              Int                @id @default(autoincrement())
   name            String
   bio             String
-  background      Background          @default(Plebian)
+  background      Background         @default(Plebian)
   description     String
-  user            User                @relation(fields: [userId], references: [id])
+  user            User               @relation(fields: [userId], references: [id])
   userId          Int
-  health          Int                 @default(100)
-  maxHealth       Int                 @default(100)
-  currentItems    Int                 @default(0)
-  maxItems        Int                 @default(100)
+  health          Int                @default(100)
+  maxHealth       Int                @default(100)
+  currentItems    Int                @default(0)
+  maxItems        Int                @default(100)
   luck            Int
-  storageType     StorageType         @default(Pockets)
-  finances        CharacterFinances[]
+  storageType     StorageType        @default(Pockets)
+  finances        CharacterFinances?
   items           Item[]
-  transportation  TransportOptions    @default(Bootz)
+  transportation  TransportOptions   @default(Bootz)
   game            Game?
-  createdAt       DateTime            @default(now())
+  createdAt       DateTime           @default(now())
   transport       Transport[]
   transactionsBuy TransactionBuy[]
 
@@ -103,17 +103,18 @@ model Character {
 }
 
 model Merchant {
-  id           Int      @id @default(autoincrement())
-  name         String
-  bio          String?
-  description  String?
-  location     City?
-  currentItems Int      @default(0)
-  maxItems     Int      @default(500)
-  temperament  Int?
-  items        Item[]
-  funds        Int      @default(3500)
-  createdAt    DateTime @default(now())
+  id              Int              @id @default(autoincrement())
+  name            String
+  bio             String?
+  description     String?
+  location        City?
+  currentItems    Int              @default(0)
+  maxItems        Int              @default(500)
+  temperament     Int?
+  items           Item[]
+  transactionsBuy TransactionBuy[]
+  funds           Int              @default(3500)
+  createdAt       DateTime         @default(now())
 }
 
 model Region {
@@ -158,7 +159,7 @@ model Service {
 model CharacterFinances {
   id          Int       @id @default(autoincrement())
   character   Character @relation(fields: [characterId], references: [id])
-  characterId Int
+  characterId Int       @unique
   cashOnHand  Int
   bankAccount Int
   debt        Int
@@ -246,6 +247,8 @@ model TransactionBuy {
   character   Character @relation(fields: [characterId], references: [id])
   characterId Int
   item        Item      @relation(fields: [itemId], references: [id])
+  merchant    Merchant  @relation(fields: [merchantId], references: [id])
+  merchantId  Int
   itemId      Int
   quantity    Int
   price       Int

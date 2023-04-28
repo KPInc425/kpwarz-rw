@@ -32,6 +32,7 @@ export const QUERY = gql`
         currentCity {
           id
           name
+          merchantId
         }
       }
     }
@@ -60,7 +61,14 @@ export const Success = ({
       <Text fontSize={'3xl'}>{playerInventory.name}'s Inventory</Text>
       {playerInventory.items.length > 0 ? (
         playerInventory.items.map((item) => {
-          return <ProductCard key={item.id} item={item} />
+          return (
+            <ProductCard
+              key={item.id}
+              item={item}
+              merchantId={playerInventory.game.currentCity.merchantId}
+              characterId={playerInventory.id}
+            />
+          )
         })
       ) : (
         <ProductCard
@@ -74,6 +82,8 @@ export const Success = ({
             type: 'empty',
             uses: 0,
           }}
+          merchantId={playerInventory.game.currentCity.merchantId}
+          characterId={playerInventory.id}
         />
       )}
     </div>

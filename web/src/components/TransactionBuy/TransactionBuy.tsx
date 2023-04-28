@@ -1,11 +1,16 @@
 const CREATE = gql`
-  mutation CreateTransactionMutation($input: CreateTransactionInput!) {
+  mutation CreateTransactionMutation($input: CreateTransactionBuyInput!) {
     createTransactionBuy(input: $input) {
       id
       characterId
       quantity
       price
-      item
+      item {
+        id
+        name
+        price
+        quantity
+      }
     }
   }
 `
@@ -23,7 +28,7 @@ import {
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-const TransactionBuy = ({ item, characterId }) => {
+const TransactionBuy = ({ item, characterId, merchantId }) => {
   const [qtyBuy, setQtyBuy] = useState(1)
   const [createTransaction, { loading, error }] = useMutation(CREATE, {
     onCompleted: () => {
@@ -36,13 +41,13 @@ const TransactionBuy = ({ item, characterId }) => {
 
   const onSubmit = (input) => {
     input = {
-      ...input,
-      item: item,
+      itemId: item.id,
       quantity: qtyBuy,
       price: item.price,
       characterId: characterId,
+      merchantId: merchantId,
     }
-    createTransaction({ variables: { input: { ...input } } })
+    createTransaction({ variables: { input: input } })
   }
 
   return (

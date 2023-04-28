@@ -5,6 +5,8 @@ export const schema = gql`
     characterId: Int!
     item: Item!
     itemId: Int!
+    merchant: Merchant!
+    merchantId: Int!
     quantity: Int!
     price: Int!
     createdAt: DateTime!
@@ -16,6 +18,7 @@ export const schema = gql`
   }
 
   input CreateTransactionBuyInput {
+    merchantId: Int!
     characterId: Int!
     itemId: Int!
     quantity: Int!
@@ -24,6 +27,7 @@ export const schema = gql`
 
   input UpdateTransactionBuyInput {
     characterId: Int
+    merchantId: Int
     itemId: Int
     quantity: Int
     price: Int
