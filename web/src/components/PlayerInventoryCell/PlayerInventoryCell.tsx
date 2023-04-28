@@ -59,11 +59,11 @@ export const Success = ({
       <Text fontSize={'3xl'}>{playerInventory.name}'s Inventory</Text>
       {playerInventory.items.length > 0 ? (
         playerInventory.items.map((item) => {
-          return <ProductCard key={item.id} props={item} />
+          return <ProductCard key={item.id} item={item} />
         })
       ) : (
         <ProductCard
-          props={{
+          item={{
             name: 'No bag',
             description: 'Nothing to see here...Go buy some sh$%',
             quantity: 0,

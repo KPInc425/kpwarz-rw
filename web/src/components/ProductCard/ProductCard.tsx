@@ -11,6 +11,11 @@ import {
   Text,
   useColorModeValue,
   DarkMode,
+  MenuButton,
+  Menu,
+  IconButton,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react'
 // Assets
 
@@ -19,7 +24,7 @@ import { GiHandBag } from 'react-icons/Gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 const ProductCard = ({
-  props,
+  item,
   // icon,
 }) => {
   return (
@@ -39,24 +44,48 @@ const ProductCard = ({
               boxSize="75px"
               me="auto"
             />
-            <Button
-              w="38px"
-              h="38px"
-              align="center"
-              justify="center"
-              borderRadius="12px"
-              me="12px"
-              bg="gray.100"
-              _dark={{ bg: 'whiteAlpha.200' }}
-            >
-              <Icon
-                w="24px"
-                h="24px"
-                as={IoEllipsisHorizontalSharp}
-                color="brand.200"
-                _dark={{ color: 'white' }}
-              />
-            </Button>
+            <Menu>
+              <MenuButton
+                w="38px"
+                h="38px"
+                align="center"
+                justify="center"
+                borderRadius="12px"
+                pt="5px"
+                bg="gray.100"
+                _dark={{ bg: 'whiteAlpha.200' }}
+              >
+                <Icon
+                  w="24px"
+                  h="24px"
+                  as={IoEllipsisHorizontalSharp}
+                  color="brand.200"
+                  _dark={{ color: 'white' }}
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => alert('Trying to Buy something?')}>
+                  <Icon
+                    as={CgDollar}
+                    w="20px"
+                    h="20px"
+                    color={'green.400'}
+                    mr={2}
+                  />
+                  <span>Buy</span>
+                </MenuItem>
+                <MenuItem onClick={() => alert('Trying to Sell something?')}>
+                  <Icon
+                    as={GiHandBag}
+                    w="20px"
+                    h="20px"
+                    color={'red.400'}
+                    mr={2}
+                  />
+                  <span>Sell</span>
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </Flex>
           <Box>
             <Text
@@ -66,7 +95,7 @@ const ProductCard = ({
               w="100%"
               fontSize="2xl"
             >
-              {props.name}
+              {item.name}
             </Text>
           </Box>
         </Box>
@@ -88,7 +117,7 @@ const ProductCard = ({
             fontWeight="500"
             mb="auto"
           >
-            {props.description}
+            {item.description}
           </Text>
           <Flex alignItems={'center'}>
             <Icon as={CgDollar} w="20px" h="20px" color={'green.400'} />
@@ -100,7 +129,7 @@ const ProductCard = ({
               fontWeight="500"
               mb="auto"
             >
-              {props.price}
+              {item.price}
             </Text>
             <Icon as={GiHandBag} w="20px" h="20px" color={'blue.400'} me={1} />
             <Text
@@ -111,7 +140,7 @@ const ProductCard = ({
               fontWeight="500"
               mb="auto"
             >
-              {props.quantity}
+              {item.quantity}
             </Text>
           </Flex>
         </Flex>

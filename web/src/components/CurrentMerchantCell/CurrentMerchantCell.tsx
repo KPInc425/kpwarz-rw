@@ -125,7 +125,7 @@ export const Success = ({
           ]}
         />
         {currentMerchant.items.map((item) => {
-          return <ProductCard key={item.id} props={item} />
+          return <ProductCard key={item.id} item={item} />
         })}
       </Flex>
     </div>
