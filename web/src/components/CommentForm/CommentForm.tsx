@@ -9,7 +9,7 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/dist/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY as CommentsQuery } from '../CommentsCell'
 
@@ -30,6 +30,9 @@ const CommentForm = ({ postId }) => {
     onCompleted: () => {
       setHasPosted(true)
       toast.success('Thank you for your comment!')
+    },
+    onError: (error) => {
+      toast.error(error.message)
     },
     refetchQueries: [{ query: CommentsQuery, variables: { postId } }],
   })

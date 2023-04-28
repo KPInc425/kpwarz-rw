@@ -16,16 +16,28 @@ import {
   IconButton,
   MenuList,
   MenuItem,
+  PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverHeader,
+  Portal,
+  PopoverBody,
+  PopoverFooter,
 } from '@chakra-ui/react'
 // Assets
 
-import { CgDollar } from 'react-icons/Cg'
-import { GiHandBag } from 'react-icons/Gi'
+import { CgDollar } from 'react-icons/cg'
+import { GiHandBag } from 'react-icons/gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
+
+import TransactionBuy from '../TransactionBuy/TransactionBuy'
 
 const ProductCard = ({
   item,
   // icon,
+  characterId,
 }) => {
   return (
     <DarkMode>
@@ -64,15 +76,35 @@ const ProductCard = ({
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem onClick={() => alert('Trying to Buy something?')}>
-                  <Icon
-                    as={CgDollar}
-                    w="20px"
-                    h="20px"
-                    color={'green.400'}
-                    mr={2}
-                  />
-                  <span>Buy</span>
+                <MenuItem>
+                  <Popover closeOnBlur={false}>
+                    <PopoverTrigger>
+                      <Box>
+                        <Icon
+                          as={CgDollar}
+                          w="20px"
+                          h="20px"
+                          color={'green.400'}
+                          mr={2}
+                        />
+                        <span>Buy</span>
+                      </Box>
+                    </PopoverTrigger>
+                    <Portal>
+                      <PopoverContent>
+                        {/* <PopoverArrow /> */}
+                        <PopoverHeader>{item.name}</PopoverHeader>
+                        <PopoverCloseButton />
+                        <PopoverBody>
+                          <TransactionBuy
+                            item={item}
+                            characterId={characterId}
+                          />
+                        </PopoverBody>
+                        <PopoverFooter>Lookin to Buy?</PopoverFooter>
+                      </PopoverContent>
+                    </Portal>
+                  </Popover>
                 </MenuItem>
                 <MenuItem onClick={() => alert('Trying to Sell something?')}>
                   <Icon

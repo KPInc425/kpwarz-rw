@@ -78,25 +78,26 @@ model Game {
 }
 
 model Character {
-  id             Int                 @id @default(autoincrement())
-  name           String
-  bio            String
-  background     Background          @default(Plebian)
-  description    String
-  user           User                @relation(fields: [userId], references: [id])
-  userId         Int
-  health         Int                 @default(100)
-  maxHealth      Int                 @default(100)
-  currentItems   Int                 @default(0)
-  maxItems       Int                 @default(100)
-  luck           Int
-  storageType    StorageType         @default(Pockets)
-  finances       CharacterFinances[]
-  items          Item[]
-  transportation TransportOptions    @default(Bootz)
-  game           Game?
-  createdAt      DateTime            @default(now())
-  Transport      Transport[]
+  id              Int                 @id @default(autoincrement())
+  name            String
+  bio             String
+  background      Background          @default(Plebian)
+  description     String
+  user            User                @relation(fields: [userId], references: [id])
+  userId          Int
+  health          Int                 @default(100)
+  maxHealth       Int                 @default(100)
+  currentItems    Int                 @default(0)
+  maxItems        Int                 @default(100)
+  luck            Int
+  storageType     StorageType         @default(Pockets)
+  finances        CharacterFinances[]
+  items           Item[]
+  transportation  TransportOptions    @default(Bootz)
+  game            Game?
+  createdAt       DateTime            @default(now())
+  transport       Transport[]
+  transactionsBuy TransactionBuy[]
 
   @@unique([userId, id])
 }
@@ -111,6 +112,7 @@ model Merchant {
   maxItems     Int      @default(500)
   temperament  Int?
   items        Item[]
+  funds        Int      @default(3500)
   createdAt    DateTime @default(now())
 }
 
@@ -176,22 +178,24 @@ model Transport {
 }
 
 model Item {
-  id          Int        @id @default(autoincrement())
-  name        String
-  quantity    Int
-  price       Int
-  quality     String?
-  ability     String?
-  description String?
-  type        ItemType
-  uses        Int?
-  character   Character? @relation(fields: [characterId], references: [id])
-  characterId Int?
-  game        Game?      @relation(fields: [gameId], references: [id])
-  gameId      Int?
-  merchant    Merchant?  @relation(fields: [merchantId], references: [id])
-  merchantId  Int?
-  createdAt   DateTime   @default(now())
+  id              Int              @id @default(autoincrement())
+  name            String
+  quantity        Int
+  price           Int
+  quality         String?
+  ability         String?
+  description     String?
+  scale           String?
+  type            ItemType
+  uses            Int?
+  character       Character?       @relation(fields: [characterId], references: [id])
+  characterId     Int?
+  game            Game?            @relation(fields: [gameId], references: [id])
+  gameId          Int?
+  merchant        Merchant?        @relation(fields: [merchantId], references: [id])
+  merchantId      Int?
+  createdAt       DateTime         @default(now())
+  transactionsBuy TransactionBuy[]
 }
 
 model AvailableItems {
@@ -202,6 +206,7 @@ model AvailableItems {
   ability     String
   basePrice   Int      @default(0)
   chance      Int      @default(100)
+  scale       String   @default("gram")
   createdAt   DateTime @default(now())
 }
 
@@ -234,6 +239,17 @@ model AvailableTransport {
   price       Int
   storage     Int
   createdAt   DateTime @default(now())
+}
+
+model TransactionBuy {
+  id          Int       @id @default(autoincrement())
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  item        Item      @relation(fields: [itemId], references: [id])
+  itemId      Int
+  quantity    Int
+  price       Int
+  createdAt   DateTime  @default(now())
 }
 
 enum Background {

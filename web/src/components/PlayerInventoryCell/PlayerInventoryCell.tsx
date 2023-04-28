@@ -28,6 +28,7 @@ export const QUERY = gql`
         uses
       }
       game {
+        characterId
         currentCity {
           id
           name
