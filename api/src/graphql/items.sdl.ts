@@ -13,6 +13,7 @@ export const schema = gql`
     characterId: Int
     game: Game!
     gameId: Int!
+    scale: String!
     createdAt: DateTime!
   }
 
@@ -30,6 +31,7 @@ export const schema = gql`
     description: String!
     type: String!
     uses: Int
+    scale: String!
     characterId: Int!
     gameId: Int!
   }
@@ -42,6 +44,7 @@ export const schema = gql`
     ability: String
     description: String
     type: String
+    scale: String
     uses: Int
     characterId: Int
     gameId: Int

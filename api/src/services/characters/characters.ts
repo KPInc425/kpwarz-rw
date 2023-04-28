@@ -119,7 +119,7 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
           bio: merchantInput.bio,
           currentItems: merchantInput.currentItems,
           maxItems: merchantInput.maxItems,
-          temperamant: merchantInput.temperamant,
+          temperament: merchantInput.temperament,
         },
       })
 
@@ -133,7 +133,7 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
           data: {
             name: item.name,
             description: item.description,
-            price: item.basePrice * merchant.tempermant,
+            price: item.basePrice * merchant.temperament,
             quantity: randomQty,
             type: item.type,
             scale: item.scale,
