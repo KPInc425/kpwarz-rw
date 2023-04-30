@@ -15,6 +15,22 @@ export const checkPlayerFunds = async (characterId, price) => {
   }
 }
 
+export const checkPlayerEnoughItemsToSell = async (
+  characterId,
+  itemName,
+  quantity
+) => {
+  const items = await db.item.findMany({
+    where: { characterId: characterId },
+  })
+  const itemFound = items.find((item) => item.name === itemName)
+  if (itemFound.quantity >= quantity) {
+    return { status: true, itemId: itemFound.id }
+  } else {
+    return { status: false, itemId: null }
+  }
+}
+
 export const checkInventorySpace = async (characterId, quantity) => {
   const character = await db.character.findUnique({
     where: { id: characterId },
@@ -38,14 +54,14 @@ export const checkIfAlreadyHoldingItem = async (characterId, itemName) => {
   }
 }
 
-export const removeCostFromPlayer = async (characterId, price) => {
+export const setPlayerCash = async (characterId, price) => {
   const characterFinances = await db.characterFinances.findUnique({
     where: { characterId: characterId },
   })
   const updatedCharacter = await db.characterFinances.update({
     where: { characterId: characterId },
     data: {
-      cashOnHand: characterFinances.cashOnHand - price,
+      cashOnHand: characterFinances.cashOnHand + price,
     },
   })
   return updatedCharacter
@@ -76,4 +92,29 @@ export const addItemToPlayer = async (characterId, item) => {
   })
 
   return { updatedCharacter, createItem }
+}
+
+export const removeItemFromPlayer = async (itemName, characterId, quantity) => {
+  const items = await db.item.findMany({
+    where: { characterId: characterId },
+  })
+
+  const itemFound = items.find((item) => item.name === itemName)
+  if (itemFound) {
+    const updatedItem = await db.item.update({
+      where: { id: itemFound.id },
+      data: {
+        quantity: itemFound.quantity - quantity,
+      },
+    })
+    if (updatedItem.quantity - quantity <= 0) {
+      return db.item.delete({
+        where: { id: updatedItem.id },
+      })
+    } else {
+      return updatedItem
+    }
+  } else {
+    throw new Error('Item not found')
+  }
 }

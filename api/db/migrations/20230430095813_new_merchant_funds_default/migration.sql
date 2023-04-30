@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Merchant" ALTER COLUMN "funds" SET DEFAULT 100000;

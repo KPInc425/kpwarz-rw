@@ -33,6 +33,7 @@ import { GiHandBag } from 'react-icons/gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 import TransactionBuy from '../TransactionBuy/TransactionBuy'
+import TransactionSell from '../TransactionSell/TransactionSell'
 
 const ProductCard = ({
   item,
@@ -108,15 +109,36 @@ const ProductCard = ({
                     </Portal>
                   </Popover>
                 </MenuItem>
-                <MenuItem onClick={() => alert('Trying to Sell something?')}>
-                  <Icon
-                    as={GiHandBag}
-                    w="20px"
-                    h="20px"
-                    color={'red.400'}
-                    mr={2}
-                  />
-                  <span>Sell</span>
+                <MenuItem>
+                  <Popover closeOnBlur={false}>
+                    <PopoverTrigger>
+                      <Box>
+                        <Icon
+                          as={GiHandBag}
+                          w="20px"
+                          h="20px"
+                          color={'red.400'}
+                          mr={2}
+                        />
+                        <span>Sell</span>
+                      </Box>
+                    </PopoverTrigger>
+                    <Portal>
+                      <PopoverContent>
+                        {/* <PopoverArrow /> */}
+                        <PopoverHeader>{item.name}</PopoverHeader>
+                        <PopoverCloseButton />
+                        <PopoverBody>
+                          <TransactionSell
+                            item={item}
+                            characterId={characterId}
+                            merchantId={merchantId}
+                          />
+                        </PopoverBody>
+                        <PopoverFooter>Lookin to Sell?</PopoverFooter>
+                      </PopoverContent>
+                    </Portal>
+                  </Popover>
                 </MenuItem>
               </MenuList>
             </Menu>

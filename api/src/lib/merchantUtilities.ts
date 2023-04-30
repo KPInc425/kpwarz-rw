@@ -1,5 +1,16 @@
 import { db } from 'src/lib/db'
 
+export const checkMerchantFunds = async (merchantId, price) => {
+  const merchant = await db.merchant.findUnique({
+    where: { id: merchantId },
+  })
+  if (merchant.funds >= price) {
+    return true
+  } else {
+    return false
+  }
+}
+
 export const removeCostFromMerchant = async (merchantId, price) => {
   const merchant = await db.merchant.findUnique({
     where: { id: merchantId },
@@ -13,7 +24,7 @@ export const removeCostFromMerchant = async (merchantId, price) => {
   return updatedMerchant
 }
 
-export const addCostToMerchant = async (merchantId, price) => {
+export const setMerchantFunds = async (merchantId, price) => {
   const merchant = await db.merchant.findUnique({
     where: { id: merchantId },
   })

@@ -7,7 +7,7 @@ import type {
 import { db } from 'src/lib/db'
 import { generateNewItem } from 'src/lib/generateNewItem'
 import {
-  addCostToMerchant,
+  setMerchantFunds,
   removeItemFromMerchant,
 } from 'src/lib/merchantUtilities'
 import { mutateItem } from 'src/lib/mutateItem'
@@ -16,7 +16,7 @@ import {
   checkIfAlreadyHoldingItem,
   checkInventorySpace,
   checkPlayerFunds,
-  removeCostFromPlayer,
+  setPlayerCash,
 } from 'src/lib/playerUtilities'
 
 export const transactionBuys: QueryResolvers['transactionBuys'] = () => {
@@ -32,7 +32,8 @@ export const transactionBuy: QueryResolvers['transactionBuy'] = ({ id }) => {
 export const createTransactionBuy: MutationResolvers['createTransactionBuy'] =
   async ({ input }) => {
     let itemToAdd
-    if (await checkPlayerFunds(input.characterId, input.price)) {
+    const totalCost = input.price * input.quantity
+    if (await checkPlayerFunds(input.characterId, totalCost)) {
       if (await checkInventorySpace(input.characterId, input.quantity)) {
         const itemFound = await checkIfAlreadyHoldingItem(
           input.characterId,
@@ -53,9 +54,8 @@ export const createTransactionBuy: MutationResolvers['createTransactionBuy'] =
         await removeItemFromMerchant(input.boughtItemId, input.quantity)
         console.log('itemToAdd')
         console.log(itemToAdd)
-        await addCostToMerchant(input.merchantId, input.price)
-        const totolCost = input.price * input.quantity
-        await removeCostFromPlayer(input.characterId, totolCost)
+        await setMerchantFunds(input.merchantId, input.price)
+        await setPlayerCash(input.characterId, -totalCost)
 
         return db.transactionBuy.create({
           data: {
