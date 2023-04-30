@@ -54,7 +54,8 @@ export const createTransactionBuy: MutationResolvers['createTransactionBuy'] =
         console.log('itemToAdd')
         console.log(itemToAdd)
         await addCostToMerchant(input.merchantId, input.price)
-        await removeCostFromPlayer(input.characterId, input.price)
+        const totolCost = input.price * input.quantity
+        await removeCostFromPlayer(input.characterId, totolCost)
 
         return db.transactionBuy.create({
           data: {
