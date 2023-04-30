@@ -4,11 +4,12 @@ export const mutateItem = async (itemId, quantity, price) => {
   const item = await db.item.findUnique({
     where: { id: itemId },
   })
+  console.log(item)
   const newPrice = (item.price + price) / 2
   const updatedItem = await db.item.update({
     where: { id: itemId },
     data: {
-      quantity: quantity,
+      quantity: item.quantity + quantity,
       price: newPrice,
     },
   })

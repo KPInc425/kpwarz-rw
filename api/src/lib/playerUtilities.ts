@@ -1,11 +1,13 @@
 import { db } from 'src/lib/db'
 
 export const checkPlayerFunds = async (characterId, price) => {
-  const finances = await db.characterFinances.findUnique({
-    where: { id: characterId },
-  })
-  console.log(finances.cashOnHand)
   console.log(characterId)
+  const finances = await db.characterFinances.findUnique({
+    where: { characterId: characterId },
+  })
+  console.log(finances)
+  console.log(finances.cashOnHand)
+  console.log(price)
   if (finances.cashOnHand >= price) {
     return true
   } else {
@@ -24,23 +26,24 @@ export const checkInventorySpace = async (characterId, quantity) => {
   }
 }
 
-export const checkIfAlreadyHoldingItem = async (characterId, itemId) => {
-  const items = await db.item.findUnique({
-    where: { id: characterId },
+export const checkIfAlreadyHoldingItem = async (characterId, itemName) => {
+  const items = await db.item.findMany({
+    where: { characterId: characterId },
   })
-  if ([items].find((item) => item.id === itemId)) {
-    return true
+  const itemFound = items.find((item) => item.name === itemName)
+  if (itemFound) {
+    return { status: true, itemId: itemFound.id }
   } else {
-    return false
+    return { status: false, itemId: null }
   }
 }
 
 export const removeCostFromPlayer = async (characterId, price) => {
   const characterFinances = await db.characterFinances.findUnique({
-    where: { id: characterId },
+    where: { characterId: characterId },
   })
   const updatedCharacter = await db.characterFinances.update({
-    where: { id: characterId },
+    where: { characterId: characterId },
     data: {
       cashOnHand: characterFinances.cashOnHand - price,
     },

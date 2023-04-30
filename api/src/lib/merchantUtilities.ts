@@ -13,6 +13,19 @@ export const removeCostFromMerchant = async (merchantId, price) => {
   return updatedMerchant
 }
 
+export const addCostToMerchant = async (merchantId, price) => {
+  const merchant = await db.merchant.findUnique({
+    where: { id: merchantId },
+  })
+  const updatedMerchant = await db.merchant.update({
+    where: { id: merchantId },
+    data: {
+      funds: merchant.funds + price,
+    },
+  })
+  return updatedMerchant
+}
+
 export const removeItemFromMerchant = async (itemId, quantity) => {
   const item = await db.item.findUnique({
     where: { id: itemId },

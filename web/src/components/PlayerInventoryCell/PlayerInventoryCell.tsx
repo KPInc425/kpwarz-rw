@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import type {
   FindPlayerInventoryQuery,
   FindPlayerInventoryQueryVariables,
@@ -26,6 +26,7 @@ export const QUERY = gql`
         ability
         type
         uses
+        price
       }
       game {
         characterId
@@ -59,33 +60,38 @@ export const Success = ({
     <div>
       {/* {JSON.stringify(playerInventory)} */}
       <Text fontSize={'3xl'}>{playerInventory.name}'s Inventory</Text>
-      {playerInventory.items.length > 0 ? (
-        playerInventory.items.map((item) => {
-          return (
-            <ProductCard
-              key={item.id}
-              item={item}
-              merchantId={playerInventory.game.currentCity.merchantId}
-              characterId={playerInventory.id}
-            />
-          )
-        })
-      ) : (
-        <ProductCard
-          item={{
-            name: 'No bag',
-            description: 'Nothing to see here...Go buy some sh$%',
-            quantity: 0,
-            price: 0,
-            quality: 0,
-            ability: 0,
-            type: 'empty',
-            uses: 0,
-          }}
-          merchantId={playerInventory.game.currentCity.merchantId}
-          characterId={playerInventory.id}
-        />
-      )}
+      <Flex>
+        {playerInventory.items.length > 0 ? (
+          playerInventory.items.map((item) => {
+            return (
+              <div>
+                {/* <h1>{JSON.stringify(item)}</h1> */}
+                <ProductCard
+                  key={item.id}
+                  item={item}
+                  merchantId={playerInventory.game.currentCity.merchantId}
+                  characterId={playerInventory.id}
+                />
+              </div>
+            )
+          })
+        ) : (
+          <ProductCard
+            item={{
+              name: 'No bag',
+              description: 'Nothing to see here...Go buy some sh$%',
+              quantity: 0,
+              price: 0,
+              quality: 0,
+              ability: 0,
+              type: 'empty',
+              uses: 0,
+            }}
+            merchantId={playerInventory.game.currentCity.merchantId}
+            characterId={playerInventory.id}
+          />
+        )}
+      </Flex>
     </div>
   )
 }

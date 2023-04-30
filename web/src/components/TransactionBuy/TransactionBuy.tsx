@@ -1,16 +1,11 @@
 const CREATE = gql`
   mutation CreateTransactionMutation($input: CreateTransactionBuyInput!) {
     createTransactionBuy(input: $input) {
-      id
+      itemName
       characterId
+      merchantId
       quantity
       price
-      item {
-        id
-        name
-        price
-        quantity
-      }
     }
   }
 `
@@ -28,6 +23,8 @@ import {
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import { QUERY as FindCurrentMerchantQuery } from 'src/components/CurrentMerchantCell'
+
 const TransactionBuy = ({ item, characterId, merchantId }) => {
   const [qtyBuy, setQtyBuy] = useState(1)
   const [createTransaction, { loading, error }] = useMutation(CREATE, {
@@ -37,11 +34,15 @@ const TransactionBuy = ({ item, characterId, merchantId }) => {
     onError: (error) => {
       toast.error(error.message)
     },
+    refetchQueries: [
+      { query: FindCurrentMerchantQuery, variables: { id: merchantId } },
+    ],
   })
 
   const onSubmit = (input) => {
     input = {
-      itemId: item.id,
+      boughtItemId: item.id,
+      itemName: item.name,
       quantity: qtyBuy,
       price: item.price,
       characterId: characterId,
@@ -72,7 +73,7 @@ const TransactionBuy = ({ item, characterId, merchantId }) => {
           min={1}
           max={item.quantity}
           defaultValue={1}
-          onChange={(e) => setQtyBuy(e.target.value)}
+          onChange={(e) => setQtyBuy(Number(e.target.value))}
           className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
         <Button disabled={loading} type="submit" className="mt-4">

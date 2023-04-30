@@ -179,24 +179,23 @@ model Transport {
 }
 
 model Item {
-  id              Int              @id @default(autoincrement())
-  name            String
-  quantity        Int
-  price           Int
-  quality         String?
-  ability         String?
-  description     String?
-  scale           String?
-  type            ItemType
-  uses            Int?
-  character       Character?       @relation(fields: [characterId], references: [id])
-  characterId     Int?
-  game            Game?            @relation(fields: [gameId], references: [id])
-  gameId          Int?
-  merchant        Merchant?        @relation(fields: [merchantId], references: [id])
-  merchantId      Int?
-  createdAt       DateTime         @default(now())
-  transactionsBuy TransactionBuy[]
+  id          Int        @id @default(autoincrement())
+  name        String
+  quantity    Int
+  price       Int
+  quality     String?
+  ability     String?
+  description String?
+  scale       String?
+  type        ItemType
+  uses        Int?
+  character   Character? @relation(fields: [characterId], references: [id])
+  characterId Int?
+  game        Game?      @relation(fields: [gameId], references: [id])
+  gameId      Int?
+  merchant    Merchant?  @relation(fields: [merchantId], references: [id])
+  merchantId  Int?
+  createdAt   DateTime   @default(now())
 }
 
 model AvailableItems {
@@ -246,10 +245,9 @@ model TransactionBuy {
   id          Int       @id @default(autoincrement())
   character   Character @relation(fields: [characterId], references: [id])
   characterId Int
-  item        Item      @relation(fields: [itemId], references: [id])
   merchant    Merchant  @relation(fields: [merchantId], references: [id])
   merchantId  Int
-  itemId      Int
+  itemName    String
   quantity    Int
   price       Int
   createdAt   DateTime  @default(now())

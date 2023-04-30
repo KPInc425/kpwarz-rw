@@ -1,7 +1,7 @@
 import { db } from 'src/lib/db'
 
-export const generateNewItem = (itemId, quantity) => {
-  const item = db.item.findUnique({
+export const generateNewItem = async (itemId, quantity) => {
+  const item = await db.item.findUnique({
     where: { id: itemId },
   })
 

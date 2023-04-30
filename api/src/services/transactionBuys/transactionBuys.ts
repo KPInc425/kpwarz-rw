@@ -7,7 +7,7 @@ import type {
 import { db } from 'src/lib/db'
 import { generateNewItem } from 'src/lib/generateNewItem'
 import {
-  removeCostFromMerchant,
+  addCostToMerchant,
   removeItemFromMerchant,
 } from 'src/lib/merchantUtilities'
 import { mutateItem } from 'src/lib/mutateItem'
@@ -34,28 +34,36 @@ export const createTransactionBuy: MutationResolvers['createTransactionBuy'] =
     let itemToAdd
     if (await checkPlayerFunds(input.characterId, input.price)) {
       if (await checkInventorySpace(input.characterId, input.quantity)) {
-        await removeCostFromPlayer(input.characterId, input.price)
-        if (await checkIfAlreadyHoldingItem(input.characterId, input.itemId)) {
-          itemToAdd = await generateNewItem(input.itemId, input.quantity)
-          await addItemToPlayer(input.characterId, itemToAdd)
-        } else {
+        const itemFound = await checkIfAlreadyHoldingItem(
+          input.characterId,
+          input.itemName
+        )
+        if (itemFound.status) {
+          console.log('MUTATE ITEM')
           itemToAdd = await mutateItem(
-            input.itemId,
+            itemFound.itemId,
             input.quantity,
             input.price
           )
+        } else {
+          console.log('GENERATE NEW ITEM')
+          itemToAdd = await generateNewItem(input.boughtItemId, input.quantity)
+          await addItemToPlayer(input.characterId, itemToAdd)
         }
-        await removeCostFromMerchant(input.merchantId, input.price)
-        await removeItemFromMerchant(input.itemId, input.quantity)
-        const CreateTransactionBuyInput = {
-          characterId: input.characterId,
-          itemId: itemToAdd.id,
-          quantity: input.quantity,
-          price: input.price,
-          merchantId: input.merchantId,
-        }
+        await removeItemFromMerchant(input.boughtItemId, input.quantity)
+        console.log('itemToAdd')
+        console.log(itemToAdd)
+        await addCostToMerchant(input.merchantId, input.price)
+        await removeCostFromPlayer(input.characterId, input.price)
+
         return db.transactionBuy.create({
-          data: CreateTransactionBuyInput,
+          data: {
+            characterId: input.characterId,
+            itemName: itemToAdd.name,
+            quantity: input.quantity,
+            price: input.price,
+            merchantId: input.merchantId,
+          },
         })
       } else {
         throw new Error('Not enough inventory space')
@@ -83,8 +91,5 @@ export const deleteTransactionBuy: MutationResolvers['deleteTransactionBuy'] =
 export const TransactionBuy: TransactionBuyRelationResolvers = {
   character: (_obj, { root }) => {
     return db.transactionBuy.findUnique({ where: { id: root?.id } }).character()
-  },
-  item: (_obj, { root }) => {
-    return db.transactionBuy.findUnique({ where: { id: root?.id } }).item()
   },
 }
