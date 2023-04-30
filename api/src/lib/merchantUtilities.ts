@@ -37,11 +37,11 @@ export const removeItemFromMerchant = async (itemId, quantity) => {
     },
   })
 
-  if (updatedItem.quantity === 0) {
-    return db.item.delete({
-      where: { id: itemId },
-    })
-  } else {
-    return updatedItem
-  }
+  // if (updatedItem.quantity === 0) {
+  //   return db.item.delete({
+  //     where: { id: itemId },
+  //   })
+  // } else {
+  return updatedItem
+  // }
 }
