@@ -189,6 +189,7 @@ model Item {
   ability     String?
   description String?
   scale       String?
+  imgURL      String?
   type        ItemType
   uses        Int?
   character   Character? @relation(fields: [characterId], references: [id])
