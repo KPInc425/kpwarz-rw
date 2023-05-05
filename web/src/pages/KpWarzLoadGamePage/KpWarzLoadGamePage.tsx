@@ -1,16 +1,16 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import KpWarzLoadGameCell from 'src/components/KpWarzLoadGameCell/'
+import KPWarzLoadGameCell from 'src/components/KPWarzLoadGameCell/'
 
-const KpWarzLoadGamePage = () => {
+const KPWarzLoadGamePage = () => {
   return (
     <>
-      <MetaTags title="KpWarzLoadGame" description="KpWarzLoadGame page" />
+      <MetaTags title="KPWarzLoadGame" description="KPWarzLoadGame page" />
 
-      <KpWarzLoadGameCell />
+      <KPWarzLoadGameCell />
     </>
   )
 }
 
-export default KpWarzLoadGamePage
+export default KPWarzLoadGamePage

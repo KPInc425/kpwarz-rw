@@ -1,12 +1,12 @@
 import type { ComponentMeta } from '@storybook/react'
 
-import KpWarzLoadGamePage from './KpWarzLoadGamePage'
+import KPWarzLoadGamePage from './KPWarzLoadGamePage'
 
 export const generated = () => {
-  return <KpWarzLoadGamePage />
+  return <KPWarzLoadGamePage />
 }
 
 export default {
-  title: 'Pages/KpWarzLoadGamePage',
-  component: KpWarzLoadGamePage,
-} as ComponentMeta<typeof KpWarzLoadGamePage>
+  title: 'Pages/KPWarzLoadGamePage',
+  component: KPWarzLoadGamePage,
+} as ComponentMeta<typeof KPWarzLoadGamePage>

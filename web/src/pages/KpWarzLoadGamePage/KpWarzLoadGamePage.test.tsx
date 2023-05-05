@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import KpWarzLoadGamePage from './KpWarzLoadGamePage'
+import KPWarzLoadGamePage from './KPWarzLoadGamePage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('KpWarzLoadGamePage', () => {
+describe('KPWarzLoadGamePage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<KpWarzLoadGamePage />)
+      render(<KPWarzLoadGamePage />)
     }).not.toThrow()
   })
 })
