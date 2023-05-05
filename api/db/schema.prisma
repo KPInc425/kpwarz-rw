@@ -283,9 +283,9 @@ enum StorageType {
 
 enum TransportOptions {
   Bootz
-  Bike
   Bus
-  Uber
+  Bike
+  Ride_Share
   Whip
   Car_Service
 }

@@ -52,8 +52,11 @@ export const QUERY = gql`
   }
 `
 const UPDATE_GAME_MUTATION = gql`
-  mutation UpdateGameMutation($id: Int!, $input: UpdateGameInput!) {
-    updateGame(id: $id, input: $input) {
+  mutation UpdateGameOnTravelMutation(
+    $id: Int!
+    $input: UpdateGameOnTravelInput!
+  ) {
+    updateGameOnTravel(id: $id, input: $input) {
       currentCityId
       currentCity {
         id
@@ -118,13 +121,13 @@ export const Success = ({
     console.log('clicked')
     console.log(input)
 
-    const newGameInput = {
+    const updatedGameInput = {
       currentCityId: input,
-      currentDay: currentRegion.game.currentDay + 1,
-      timeOfDay: 'Afternoon',
+      // currentDay: currentRegion.game.currentDay + 1,
+      // timeOfDay: 'Afternoon',
     }
-    console.log(newGameInput)
-    updateCurrentCity({ variables: { id, input: newGameInput } })
+    console.log(updatedGameInput)
+    updateCurrentCity({ variables: { id, input: updatedGameInput } })
   }
 
   return (

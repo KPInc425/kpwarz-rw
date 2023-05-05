@@ -50,10 +50,24 @@ export const schema = gql`
     characterId: Int
     userId: Int
   }
+  input UpdateGameOnTravelInput {
+    name: String
+    description: String
+    startLocation: String
+    currentRegionId: Int
+    currentCityId: Int
+    maxDays: Int
+    currentDay: Int
+    timeOfDay: String
+    characterId: Int
+    userId: Int
+  }
 
   type Mutation {
     createGame(input: CreateGameInput!): Game! @requireAuth
     updateGame(id: Int!, input: UpdateGameInput!): Game! @requireAuth
+    updateGameOnTravel(id: Int!, input: UpdateGameOnTravelInput!): Game!
+      @requireAuth
     deleteGame(id: Int!): Game! @requireAuth
   }
 `

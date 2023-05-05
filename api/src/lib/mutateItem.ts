@@ -5,8 +5,9 @@ export const mutateItem = async (itemId, quantity, price) => {
     where: { id: itemId },
   })
   console.log(item)
-  const newPrice =
+  const newPrice = Math.floor(
     (item.price * item.quantity + price * quantity) / (item.quantity + quantity)
+  )
   const updatedItem = await db.item.update({
     where: { id: itemId },
     data: {
