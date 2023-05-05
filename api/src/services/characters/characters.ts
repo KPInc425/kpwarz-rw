@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { randomizeMerchantProducts } from 'src/lib/gameUtilities'
 import generateCharacter from 'src/lib/generateNewCharacter'
 import generateNewCity from 'src/lib/generateNewCity'
 import generateNewFinances from 'src/lib/generateNewFinances'
@@ -101,9 +102,8 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
     const cities = []
     for (const cityInput of cityInputs) {
       const merchantInput = generateNewMerchant(cityInput)
-      const avaiableItems = await db.availableItems.findMany()
       const chosenItems = pickRandomItems(
-        avaiableItems,
+        await db.availableItems.findMany(),
         Math.floor(Math.random() * (10 - 2 + 1) + 2)
       )
 
@@ -123,26 +123,20 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
         },
       })
 
-      for (const item of chosenItems) {
-        console.log('item', item)
-        const randomQty = Math.floor(
-          Math.random() * (merchant.maxItems - merchant.currentItems + 1) +
-            merchant.currentItems
-        )
+      const newMerchantProductList = randomizeMerchantProducts(
+        merchant,
+        chosenItems
+      )
+      newMerchantProductList.forEach(async (item) => {
         await db.item.create({
           data: {
-            name: item.name,
-            description: item.description,
-            price: item.basePrice * merchant.temperament,
-            quantity: randomQty,
-            type: item.type,
-            scale: item.scale,
+            ...item,
             merchant: {
               connect: { id: merchant.id },
             },
           },
         })
-      }
+      })
 
       const city = await db.city.create({
         data: {

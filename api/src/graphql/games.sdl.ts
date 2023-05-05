@@ -56,6 +56,8 @@ export const schema = gql`
     startLocation: String
     currentRegionId: Int
     currentCityId: Int
+    merchantId: Int
+    avgPrice: Int
     maxDays: Int
     currentDay: Int
     timeOfDay: String

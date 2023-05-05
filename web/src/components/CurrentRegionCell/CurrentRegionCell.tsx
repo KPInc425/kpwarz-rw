@@ -31,6 +31,8 @@ export const QUERY = gql`
         currentCity {
           id
           name
+          merchantId
+          avgPrice
         }
         timeOfDay
         currentDay
@@ -123,6 +125,8 @@ export const Success = ({
 
     const updatedGameInput = {
       currentCityId: input,
+      merchantId: currentRegion.game.currentCity.merchantId,
+      avgPrice: currentRegion.game.currentCity.avgPrice,
       // currentDay: currentRegion.game.currentDay + 1,
       // timeOfDay: 'Afternoon',
     }
