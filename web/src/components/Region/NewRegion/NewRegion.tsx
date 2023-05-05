@@ -1,10 +1,10 @@
+import type { CreateRegionInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import RegionForm from 'src/components/Region/RegionForm'
-
-import type { CreateRegionInput } from 'types/graphql'
 
 const CREATE_REGION_MUTATION = gql`
   mutation CreateRegionMutation($input: CreateRegionInput!) {

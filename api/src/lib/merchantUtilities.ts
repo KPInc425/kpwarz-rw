@@ -56,3 +56,17 @@ export const removeItemFromMerchant = async (itemId, quantity) => {
   return updatedItem
   // }
 }
+export const addItemToMerchant = async (itemName, merchantId, quantity) => {
+  const item = await db.item.findMany({
+    where: { merchantId: merchantId },
+  })
+  const itemFound = item.find((item) => item.name === itemName)
+  const updatedItem = await db.item.update({
+    where: { id: itemFound.id },
+    data: {
+      quantity: itemFound.quantity + quantity,
+    },
+  })
+
+  return updatedItem
+}

@@ -74,7 +74,8 @@ export const Failure = ({
 export const Success = ({
   characterIntro,
   reRender,
-  refetch,
+
+  queryResult: { refetch },
 }: CellSuccessProps<
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables

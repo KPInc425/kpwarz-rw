@@ -1,10 +1,10 @@
+import type { CreateCityInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import CityForm from 'src/components/City/CityForm'
-
-import type { CreateCityInput } from 'types/graphql'
 
 const CREATE_CITY_MUTATION = gql`
   mutation CreateCityMutation($input: CreateCityInput!) {

@@ -1,11 +1,10 @@
+import type { DeleteUserMutationVariables, FindUserById } from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { timeTag,  } from 'src/lib/formatters'
-
-import type { DeleteUserMutationVariables, FindUserById } from 'types/graphql'
+import { timeTag } from 'src/lib/formatters'
 
 const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: Int!) {
@@ -49,25 +48,32 @@ const User = ({ user }: Props) => {
             <tr>
               <th>Id</th>
               <td>{user.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Name</th>
               <td>{user.name}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Email</th>
               <td>{user.email}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Hashed password</th>
               <td>{user.hashedPassword}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Salt</th>
               <td>{user.salt}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Reset toeken</th>
               <td>{user.resetToeken}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Reset token expires at</th>
               <td>{timeTag(user.resetTokenExpiresAt)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Roles</th>
               <td>{user.roles}</td>
             </tr>

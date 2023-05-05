@@ -1,14 +1,14 @@
+import type {
+  DeleteAvailableCityMutationVariables,
+  FindAvailableCities,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/AvailableCity/AvailableCitiesCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteAvailableCityMutationVariables,
-  FindAvailableCities,
-} from 'types/graphql'
 
 const DELETE_AVAILABLE_CITY_MUTATION = gql`
   mutation DeleteAvailableCityMutation($id: Int!) {

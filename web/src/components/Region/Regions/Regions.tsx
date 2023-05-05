@@ -1,11 +1,11 @@
+import type { DeleteRegionMutationVariables, FindRegions } from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Region/RegionsCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type { DeleteRegionMutationVariables, FindRegions } from 'types/graphql'
 
 const DELETE_REGION_MUTATION = gql`
   mutation DeleteRegionMutation($id: Int!) {

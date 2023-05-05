@@ -1,10 +1,10 @@
+import type { CreateTestStuffInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import TestStuffForm from 'src/components/TestStuff/TestStuffForm'
-
-import type { CreateTestStuffInput } from 'types/graphql'
 
 const CREATE_TEST_STUFF_MUTATION = gql`
   mutation CreateTestStuffMutation($input: CreateTestStuffInput!) {

@@ -1,10 +1,10 @@
+import type { CreateCharacterFinancesInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import CharacterFinancesForm from 'src/components/CharacterFinances/CharacterFinancesForm'
-
-import type { CreateCharacterFinancesInput } from 'types/graphql'
 
 const CREATE_CHARACTER_FINANCES_MUTATION = gql`
   mutation CreateCharacterFinancesMutation(

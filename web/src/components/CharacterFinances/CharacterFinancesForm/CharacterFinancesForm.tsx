@@ -1,3 +1,8 @@
+import type {
+  EditCharacterFinancesById,
+  UpdateCharacterFinancesInput,
+} from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -6,11 +11,6 @@ import {
   NumberField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type {
-  EditCharacterFinancesById,
-  UpdateCharacterFinancesInput,
-} from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormCharacterFinances = NonNullable<

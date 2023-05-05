@@ -1,10 +1,10 @@
+import type { CreateAvailableCityInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import AvailableCityForm from 'src/components/AvailableCity/AvailableCityForm'
-
-import type { CreateAvailableCityInput } from 'types/graphql'
 
 const CREATE_AVAILABLE_CITY_MUTATION = gql`
   mutation CreateAvailableCityMutation($input: CreateAvailableCityInput!) {

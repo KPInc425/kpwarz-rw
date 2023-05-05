@@ -5,7 +5,11 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { setMerchantFunds, checkMerchantFunds } from 'src/lib/merchantUtilities'
+import {
+  setMerchantFunds,
+  checkMerchantFunds,
+  addItemToMerchant,
+} from 'src/lib/merchantUtilities'
 import { mutateItem } from 'src/lib/mutateItem'
 import {
   checkPlayerEnoughItemsToSell,
@@ -35,16 +39,25 @@ export const createTransactionSell: MutationResolvers['createTransactionSell'] =
       )
     ) {
       if (await checkMerchantFunds(input.merchantId, input.price)) {
-        console.log('MUTATE ITEM')
+        console.log('Removing item from player')
+        console.log(input.itemName)
+        console.log(input.quantity)
+        console.log(input.price)
         await removeItemFromPlayer(
           input.itemName,
           input.characterId,
           input.quantity
         )
-        itemToAdd = await mutateItem(
-          input.soldItemId,
-          input.quantity,
-          input.price
+        // console.log('price' + input.price)
+        // itemToAdd = await mutateItem(
+        //   input.soldItemId,
+        //   input.quantity,
+        //   input.price
+        // )
+        await addItemToMerchant(
+          input.itemName,
+          input.merchantId,
+          input.quantity
         )
 
         await setMerchantFunds(input.merchantId, -totalCost)
@@ -53,7 +66,7 @@ export const createTransactionSell: MutationResolvers['createTransactionSell'] =
         return db.transactionSell.create({
           data: {
             characterId: input.characterId,
-            itemName: itemToAdd.name,
+            itemName: input.itemName,
             quantity: input.quantity,
             price: input.price,
             merchantId: input.merchantId,

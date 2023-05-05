@@ -1,10 +1,10 @@
+import type { CreateAvailableTransportInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import AvailableTransportForm from 'src/components/AvailableTransport/AvailableTransportForm'
-
-import type { CreateAvailableTransportInput } from 'types/graphql'
 
 const CREATE_AVAILABLE_TRANSPORT_MUTATION = gql`
   mutation CreateAvailableTransportMutation(

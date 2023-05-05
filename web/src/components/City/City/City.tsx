@@ -1,10 +1,10 @@
+import type { DeleteCityMutationVariables, FindCityById } from 'types/graphql'
+
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { timeTag } from 'src/lib/formatters'
-
-import type { DeleteCityMutationVariables, FindCityById } from 'types/graphql'
 
 const DELETE_CITY_MUTATION = gql`
   mutation DeleteCityMutation($id: Int!) {

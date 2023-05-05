@@ -1,14 +1,14 @@
+import type {
+  DeleteCharacterFinancesMutationVariables,
+  FindCharacterFinanceses,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/CharacterFinances/CharacterFinancesesCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteCharacterFinancesMutationVariables,
-  FindCharacterFinanceses,
-} from 'types/graphql'
 
 const DELETE_CHARACTER_FINANCES_MUTATION = gql`
   mutation DeleteCharacterFinancesMutation($id: Int!) {

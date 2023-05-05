@@ -5,7 +5,7 @@ import KpWarzGamePlayCell from 'src/components/KpWarzGamePlayCell'
 const KpwarzGamePage = ({ id }) => {
   return (
     <>
-      <MetaTags title="KpwarzGame" description="KpwarzGame page" />
+      <MetaTags title="KPWarzGame" description="KPWarzGame page" />
 
       <KpWarzGamePlayCell id={Number(id)} />
     </>

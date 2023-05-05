@@ -1,13 +1,13 @@
+import type {
+  DeleteAvailableTransportMutationVariables,
+  FindAvailableTransportById,
+} from 'types/graphql'
+
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { timeTag } from 'src/lib/formatters'
-
-import type {
-  DeleteAvailableTransportMutationVariables,
-  FindAvailableTransportById,
-} from 'types/graphql'
 
 const DELETE_AVAILABLE_TRANSPORT_MUTATION = gql`
   mutation DeleteAvailableTransportMutation($id: Int!) {

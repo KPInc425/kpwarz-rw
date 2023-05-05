@@ -1,3 +1,8 @@
+import type {
+  EditAvailableItemsById,
+  UpdateAvailableItemsInput,
+} from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -8,11 +13,6 @@ import {
   NumberField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type {
-  EditAvailableItemsById,
-  UpdateAvailableItemsInput,
-} from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormAvailableItems = NonNullable<EditAvailableItemsById['availableItems']>

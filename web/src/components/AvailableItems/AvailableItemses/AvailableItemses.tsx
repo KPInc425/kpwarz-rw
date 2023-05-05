@@ -1,14 +1,14 @@
+import type {
+  DeleteAvailableItemsMutationVariables,
+  FindAvailableItemses,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/AvailableItems/AvailableItemsesCell'
 import { formatEnum, timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteAvailableItemsMutationVariables,
-  FindAvailableItemses,
-} from 'types/graphql'
 
 const DELETE_AVAILABLE_ITEMS_MUTATION = gql`
   mutation DeleteAvailableItemsMutation($id: Int!) {

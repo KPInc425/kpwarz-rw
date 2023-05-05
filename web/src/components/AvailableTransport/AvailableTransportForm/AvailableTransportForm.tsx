@@ -1,3 +1,8 @@
+import type {
+  EditAvailableTransportById,
+  UpdateAvailableTransportInput,
+} from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -7,11 +12,6 @@ import {
   NumberField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type {
-  EditAvailableTransportById,
-  UpdateAvailableTransportInput,
-} from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormAvailableTransport = NonNullable<

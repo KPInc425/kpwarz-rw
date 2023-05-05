@@ -1,14 +1,14 @@
+import type {
+  DeleteServiceMutationVariables,
+  FindServices,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Service/ServicesCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteServiceMutationVariables,
-  FindServices,
-} from 'types/graphql'
 
 const DELETE_SERVICE_MUTATION = gql`
   mutation DeleteServiceMutation($id: Int!) {

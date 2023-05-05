@@ -64,7 +64,7 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
                   <Link
                     type="button"
                     className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
-                    to={routes.kpWarzLoadGame()}
+                    to={routes.KPWarzLoadGame()}
                   >
                     Games
                   </Link>

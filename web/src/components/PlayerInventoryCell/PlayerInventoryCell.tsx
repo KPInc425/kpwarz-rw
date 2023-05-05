@@ -64,15 +64,12 @@ export const Success = ({
         {playerInventory.items.length > 0 ? (
           playerInventory.items.map((item) => {
             return (
-              <div>
-                {/* <h1>{JSON.stringify(item)}</h1> */}
-                <ProductCard
-                  key={item.id}
-                  item={item}
-                  merchantId={playerInventory.game.currentCity.merchantId}
-                  characterId={playerInventory.id}
-                />
-              </div>
+              <ProductCard
+                key={item.id}
+                item={item}
+                merchantId={playerInventory.game.currentCity.merchantId}
+                characterId={playerInventory.id}
+              />
             )
           })
         ) : (

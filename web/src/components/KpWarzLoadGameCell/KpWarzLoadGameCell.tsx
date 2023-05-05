@@ -1,15 +1,15 @@
 import { Button, Flex, Text } from '@chakra-ui/react'
 import type {
-  FindKpWarzLoadGameQuery,
-  FindKpWarzLoadGameQueryVariables,
+  FindKPWarzLoadGameQuery,
+  FindKPWarzLoadGameQueryVariables,
 } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`
-  query FindKpWarzLoadGameQuery {
-    kpWarzLoadGame: getGamesToLoad {
+  query FindKPWarzLoadGameQuery {
+    KPWarzLoadGame: getGamesToLoad {
       id
       name
       description
@@ -37,15 +37,15 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({
   error,
-}: CellFailureProps<FindKpWarzLoadGameQueryVariables>) => (
+}: CellFailureProps<FindKPWarzLoadGameQueryVariables>) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
 export const Success = ({
-  kpWarzLoadGame,
+  KPWarzLoadGame,
 }: CellSuccessProps<
-  FindKpWarzLoadGameQuery,
-  FindKpWarzLoadGameQueryVariables
+  FindKPWarzLoadGameQuery,
+  FindKPWarzLoadGameQueryVariables
 >) => {
   const handleClick = (gameId) => {
     console.log('clicked')
@@ -57,7 +57,7 @@ export const Success = ({
         Choose a game to load
       </Text>
       <Flex wrap={'wrap'}>
-        {kpWarzLoadGame.map((game) => {
+        {KPWarzLoadGame.map((game) => {
           return (
             <div key={game.id}>
               <div>{game.name}</div>
@@ -74,7 +74,7 @@ export const Success = ({
             </div>
           )
         })}
-        {/* {JSON.stringify(kpWarzLoadGame)} */}
+        {/* {JSON.stringify(KPWarzLoadGame)} */}
       </Flex>
     </>
   )

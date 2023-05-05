@@ -1,3 +1,8 @@
+import type {
+  EditAvailableServiceById,
+  UpdateAvailableServiceInput,
+} from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -6,11 +11,6 @@ import {
   TextField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type {
-  EditAvailableServiceById,
-  UpdateAvailableServiceInput,
-} from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormAvailableService = NonNullable<

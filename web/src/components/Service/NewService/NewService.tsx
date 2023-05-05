@@ -1,10 +1,10 @@
+import type { CreateServiceInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import ServiceForm from 'src/components/Service/ServiceForm'
-
-import type { CreateServiceInput } from 'types/graphql'
 
 const CREATE_SERVICE_MUTATION = gql`
   mutation CreateServiceMutation($input: CreateServiceInput!) {

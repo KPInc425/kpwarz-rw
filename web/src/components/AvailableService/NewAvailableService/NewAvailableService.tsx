@@ -1,10 +1,10 @@
+import type { CreateAvailableServiceInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import AvailableServiceForm from 'src/components/AvailableService/AvailableServiceForm'
-
-import type { CreateAvailableServiceInput } from 'types/graphql'
 
 const CREATE_AVAILABLE_SERVICE_MUTATION = gql`
   mutation CreateAvailableServiceMutation(
