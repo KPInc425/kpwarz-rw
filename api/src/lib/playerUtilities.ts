@@ -68,9 +68,6 @@ export const setPlayerCash = async (characterId, price) => {
 }
 
 export const addItemToPlayer = async (characterId, item) => {
-  const character = await db.character.findUnique({
-    where: { id: characterId },
-  })
   const createItem = await db.item.create({
     data: {
       name: item.name,
@@ -84,12 +81,10 @@ export const addItemToPlayer = async (characterId, item) => {
       },
     },
   })
-  const updatedCharacter = await db.character.update({
-    where: { id: characterId },
-    data: {
-      currentItems: character.currentItems + item.quantity,
-    },
-  })
+  const updatedCharacter = await setCharacterQuantity(
+    characterId,
+    item.quantity
+  )
 
   return { updatedCharacter, createItem }
 }
@@ -107,7 +102,7 @@ export const removeItemFromPlayer = async (itemName, characterId, quantity) => {
         quantity: itemFound.quantity - quantity,
       },
     })
-    if (updatedItem.quantity - quantity <= 0) {
+    if (updatedItem.quantity <= 0) {
       return db.item.delete({
         where: { id: updatedItem.id },
       })
@@ -117,4 +112,17 @@ export const removeItemFromPlayer = async (itemName, characterId, quantity) => {
   } else {
     throw new Error('Item not found')
   }
+}
+
+export const setCharacterQuantity = async (characterId, quantity) => {
+  const character = await db.character.findUnique({
+    where: { id: characterId },
+  })
+  const updatedCharacter = await db.character.update({
+    where: { id: characterId },
+    data: {
+      currentItems: character.currentItems + quantity,
+    },
+  })
+  return updatedCharacter
 }

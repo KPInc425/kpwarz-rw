@@ -15,6 +15,7 @@ import {
   checkPlayerEnoughItemsToSell,
   removeItemFromPlayer,
   setPlayerCash,
+  setCharacterQuantity,
 } from 'src/lib/playerUtilities'
 
 export const transactionSells: QueryResolvers['transactionSells'] = () => {
@@ -29,7 +30,7 @@ export const transactionSell: QueryResolvers['transactionSell'] = ({ id }) => {
 
 export const createTransactionSell: MutationResolvers['createTransactionSell'] =
   async ({ input }) => {
-    let itemToAdd
+    // let itemToAdd
     const totalCost = input.price * input.quantity
     if (
       checkPlayerEnoughItemsToSell(
@@ -48,6 +49,7 @@ export const createTransactionSell: MutationResolvers['createTransactionSell'] =
           input.characterId,
           input.quantity
         )
+        await setCharacterQuantity(input.characterId, -input.quantity)
         // console.log('price' + input.price)
         // itemToAdd = await mutateItem(
         //   input.soldItemId,
