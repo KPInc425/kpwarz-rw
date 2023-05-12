@@ -1,13 +1,13 @@
 import { MetaTags } from '@redwoodjs/web'
 
-import KpWarzGamePlayCell from 'src/components/KpWarzGamePlayCell'
+import KPWarzGamePlayCell from 'src/components/KPWarzGamePlayCell'
 
 const KpwarzGamePage = ({ id }) => {
   return (
     <>
       <MetaTags title="KPWarzGame" description="KPWarzGame page" />
 
-      <KpWarzGamePlayCell id={Number(id)} />
+      <KPWarzGamePlayCell id={Number(id)} />
     </>
   )
 }

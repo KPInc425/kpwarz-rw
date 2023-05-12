@@ -1,7 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
-
-import { Loading, Empty, Failure, Success } from './KPWarzGamePlayCell'
-import { standard } from './KPWarzGamePlayCell.mock'
+import { Loading, Empty, Failure, Success } from './CharacterStatusCell'
+import { standard } from './CharacterStatusCell.mock'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -9,7 +8,7 @@ import { standard } from './KPWarzGamePlayCell.mock'
 //        https://redwoodjs.com/docs/testing#testing-cells
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('KPWarzGamePlayCell', () => {
+describe('CharacterStatusCell', () => {
   it('renders Loading successfully', () => {
     expect(() => {
       render(<Loading />)
@@ -36,7 +35,7 @@ describe('KPWarzGamePlayCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success KPWarzGamePlay={standard().KPWarzGamePlay} />)
+      render(<Success characterStatus={standard().characterStatus} />)
     }).not.toThrow()
   })
 })
