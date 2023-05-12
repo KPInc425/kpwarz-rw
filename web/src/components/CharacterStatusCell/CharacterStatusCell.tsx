@@ -61,57 +61,88 @@ export const Success = ({
   FindCharacterStatusQuery,
   FindCharacterStatusQueryVariables
 >) => {
+  const leftPillStyling = {
+    border: '1px solid grey',
+    borderRadius: '12px 0 0 12px',
+    padding: '0 10px',
+    backgroundColor: 'red',
+  }
+  const rightPillStyling = {
+    border: '1px solid grey',
+    borderRadius: '0 12px 12px 0',
+    padding: '0 10px',
+    backgroundColor: 'white',
+    color: 'red',
+  }
   return (
-    <div>
+    <div style={{ padding: '5px' }}>
       <Box>
         <Flex gap={4} wrap={'wrap'} justifyContent={'center'}>
           {/* <div>
             {'Character ID: '}
-            {characterStatus.id}
+            <span style={rightPillStyling}>{characterStatus.id}
           </div> */}
           <div>
-            {'Name: '}
-            {characterStatus.name}
+            <span style={leftPillStyling}>{'NAME'}</span>
+            <span style={rightPillStyling}>
+              {characterStatus.name.toUpperCase()}
+            </span>
           </div>
           <div>
-            {'Upbringing: '}
-            {characterStatus.background}
+            <span style={leftPillStyling}>{'UPBRINGING'}</span>
+            <span style={rightPillStyling}>
+              {characterStatus.background.toUpperCase()}
+            </span>
           </div>
           <div>
-            {'Health: '}
-            {[characterStatus.health, '/', characterStatus.maxHealth]}
+            <span style={leftPillStyling}>{'HEALTH'}</span>
+            <span style={rightPillStyling}>
+              {[characterStatus.health, '/', characterStatus.maxHealth]}
+            </span>
           </div>
           <div>
-            {'Storage Type: '}
-            {characterStatus.storageType}
+            <span style={leftPillStyling}>{'STORAGE'}</span>
+            <span style={rightPillStyling}>
+              {characterStatus.storageType.toUpperCase()}
+            </span>
           </div>
           <div>
-            {'Items Held: '}
-            {[characterStatus.currentItems, '/', characterStatus.maxItems]}
+            <span style={leftPillStyling}>{'ITEMS'}</span>
+            <span style={rightPillStyling}>
+              {[characterStatus.currentItems, '/', characterStatus.maxItems]}
+            </span>
           </div>
           <div>
-            {'Luck: '}
-            {characterStatus.luck}
+            <span style={leftPillStyling}>{'LUCK'}</span>
+            <span style={rightPillStyling}>{characterStatus.luck}</span>
           </div>
           <div>
-            {'Current City: '}
-            {characterStatus.game.currentCity.name}
+            <span style={leftPillStyling}>{'CITY'}</span>
+            <span style={rightPillStyling}>
+              {characterStatus.game.currentCity.name.toUpperCase()}
+            </span>
           </div>
           <div>
-            {'Day Count: '}
-            {[
-              characterStatus.game.currentDay,
-              '/',
-              characterStatus.game.maxDays,
-            ]}
+            <span style={leftPillStyling}>{'DAY'}</span>
+            <span style={rightPillStyling}>
+              {[
+                characterStatus.game.currentDay,
+                '/',
+                characterStatus.game.maxDays,
+              ]}
+            </span>
           </div>
           <div>
-            {'Time of Day: '}
-            {characterStatus.game.timeOfDay}
+            <span style={leftPillStyling}>{'TIME'}</span>
+            <span style={rightPillStyling}>
+              {characterStatus.game.timeOfDay.toUpperCase()}
+            </span>
           </div>
           <div>
-            {'Cash On Hand: $'}
-            {characterStatus.finances.cashOnHand}
+            <span style={leftPillStyling}>{'CASH'}</span>
+            <span style={rightPillStyling}>
+              {'$' + characterStatus.finances.cashOnHand}
+            </span>
           </div>
         </Flex>
       </Box>
