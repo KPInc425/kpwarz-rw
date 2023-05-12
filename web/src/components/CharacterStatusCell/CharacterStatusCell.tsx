@@ -61,19 +61,26 @@ export const Success = ({
   FindCharacterStatusQuery,
   FindCharacterStatusQueryVariables
 >) => {
+  const randomHexColor = () => {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16)
+  }
+
   const leftPillStyling = {
     border: '1px solid grey',
     borderRadius: '12px 0 0 12px',
     padding: '0 10px',
-    backgroundColor: 'red',
+    fontWeight: 'bold',
+    WebkitTextStroke: '0.25px grey',
   }
   const rightPillStyling = {
     border: '1px solid grey',
     borderRadius: '0 12px 12px 0',
     padding: '0 10px',
+    fontWeight: 'bold',
     backgroundColor: 'white',
-    color: 'red',
+    color: 'green',
   }
+
   return (
     <div style={{ padding: '5px' }}>
       <Box>
@@ -83,47 +90,79 @@ export const Success = ({
             <span style={rightPillStyling}>{characterStatus.id}
           </div> */}
           <div>
-            <span style={leftPillStyling}>{'NAME'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'NAME'}
+            </span>
             <span style={rightPillStyling}>
               {characterStatus.name.toUpperCase()}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'UPBRINGING'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'UPBRINGING'}
+            </span>
             <span style={rightPillStyling}>
               {characterStatus.background.toUpperCase()}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'HEALTH'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'HEALTH'}
+            </span>
             <span style={rightPillStyling}>
               {[characterStatus.health, '/', characterStatus.maxHealth]}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'STORAGE'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'STORAGE'}
+            </span>
             <span style={rightPillStyling}>
               {characterStatus.storageType.toUpperCase()}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'ITEMS'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'ITEMS'}
+            </span>
             <span style={rightPillStyling}>
               {[characterStatus.currentItems, '/', characterStatus.maxItems]}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'LUCK'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'LUCK'}
+            </span>
             <span style={rightPillStyling}>{characterStatus.luck}</span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'CITY'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'CITY'}
+            </span>
             <span style={rightPillStyling}>
               {characterStatus.game.currentCity.name.toUpperCase()}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'DAY'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'DAY'}
+            </span>
             <span style={rightPillStyling}>
               {[
                 characterStatus.game.currentDay,
@@ -133,13 +172,21 @@ export const Success = ({
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'TIME'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'TIME'}
+            </span>
             <span style={rightPillStyling}>
               {characterStatus.game.timeOfDay.toUpperCase()}
             </span>
           </div>
           <div>
-            <span style={leftPillStyling}>{'CASH'}</span>
+            <span
+              style={{ ...leftPillStyling, backgroundColor: randomHexColor() }}
+            >
+              {'CASH'}
+            </span>
             <span style={rightPillStyling}>
               {'$' + characterStatus.finances.cashOnHand}
             </span>
