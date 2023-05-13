@@ -35,7 +35,7 @@ export const checkInventorySpace = async (characterId, quantity) => {
   const character = await db.character.findUnique({
     where: { id: characterId },
   })
-  if (character.maxItems - character.currentItems > quantity) {
+  if (character.maxItems - character.currentItems >= quantity) {
     return true
   } else {
     return false

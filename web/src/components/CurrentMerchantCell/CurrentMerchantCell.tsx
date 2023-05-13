@@ -11,6 +11,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import temperamentToString from 'src/lib/temperamentToString'
 
 import LocationCard from '../LocationCard/LocationCard'
+import PlayerInventoryCell from '../PlayerInventoryCell'
 import ProductCard from '../ProductCard/ProductCard'
 import ProfileCard from '../ProfileCard/ProfileCard'
 
@@ -82,7 +83,7 @@ export const Success = ({
   return (
     <div>
       {/* {JSON.stringify(currentMerchant)} */}
-      <Flex>
+      <Flex sx={{ overflowX: 'auto' }}>
         <ProfileCard
           profileName={currentMerchant.name}
           profileDescription={currentMerchant.description}
@@ -135,6 +136,9 @@ export const Success = ({
           )
         })}
       </Flex>
+      <PlayerInventoryCell
+        id={currentMerchant.location.region.game.characterId}
+      />
     </div>
   )
 }

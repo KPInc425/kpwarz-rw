@@ -37,7 +37,7 @@ const TransactionBuy = ({ item, characterId, merchantId }) => {
     },
     refetchQueries: [
       { query: FindCurrentMerchantQuery, variables: { id: merchantId } },
-      { query: FindPlayerInventoryQuery, variables: { id: merchantId } },
+      { query: FindPlayerInventoryQuery, variables: { id: characterId } },
     ],
   })
 

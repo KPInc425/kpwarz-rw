@@ -1,10 +1,12 @@
-import { Card, CardHeader, Flex, Text, Image, CardBody } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import type {
   FindPlayerInventoryQuery,
   FindPlayerInventoryQueryVariables,
 } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
+import ProductCard from '../ProductCard/ProductCard'
 
 export const QUERY = gql`
   query FindPlayerInventoryQuery($id: Int!) {
@@ -19,7 +21,6 @@ export const QUERY = gql`
         id
         name
         description
-        imgURL
         quantity
         quality
         ability
@@ -55,18 +56,6 @@ export const Success = ({
   FindPlayerInventoryQuery,
   FindPlayerInventoryQueryVariables
 >) => {
-  const emptyItem = {
-    id: 0,
-    name: 'No Bag',
-    description: 'Nothing to see here...Go buy some sh$%',
-    imgURL: 'media/gameIcons/noBag.jpg',
-    quantity: 0,
-    quality: 0,
-    ability: 0,
-    type: 'empty',
-    uses: 0,
-    price: 0,
-  }
   return (
     <div>
       {/* {JSON.stringify(playerInventory)} */}
@@ -79,60 +68,27 @@ export const Success = ({
                 key={item.id}
                 item={item}
                 merchantId={playerInventory.game.currentCity.merchantId}
-                playerId={playerInventory.id}
+                characterId={playerInventory.id}
               />
             )
           })
         ) : (
           <ProductCard
-            item={emptyItem}
+            item={{
+              name: 'No bag',
+              description: 'Nothing to see here...Go buy some sh$%',
+              quantity: 0,
+              price: 0,
+              quality: 0,
+              ability: 0,
+              type: 'empty',
+              uses: 0,
+            }}
             merchantId={playerInventory.game.currentCity.merchantId}
-            playerId={playerInventory.id}
+            characterId={playerInventory.id}
           />
         )}
       </Flex>
     </div>
-  )
-}
-
-const ProductCard = ({ item, merchantId, playerId }) => {
-  return (
-    <Card
-      key={item.id}
-      variant={'outline'}
-      direction={{ base: 'row', md: 'column' }}
-      m={'0 auto'}
-    >
-      <CardHeader
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <Text textAlign={'center'}>{item.name}</Text>
-        <Image
-          border={'5px solid grey'}
-          minW={{ base: '75px', sm: '150px' }}
-          m={'0 auto'}
-          borderRadius={'full'}
-          boxSize={{ base: '75px', sm: '150px' }}
-          src={item.imgURL}
-        />
-      </CardHeader>
-      <CardBody>
-        <Text> {item.description}</Text>
-        <Text>Quantity: {item.quantity}</Text>
-        <Text>Price: {item.price}</Text>
-        <Text>Quality: {item.quality}</Text>
-        <Text>Ability: {item.ability}</Text>
-        <Text>Type: {item.type}</Text>
-        <Text>Uses: {item.uses}</Text>
-        {merchantId}
-        {playerId}
-      </CardBody>
-      <Text>{merchantId}</Text>
-      <Text>{playerId}</Text>
-    </Card>
   )
 }

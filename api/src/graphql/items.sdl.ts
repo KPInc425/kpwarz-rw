@@ -7,6 +7,7 @@ export const schema = gql`
     quality: String
     ability: String
     description: String!
+    imgURL: String
     type: String!
     uses: Int
     character: Character
