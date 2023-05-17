@@ -12,6 +12,7 @@ import temperamentToString from 'src/lib/temperamentToString'
 
 import Inventory from '../Inventory/Inventory'
 import LocationCard from '../LocationCard/LocationCard'
+import PlayerInventoryCell from '../PlayerInventoryCell'
 import ProfileCard from '../ProfileCard/ProfileCard'
 
 export const QUERY = gql`
@@ -150,7 +151,7 @@ export const Success = ({
           )
         })} */}
       </Flex>
-      <Flex>
+      <Flex justify={'center'} gap={8}>
         <Inventory
           mainInventory={currentMerchant.items}
           secondaryInventory={
@@ -160,10 +161,10 @@ export const Success = ({
           characterId={currentMerchant.location.region.game.characterId}
           merchantId={currentMerchant.id}
         />
+        <PlayerInventoryCell
+          id={currentMerchant.location.region.game.character.id}
+        />
       </Flex>
-      {/* <PlayerInventoryCell
-        id={currentMerchant.location.region.game.characterId}
-      /> */}
     </div>
   )
 }

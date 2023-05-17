@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { Flex } from '@chakra-ui/react'
 import type {
   FindKPWarzGamePlayQuery,
   FindKPWarzGamePlayQueryVariables,
@@ -58,15 +59,17 @@ export const Success = ({
   return (
     <div>
       <CharacterStatusCell id={KPWarzGamePlay.characterId} />
-      <CurrentGameView
-        currentView={currentView}
-        gameId={Number(KPWarzGamePlay.id)}
-        regionId={Number(KPWarzGamePlay.currentRegionId)}
-        characterId={Number(KPWarzGamePlay.characterId)}
-        cityId={Number(KPWarzGamePlay.currentCity.id)}
-        merchantId={Number(KPWarzGamePlay.currentCity.merchantId)}
-      />
-      <GameMenu updateCurrentView={updateCurrentView} />
+      <Flex gap={4}>
+        <GameMenu updateCurrentView={updateCurrentView} />
+        <CurrentGameView
+          currentView={currentView}
+          gameId={Number(KPWarzGamePlay.id)}
+          regionId={Number(KPWarzGamePlay.currentRegionId)}
+          characterId={Number(KPWarzGamePlay.characterId)}
+          cityId={Number(KPWarzGamePlay.currentCity.id)}
+          merchantId={Number(KPWarzGamePlay.currentCity.merchantId)}
+        />
+      </Flex>
     </div>
   )
 }

@@ -24,35 +24,41 @@ const Inventory = ({
     price: 0,
   }
   return (
-    <Box>
+    <Flex justify={'center'} direction={'column'}>
       <Text fontSize={'3xl'}>{owner}'s Inventory</Text>
-      <Flex direction={{ base: 'column', sm: 'row' }} alignItems={'center'}>
-        {mainInventory.length > 0 ? (
-          mainInventory.map((item) => {
-            return (
-              <ProductCard
-                key={item.id}
-                item={item}
-                secondaryItem={
-                  secondaryInventory.find(
-                    (secondaryItem) => secondaryItem.name === item.name
-                  ) || emptyItem
-                }
-                merchantId={merchantId}
-                characterId={characterId}
-              />
-            )
-          })
-        ) : (
-          <ProductCard
-            item={emptyItem}
-            merchantId={merchantId}
-            secondaryItem={emptyItem}
-            characterId={characterId}
-          />
-        )}
-      </Flex>
-    </Box>
+      <Box maxH={'40vh'} overflow={'auto'}>
+        <Flex
+          gap={2}
+          direction={{ base: 'column', sm: 'column' }}
+          sx={{ justifyContent: 'center' }}
+        >
+          {mainInventory.length > 0 ? (
+            mainInventory.map((item) => {
+              return (
+                <ProductCard
+                  key={item.id}
+                  item={item}
+                  secondaryItem={
+                    secondaryInventory.find(
+                      (secondaryItem) => secondaryItem.name === item.name
+                    ) || emptyItem
+                  }
+                  merchantId={merchantId}
+                  characterId={characterId}
+                />
+              )
+            })
+          ) : (
+            <ProductCard
+              item={emptyItem}
+              merchantId={merchantId}
+              secondaryItem={emptyItem}
+              characterId={characterId}
+            />
+          )}
+        </Flex>
+      </Box>
+    </Flex>
   )
 }
 
