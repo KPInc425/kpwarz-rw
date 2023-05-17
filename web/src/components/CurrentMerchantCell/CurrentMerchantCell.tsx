@@ -12,8 +12,6 @@ import temperamentToString from 'src/lib/temperamentToString'
 
 import Inventory from '../Inventory/Inventory'
 import LocationCard from '../LocationCard/LocationCard'
-import PlayerInventoryCell from '../PlayerInventoryCell'
-import ProductCard from '../ProductCard/ProductCard'
 import ProfileCard from '../ProfileCard/ProfileCard'
 
 export const QUERY = gql`
@@ -36,17 +34,23 @@ export const QUERY = gql`
         maxQuantity
         localBoss
         authorityPresence
+        # game {
+        #   id
+        #   name
+        #   description
+        # }
         region {
           id
+          name
           game {
-            id
-            characterId
             character {
               id
               items {
                 id
                 name
+                description
                 quantity
+                price
               }
             }
           }
@@ -89,6 +93,7 @@ export const Success = ({
   FindCurrentMerchantQuery,
   FindCurrentMerchantQueryVariables
 >) => {
+  console.log('currentMerchant: ', currentMerchant.location)
   return (
     <div>
       {/* {JSON.stringify(currentMerchant)} */}
@@ -155,10 +160,10 @@ export const Success = ({
           characterId={currentMerchant.location.region.game.characterId}
           merchantId={currentMerchant.id}
         />
-        <PlayerInventoryCell
-          id={currentMerchant.location.region.game.characterId}
-        />
       </Flex>
+      {/* <PlayerInventoryCell
+        id={currentMerchant.location.region.game.characterId}
+      /> */}
     </div>
   )
 }

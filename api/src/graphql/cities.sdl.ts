@@ -15,6 +15,8 @@ export const schema = gql`
     createdAt: DateTime!
     merchant: Merchant
     merchantId: Int
+    game: Game
+    gameId: Int
   }
 
   type Query {
@@ -33,6 +35,7 @@ export const schema = gql`
     authorityPresence: Int
     regionId: Int!
     gameId: Int!
+    merchantId: Int
   }
 
   input UpdateCityInput {

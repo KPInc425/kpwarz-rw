@@ -42,4 +42,10 @@ export const City: CityRelationResolvers = {
   services: (_obj, { root }) => {
     return db.city.findUnique({ where: { id: root?.id } }).services()
   },
+  merchant: (_obj, { root }) => {
+    return db.city.findUnique({ where: { id: root?.id } }).merchant()
+  },
+  // game: (_obj, { root }) => {
+  //   return db.city.findUnique({ where: { id: root?.id } }).game()
+  // },
 }

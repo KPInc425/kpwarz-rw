@@ -21,7 +21,9 @@ const CurrentGameView = ({
       {currentView === 0 && <PlayerInfo id={characterId} />}
       {currentView === 1 && <PlayerInventory id={characterId} />}
       {currentView === 2 && <PlayerActions />}
-      {currentView === 3 && <Trader id={merchantId} />}
+      {currentView === 3 && (
+        <Trader id={merchantId} characterId={characterId} gameId={gameId} />
+      )}
       {currentView === 4 && <Travel id={regionId} />}
       {currentView === 5 && <LegitimateStores />}
       {currentView === 6 && <PlayerFinances />}

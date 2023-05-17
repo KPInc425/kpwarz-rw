@@ -1,24 +1,6 @@
-import {
-  Box,
-  Grid,
-  GridItem,
-  Stack,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
-  Badge,
-  SimpleGrid,
-  Flex,
-  Card,
-  CardHeader,
-  Divider,
-  CardBody,
-  Image,
-  Icon,
-} from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 // import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
-import { AiFillHeart } from 'react-icons/ai'
+
 import type {
   FindCharacterIntroQuery,
   FindCharacterIntroQueryVariables,
@@ -29,7 +11,6 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import FinancialStatement from '../FinancialStatement/FinancialStatement'
 import IDCard from '../IDCard/IDCard'
 import Inventory from '../Inventory/Inventory'
-import StatCard from '../StatCard/StatCard'
 
 export const QUERY = gql`
   query FindCharacterIntroQuery($id: Int!) {
@@ -119,7 +100,7 @@ export const Success = ({
     refetch()
   }
 
-  console.log('merchantInventory: ', characterIntro.game)
+  console.log('merchantInventory: ', characterIntro)
 
   return (
     <div>
@@ -130,7 +111,7 @@ export const Success = ({
         <FinancialStatement characterInfo={characterIntro} />
         <Inventory
           mainInventory={characterIntro.items}
-          // secondaryInventory={characterIntro.game.currentCity.merchant.items}
+          secondaryInventory={characterIntro.game.currentCity.merchant.items}
           owner={characterIntro.name}
           characterId={characterIntro.id}
           merchantId={characterIntro.game.currentCity.merchantId}

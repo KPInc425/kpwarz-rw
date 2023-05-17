@@ -33,9 +33,11 @@ const Inventory = ({
               <ProductCard
                 key={item.id}
                 item={item}
-                secondaryItem={secondaryInventory.find(
-                  (secondaryItem) => secondaryItem.name === item.name
-                )}
+                secondaryItem={
+                  secondaryInventory.find(
+                    (secondaryItem) => secondaryItem.name === item.name
+                  ) || emptyItem
+                }
                 merchantId={merchantId}
                 characterId={characterId}
               />

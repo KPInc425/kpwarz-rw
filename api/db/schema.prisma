@@ -144,9 +144,9 @@ model City {
   regionId          Int
   services          Service[]
   merchant          Merchant  @relation(fields: [merchantId], references: [id])
-  merchantId        Int       @unique @default(autoincrement())
+  merchantId        Int       @unique
   createdAt         DateTime  @default(now())
-  Game              Game[]
+  game              Game[]
 }
 
 model Service {
@@ -311,5 +311,6 @@ model TestStuff {
   id         Int        @id @default(autoincrement())
   name       String
   background Background @default(Plebian)
+  testNum    Int?
   createdAt  DateTime   @default(now())
 }
