@@ -65,7 +65,7 @@ export const Success = ({
   FindPlayerInventoryQuery,
   FindPlayerInventoryQueryVariables
 >) => {
-  console.log('playerInventory', playerInventory)
+  // console.log('playerInventory', playerInventory)
   return (
     <Inventory
       mainInventory={playerInventory.items}

@@ -119,7 +119,7 @@ export const Success = ({
     refetch()
   }
 
-  console.log('merchantInventory: ', characterIntro.game.currentCity)
+  console.log('merchantInventory: ', characterIntro.game)
 
   return (
     <div>
@@ -130,7 +130,7 @@ export const Success = ({
         <FinancialStatement characterInfo={characterIntro} />
         <Inventory
           mainInventory={characterIntro.items}
-          secondaryInventory={characterIntro.game.currentCity.merchant.items}
+          // secondaryInventory={characterIntro.game.currentCity.merchant.items}
           owner={characterIntro.name}
           characterId={characterIntro.id}
           merchantId={characterIntro.game.currentCity.merchantId}

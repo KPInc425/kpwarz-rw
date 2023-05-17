@@ -40,15 +40,15 @@ const ProductCard = ({ item, secondaryItem, merchantId, characterId }) => {
       <CardBody>
         <Text>{item.description}</Text>
         <Text>Owned: {item.quantity}</Text>
-        <Text>For Sale: {secondaryItem.quantity}</Text>
+        <Text>Can Buy: {secondaryItem.quantity}</Text>
         <Text>Price: {item.price}</Text>
         <Text>Quality: {item.quality}</Text>
         <Text>Ability: {item.ability}</Text>
         <Text>Type: {item.type}</Text>
         <Text>Uses: {item.uses}</Text>
       </CardBody>
-      <Text>{merchantId}</Text>
-      <Text>{characterId}</Text>
+      {/* <Text>{merchantId}</Text>
+      <Text>{characterId}</Text> */}
     </Card>
   )
 }

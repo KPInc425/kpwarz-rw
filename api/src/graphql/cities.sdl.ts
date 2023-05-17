@@ -32,6 +32,7 @@ export const schema = gql`
     localBoss: String
     authorityPresence: Int
     regionId: Int!
+    gameId: Int!
   }
 
   input UpdateCityInput {

@@ -50,7 +50,7 @@ export const Success = ({
   FindKPWarzGamePlayQuery,
   FindKPWarzGamePlayQueryVariables
 >) => {
-  const [currentView, setCurrentView] = useState(0)
+  const [currentView, setCurrentView] = useState(3)
 
   const updateCurrentView = (view) => {
     setCurrentView(view)

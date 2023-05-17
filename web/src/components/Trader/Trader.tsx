@@ -1,9 +1,11 @@
 import CurrentMerchantCell from '../CurrentMerchantCell/CurrentMerchantCell'
+import PlayerInventoryCell from '../PlayerInventoryCell'
 
-const Trader = ({ id }) => {
+const Trader = ({ id, characterId }) => {
   return (
     <div>
       <CurrentMerchantCell id={id} />
+      <PlayerInventoryCell id={characterId} />
     </div>
   )
 }

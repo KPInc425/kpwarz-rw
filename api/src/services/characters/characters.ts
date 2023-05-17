@@ -154,9 +154,6 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
           merchant: {
             connect: { id: merchant.id },
           },
-          game: {
-            connect: { id: game.id },
-          },
         },
       })
       cities.push(city)

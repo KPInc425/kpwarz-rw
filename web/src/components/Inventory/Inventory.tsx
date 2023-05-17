@@ -27,33 +27,27 @@ const Inventory = ({
     <Box>
       <Text fontSize={'3xl'}>{owner}'s Inventory</Text>
       <Flex direction={{ base: 'column', sm: 'row' }} alignItems={'center'}>
-        {/* {JSON.stringify(inventory)} */}
-
         {mainInventory.length > 0 ? (
           mainInventory.map((item) => {
             return (
-              <>
-                <ProductCard
-                  key={item.id}
-                  item={item}
-                  secondaryItem={secondaryInventory.find(
-                    (secondaryItem) => secondaryItem.name === item.name
-                  )}
-                  merchantId={merchantId}
-                  characterId={characterId}
-                />
-              </>
+              <ProductCard
+                key={item.id}
+                item={item}
+                secondaryItem={secondaryInventory.find(
+                  (secondaryItem) => secondaryItem.name === item.name
+                )}
+                merchantId={merchantId}
+                characterId={characterId}
+              />
             )
           })
         ) : (
-          <>
-            <ProductCard
-              item={emptyItem}
-              merchantId={merchantId}
-              secondaryItem={emptyItem}
-              characterId={characterId}
-            />
-          </>
+          <ProductCard
+            item={emptyItem}
+            merchantId={merchantId}
+            secondaryItem={emptyItem}
+            characterId={characterId}
+          />
         )}
       </Flex>
     </Box>
