@@ -10,6 +10,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import temperamentToString from 'src/lib/temperamentToString'
 
+import Inventory from '../Inventory/Inventory'
 import LocationCard from '../LocationCard/LocationCard'
 import PlayerInventoryCell from '../PlayerInventoryCell'
 import ProductCard from '../ProductCard/ProductCard'
@@ -40,6 +41,14 @@ export const QUERY = gql`
           game {
             id
             characterId
+            character {
+              id
+              items {
+                id
+                name
+                quantity
+              }
+            }
           }
         }
         services {
@@ -125,7 +134,7 @@ export const Success = ({
             },
           ]}
         />
-        {currentMerchant.items.map((item) => {
+        {/* {currentMerchant.items.map((item) => {
           return (
             <ProductCard
               key={item.id}
@@ -134,11 +143,22 @@ export const Success = ({
               merchantId={currentMerchant.id}
             />
           )
-        })}
+        })} */}
       </Flex>
-      <PlayerInventoryCell
-        id={currentMerchant.location.region.game.characterId}
-      />
+      <Flex>
+        <Inventory
+          mainInventory={currentMerchant.items}
+          secondaryInventory={
+            currentMerchant.location.region.game.character.items
+          }
+          owner={currentMerchant.name}
+          characterId={currentMerchant.location.region.game.characterId}
+          merchantId={currentMerchant.id}
+        />
+        <PlayerInventoryCell
+          id={currentMerchant.location.region.game.characterId}
+        />
+      </Flex>
     </div>
   )
 }

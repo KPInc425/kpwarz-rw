@@ -6,6 +6,7 @@ export const schema = gql`
     cashOnHand: Int!
     bankAccount: Int!
     debt: Int!
+    loanDays: Int!
     createdAt: DateTime!
   }
 
@@ -18,6 +19,7 @@ export const schema = gql`
     characterId: Int!
     cashOnHand: Int!
     bankAccount: Int!
+    loanDays: Int!
     debt: Int!
   }
 
@@ -25,6 +27,7 @@ export const schema = gql`
     characterId: Int
     cashOnHand: Int
     bankAccount: Int
+    loanDays: Int
     debt: Int
   }
 

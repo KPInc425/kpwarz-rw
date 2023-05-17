@@ -125,7 +125,8 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
 
       const newMerchantProductList = randomizeMerchantProducts(
         merchant,
-        chosenItems
+        chosenItems,
+        cityInput.avgPrice
       )
       newMerchantProductList.forEach(async (item) => {
         await db.item.create({
@@ -152,6 +153,9 @@ export const createCharacterAndGame: MutationResolvers['createCharacterAndGame']
           },
           merchant: {
             connect: { id: merchant.id },
+          },
+          game: {
+            connect: { id: game.id },
           },
         },
       })
