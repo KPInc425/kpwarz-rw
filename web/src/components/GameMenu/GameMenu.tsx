@@ -4,9 +4,12 @@ import { Stack, HStack, VStack } from '@chakra-ui/react'
 
 const GameMenu = ({ updateCurrentView }) => {
   return (
-    <div className="col-span-1 row-[span_7_/_span_7] row-start-3 rounded-md border-2 border-gray-300">
-      <h2 className="text-center text-2xl font-bold">Menu</h2>
-      <Stack>
+    <div>
+      {/* <h2 className="text-center text-2xl font-bold">Menu</h2> */}
+      <Stack
+        direction={{ base: 'column', lg: 'row' }}
+        justifyContent={'center'}
+      >
         <MenuButton
           onClick={updateCurrentView}
           viewIndex={0}

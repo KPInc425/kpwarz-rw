@@ -44,7 +44,7 @@ const ProductCard = ({ item, secondaryItem, merchantId, characterId }) => {
         <Text>{item.description}</Text>
         <SimpleGrid columns={2} spacing={1}>
           <Text>Owned: {item.quantity}</Text>
-          <Text>Can Buy: {secondaryItem.quantity}</Text>
+          <Text>Available: {secondaryItem.quantity}</Text>
           <Text>Price: {item.price}</Text>
           <Text>Quality: {item.quality}</Text>
           <Text>Ability: {item.ability}</Text>

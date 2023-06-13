@@ -42,6 +42,7 @@ const TransactionBuy = ({ item, characterId, merchantId }) => {
   })
 
   const onSubmit = (input) => {
+    console.log(characterId)
     input = {
       boughtItemId: item.id,
       itemName: item.name,

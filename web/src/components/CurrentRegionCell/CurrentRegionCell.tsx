@@ -8,6 +8,7 @@ import type {
   FindCurrentRegionQuery,
   FindCurrentRegionQueryVariables,
   UpdateGameInput,
+  FindCharacterStatusQuery,
 } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -112,6 +113,7 @@ export const Success = ({
       refetchQueries: [
         { query: QUERY, variables: { id: currentRegion.id } },
         'FindCurrentRegionQuery',
+        'FindCharacterStatusQuery',
       ],
     }
   )

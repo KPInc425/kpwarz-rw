@@ -97,8 +97,8 @@ export const Success = ({
   console.log('currentMerchant: ', currentMerchant.location)
   return (
     <div>
-      {/* {JSON.stringify(currentMerchant)} */}
-      <Flex sx={{ overflowX: 'auto' }}>
+      {/* {JSON.stringify(currentMerchant.location.region.game.character.items)} */}
+      <Flex sx={{ overflowX: 'auto' }} justifyContent={'center'} gap={4}>
         <ProfileCard
           profileName={currentMerchant.name}
           profileDescription={currentMerchant.description}
@@ -158,12 +158,12 @@ export const Success = ({
             currentMerchant.location.region.game.character.items
           }
           owner={currentMerchant.name}
-          characterId={currentMerchant.location.region.game.characterId}
+          characterId={currentMerchant.location.region.game.character.id}
           merchantId={currentMerchant.id}
         />
-        <PlayerInventoryCell
+        {/* <PlayerInventoryCell
           id={currentMerchant.location.region.game.character.id}
-        />
+        /> */}
       </Flex>
     </div>
   )

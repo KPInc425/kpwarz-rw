@@ -51,7 +51,7 @@ export const Success = ({
   FindKPWarzGamePlayQuery,
   FindKPWarzGamePlayQueryVariables
 >) => {
-  const [currentView, setCurrentView] = useState(3)
+  const [currentView, setCurrentView] = useState(0)
 
   const updateCurrentView = (view) => {
     setCurrentView(view)
@@ -59,17 +59,15 @@ export const Success = ({
   return (
     <div>
       <CharacterStatusCell id={KPWarzGamePlay.characterId} />
-      <Flex gap={4}>
-        <GameMenu updateCurrentView={updateCurrentView} />
-        <CurrentGameView
-          currentView={currentView}
-          gameId={Number(KPWarzGamePlay.id)}
-          regionId={Number(KPWarzGamePlay.currentRegionId)}
-          characterId={Number(KPWarzGamePlay.characterId)}
-          cityId={Number(KPWarzGamePlay.currentCity.id)}
-          merchantId={Number(KPWarzGamePlay.currentCity.merchantId)}
-        />
-      </Flex>
+      <GameMenu updateCurrentView={updateCurrentView} />
+      <CurrentGameView
+        currentView={currentView}
+        gameId={Number(KPWarzGamePlay.id)}
+        regionId={Number(KPWarzGamePlay.currentRegionId)}
+        characterId={Number(KPWarzGamePlay.characterId)}
+        cityId={Number(KPWarzGamePlay.currentCity.id)}
+        merchantId={Number(KPWarzGamePlay.currentCity.merchantId)}
+      />
     </div>
   )
 }
