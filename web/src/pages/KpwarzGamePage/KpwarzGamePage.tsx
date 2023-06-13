@@ -2,7 +2,7 @@ import { MetaTags } from '@redwoodjs/web'
 
 import KPWarzGamePlayCell from 'src/components/KPWarzGamePlayCell'
 
-const KpwarzGamePage = ({ id }) => {
+const KPWarzGamePage = ({ id }) => {
   return (
     <>
       <MetaTags title="KPWarzGame" description="KPWarzGame page" />
@@ -12,4 +12,4 @@ const KpwarzGamePage = ({ id }) => {
   )
 }
 
-export default KpwarzGamePage
+export default KPWarzGamePage
