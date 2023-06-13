@@ -4,4 +4,10 @@ const sortById = (a, b) => {
   return a.id - b.id
 }
 
-export default sortById
+const sortByName = (a, b) => {
+  console.log('a', a)
+  console.log('b', b)
+  return a.name.localeCompare(b.name)
+}
+
+export { sortById, sortByName }

@@ -160,6 +160,7 @@ export const Success = ({
           owner={currentMerchant.name}
           characterId={currentMerchant.location.region.game.character.id}
           merchantId={currentMerchant.id}
+          isShop={true}
         />
         {/* <PlayerInventoryCell
           id={currentMerchant.location.region.game.character.id}

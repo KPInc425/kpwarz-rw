@@ -118,6 +118,8 @@ export const setCharacterQuantity = async (characterId, quantity) => {
   const character = await db.character.findUnique({
     where: { id: characterId },
   })
+  console.log(character)
+  console.log(character.currentItems)
   const updatedCharacter = await db.character.update({
     where: { id: characterId },
     data: {

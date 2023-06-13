@@ -73,6 +73,7 @@ export const Success = ({
       owner={playerInventory.name}
       characterId={playerInventory.id}
       merchantId={playerInventory.game.currentCity.merchantId}
+      isShop={false}
     />
   )
 }

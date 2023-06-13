@@ -16,6 +16,7 @@ import {
   checkIfAlreadyHoldingItem,
   checkInventorySpace,
   checkPlayerFunds,
+  setCharacterQuantity,
   setPlayerCash,
 } from 'src/lib/playerUtilities'
 
@@ -46,6 +47,7 @@ export const createTransactionBuy: MutationResolvers['createTransactionBuy'] =
             input.quantity,
             input.price
           )
+          await setCharacterQuantity(input.characterId, input.quantity)
         } else {
           console.log('GENERATE NEW ITEM')
           itemToAdd = await generateNewItem(input.boughtItemId, input.quantity)

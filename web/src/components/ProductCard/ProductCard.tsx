@@ -13,7 +13,13 @@ import {
 
 import BuySellMenu from '../BuySellMenu/BuySellMenu'
 
-const ProductCard = ({ item, secondaryItem, merchantId, characterId }) => {
+const ProductCard = ({
+  item,
+  secondaryItem,
+  merchantId,
+  characterId,
+  isShop,
+}) => {
   return (
     <Card
       key={item.id}
@@ -53,11 +59,13 @@ const ProductCard = ({ item, secondaryItem, merchantId, characterId }) => {
         </SimpleGrid>
       </CardBody>
       <CardFooter>
-        <BuySellMenu
-          item={item}
-          merchantId={merchantId}
-          characterId={characterId}
-        />
+        {isShop && (
+          <BuySellMenu
+            item={item}
+            merchantId={merchantId}
+            characterId={characterId}
+          />
+        )}
       </CardFooter>
     </Card>
   )

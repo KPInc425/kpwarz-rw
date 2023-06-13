@@ -2,7 +2,7 @@ import type { ArticlesQuery } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import sortById from 'src/lib/sortById'
+import { sortById } from 'src/lib/sortById'
 
 import Article from '../Article/Article'
 

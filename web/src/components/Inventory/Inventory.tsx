@@ -1,5 +1,7 @@
 import { Flex, Text, Box } from '@chakra-ui/react'
 
+import { sortByName } from 'src/lib/sortById'
+
 import ProductCard from '../ProductCard/ProductCard'
 
 const Inventory = ({
@@ -8,9 +10,11 @@ const Inventory = ({
   owner,
   characterId,
   merchantId,
+  isShop,
 }) => {
   console.log('mainInventory', mainInventory)
   console.log('secondary', secondaryInventory)
+  const sortedInventory = [...mainInventory].sort(sortByName)
   const emptyItem = {
     id: 0,
     name: 'No Bag',
@@ -32,8 +36,8 @@ const Inventory = ({
           direction={{ base: 'column', sm: 'column' }}
           sx={{ justifyContent: 'center' }}
         >
-          {mainInventory.length > 0 ? (
-            mainInventory.map((item) => {
+          {sortedInventory.length > 0 ? (
+            sortedInventory.map((item) => {
               return (
                 <ProductCard
                   key={item.id}
@@ -45,6 +49,7 @@ const Inventory = ({
                   }
                   merchantId={merchantId}
                   characterId={characterId}
+                  isShop={isShop}
                 />
               )
             })
@@ -54,6 +59,7 @@ const Inventory = ({
               merchantId={merchantId}
               secondaryItem={emptyItem}
               characterId={characterId}
+              isShop={false}
             />
           )}
         </Flex>
