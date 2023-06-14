@@ -1,7 +1,7 @@
 import type { ComponentStory } from '@storybook/react'
 
-import { Loading, Empty, Failure, Success } from './KPWarzLoadGameCell'
-import { standard } from './KPWarzLoadGameCell.mock'
+import { Loading, Empty, Failure, Success } from './KPWarzGamePlayCell1'
+import { standard } from './KPWarzGamePlayCell1.mock'
 
 export const loading = () => {
   return Loading ? <Loading /> : <></>
@@ -19,4 +19,4 @@ export const success: ComponentStory<typeof Success> = (args) => {
   return Success ? <Success {...standard()} {...args} /> : <></>
 }
 
-export default { title: 'Cells/KPWarzLoadGameCell' }
+export default { title: 'Cells/KPWarzGamePlayCell' }
