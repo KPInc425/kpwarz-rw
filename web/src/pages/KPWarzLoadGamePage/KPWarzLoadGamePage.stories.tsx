@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react'
 
-import KPWarzLoadGamePage from './KPWarzLoadGamePage1'
+import KPWarzLoadGamePage from './KPWarzLoadGamePage'
 
 export const generated = () => {
   return <KPWarzLoadGamePage />
