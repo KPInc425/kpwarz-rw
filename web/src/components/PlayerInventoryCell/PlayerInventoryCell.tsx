@@ -5,7 +5,7 @@ import type {
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import Inventory from '../Inventory/Inventory'
+import Inventory from '../Inventory/Inventory2'
 
 export const QUERY = gql`
   query FindPlayerInventoryQuery($id: Int!) {

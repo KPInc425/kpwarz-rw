@@ -10,7 +10,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import temperamentToString from 'src/lib/temperamentToString'
 
-import Inventory from '../Inventory/Inventory'
+import Inventory from '../Inventory/Inventory2'
 import LocationCard from '../LocationCard/LocationCard'
 import PlayerInventoryCell from '../PlayerInventoryCell'
 import ProfileCard from '../ProfileCard/ProfileCard'

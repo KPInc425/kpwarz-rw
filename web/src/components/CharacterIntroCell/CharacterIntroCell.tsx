@@ -10,7 +10,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import FinancialStatement from '../FinancialStatement/FinancialStatement'
 import IDCard from '../IDCard/IDCard'
-import Inventory from '../Inventory/Inventory'
+import Inventory from '../Inventory/Inventory2'
 
 export const QUERY = gql`
   query FindCharacterIntroQuery($id: Int!) {

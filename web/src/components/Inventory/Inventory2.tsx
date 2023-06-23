@@ -30,12 +30,23 @@ import { CgDollar } from 'react-icons/cg'
 import { GiHandBag } from 'react-icons/gi'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
+import { sortByName } from 'src/lib/sortById'
+
+import BuySellMenu from '../BuySellMenu/BuySellMenu'
 import ProductCard from '../ProductCard/ProductCard'
 import TransactionBuy from '../TransactionBuy/TransactionBuy'
 import TransactionSell from '../TransactionSell/TransactionSell'
 
-const Inventory = ({ inventory, owner, characterId, merchantId }) => {
-  console.log('inventory', inventory)
+const Inventory = ({
+  mainInventory,
+  secondaryInventory,
+  owner,
+  characterId,
+  merchantId,
+  isShop,
+}) => {
+  console.log('inventory', mainInventory)
+  const sortedInventory = [...mainInventory].sort(sortByName)
   const emptyItem = {
     id: 0,
     name: 'No Bag',
@@ -48,139 +59,77 @@ const Inventory = ({ inventory, owner, characterId, merchantId }) => {
     uses: 0,
     price: 0,
   }
+
+  const findItemQuantity = (secondInventoryItem) => {
+    if (secondInventoryItem) {
+      return secondInventoryItem.quantity
+    } else {
+      return 0
+    }
+  }
+
   return (
     <Flex direction={'column'} alignItems={'center'}>
       {/* {JSON.stringify(inventory)} */}
       <Text fontSize={'3xl'}>{owner}'s Inventory</Text>
-    <TableContainer key={item.id}>
-      <Table variant="simple" colorScheme="teal">
-        <TableCaption>
-          <Text as={'cite'}>
-            "Every day I'm hustlin'..." - A Comedian
-          </Text>
-        </TableCaption>
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Image</Th>
-            <Th>Description</Th>
-            <Th>Type</Th>
-            <Th>Price</Th>
-            <Th>Quantity</Th>
-            <Th>Ability</Th>
-            <Th>Uses</Th>
-            <Th>Actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-      {inventory.length > 0 ? (
-        inventory.map((item) => {
-          return (
+      <TableContainer>
+        <Table variant="simple" colorScheme="teal">
+          <TableCaption>
+            <Text as={'cite'}>"Every day I'm hustlin'..." - A Comedian</Text>
+          </TableCaption>
+          <Thead>
             <Tr>
-              <Td>{item.name}</Td>
-              <Td>
-                <Image
-                  boxSize={'100px'}
-                  borderRadius={'25%'}
-                  src={item.imgURL}
-                />
-              </Td>
-              <Td> {item.description}</Td>
-              <Td>{item.type}</Td>
-              <Td>{item.price}</Td>
-              <Td>{item.quantity}</Td>
-              <Td>{item.ability}</Td>
-              <Td>{item.uses}</Td>
-              <Td>
-                <Menu>
-                  <MenuButton
-                    w="38px"
-                    h="38px"
-                    align="center"
-                    justify="center"
-                    borderRadius="12px"
-                    pt="5px"
-                    bg="gray.100"
-                    _dark={{ bg: 'whiteAlpha.200' }}
-                  >
-                    <Icon
-                      w="24px"
-                      h="24px"
-                      as={IoEllipsisHorizontalSharp}
-                      color="brand.200"
-                      _dark={{ color: 'white' }}
-                    />
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>
-                      <Popover closeOnBlur={false}>
-                        <PopoverTrigger>
-                          <Box>
-                            <Icon
-                              as={CgDollar}
-                              w="20px"
-                              h="20px"
-                              color={'green.400'}
-                              mr={2}
-                            />
-                            <span>Buy</span>
-                          </Box>
-                        </PopoverTrigger>
-                        <Portal>
-                          <PopoverContent>
-                            {/* <PopoverArrow /> */}
-                            <PopoverHeader>{item.name}</PopoverHeader>
-                            <PopoverCloseButton />
-                            <PopoverBody>
-                              <TransactionBuy
-                                item={item}
-                                characterId={characterId}
-                                merchantId={merchantId}
-                              />
-                            </PopoverBody>
-                            <PopoverFooter>Lookin to Buy?</PopoverFooter>
-                          </PopoverContent>
-                        </Portal>
-                      </Popover>
-                    </MenuItem>
-                    <MenuItem>
-                      <Popover closeOnBlur={false}>
-                        <PopoverTrigger>
-                          <Box>
-                            <Icon
-                              as={GiHandBag}
-                              w="20px"
-                              h="20px"
-                              color={'red.400'}
-                              mr={2}
-                            />
-                            <span>Sell</span>
-                          </Box>
-                        </PopoverTrigger>
-                        <Portal>
-                          <PopoverContent>
-                            {/* <PopoverArrow /> */}
-                            <PopoverHeader>{item.name}</PopoverHeader>
-                            <PopoverCloseButton />
-                            <PopoverBody>
-                              <TransactionSell
-                                item={item}
-                                characterId={characterId}
-                                merchantId={merchantId}
-                              />
-                            </PopoverBody>
-                            <PopoverFooter>Lookin to Sell?</PopoverFooter>
-                          </PopoverContent>
-                        </Portal>
-                      </Popover>
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </Td>
+              <Th>Name</Th>
+              <Th>Image</Th>
+              <Th>Description</Th>
+              <Th>Type</Th>
+              <Th>Price</Th>
+              <Th>For Sale</Th>
+              <Th>Owned</Th>
+              <Th>Ability</Th>
+              <Th>Uses</Th>
+              <Th>Actions</Th>
             </Tr>
-          )
-        }
-        </Tbody>
+          </Thead>
+          <Tbody>
+            {sortedInventory.length > 0 &&
+              sortedInventory.map((item) => {
+                return (
+                  <Tr>
+                    <Td>{item.name}</Td>
+                    <Td>
+                      <Image
+                        boxSize={'100px'}
+                        borderRadius={'25%'}
+                        src={item.imgURL}
+                      />
+                    </Td>
+                    <Td> {item.description}</Td>
+                    <Td>{item.type}</Td>
+                    <Td>{`$${item.price}/Unit`}</Td>
+                    <Td>{item.quantity}</Td>
+                    <Td>
+                      {findItemQuantity(
+                        secondaryInventory.find(
+                          (secondaryItem) => secondaryItem.name === item.name
+                        )
+                      )}
+                    </Td>
+                    <Td>{item.ability}</Td>
+                    <Td>{item.uses}</Td>
+                    <Td>
+                      {isShop && (
+                        <BuySellMenu
+                          item={item}
+                          merchantId={merchantId}
+                          characterId={characterId}
+                        />
+                      )}
+                    </Td>
+                  </Tr>
+                )
+              })}
+          </Tbody>
           <Tfoot>
             <Tr>
               <Th>Name</Th>
@@ -194,10 +143,10 @@ const Inventory = ({ inventory, owner, characterId, merchantId }) => {
               <Th>Actions</Th>
             </Tr>
           </Tfoot>
-      </Table>
-    </TableContainer>
-        )
-      ) : (
+        </Table>
+      </TableContainer>
+
+      {mainInventory.length <= 0 && (
         <>
           {/* <ProductCard
               item={emptyItem}
@@ -242,77 +191,13 @@ const Inventory = ({ inventory, owner, characterId, merchantId }) => {
                   <Td>{emptyItem.ability}</Td>
                   <Td>{emptyItem.uses}</Td>
                   <Td>
-                    <Menu>
-                      <MenuButton
-                        w="38px"
-                        h="38px"
-                        align="center"
-                        justify="center"
-                        borderRadius="12px"
-                        pt="5px"
-                        bg="gray.100"
-                        _dark={{ bg: 'whiteAlpha.200' }}
-                      >
-                        <Icon
-                          w="24px"
-                          h="24px"
-                          as={IoEllipsisHorizontalSharp}
-                          color="brand.200"
-                          _dark={{ color: 'white' }}
-                        />
-                      </MenuButton>
-                      <MenuList>
-                        <MenuItem>
-                          <Popover closeOnBlur={false}>
-                            <PopoverTrigger>
-                              <Box>
-                                <Icon
-                                  as={CgDollar}
-                                  w="20px"
-                                  h="20px"
-                                  color={'green.400'}
-                                  mr={2}
-                                />
-                                <span>Buy</span>
-                              </Box>
-                            </PopoverTrigger>
-                            <Portal>
-                              <PopoverContent>
-                                {/* <PopoverArrow /> */}
-                                <PopoverBody>
-                                  <PopoverCloseButton />
-                                  You Don't even know what you want to buy...
-                                </PopoverBody>
-                              </PopoverContent>
-                            </Portal>
-                          </Popover>
-                        </MenuItem>
-                        <MenuItem>
-                          <Popover closeOnBlur={false}>
-                            <PopoverTrigger>
-                              <Box>
-                                <Icon
-                                  as={GiHandBag}
-                                  w="20px"
-                                  h="20px"
-                                  color={'red.400'}
-                                  mr={2}
-                                />
-                                <span>Sell</span>
-                              </Box>
-                            </PopoverTrigger>
-                            <Portal>
-                              <PopoverContent>
-                                <PopoverCloseButton />
-                                <PopoverBody>
-                                  You ain't got nothing to sell...
-                                </PopoverBody>
-                              </PopoverContent>
-                            </Portal>
-                          </Popover>
-                        </MenuItem>
-                      </MenuList>
-                    </Menu>
+                    {isShop && (
+                      <BuySellMenu
+                        item={item}
+                        merchantId={merchantId}
+                        characterId={characterId}
+                      />
+                    )}
                   </Td>
                 </Tr>
               </Tbody>
