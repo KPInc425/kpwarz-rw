@@ -25,6 +25,7 @@ import {
   PopoverCloseButton,
   PopoverBody,
   PopoverFooter,
+  Center,
 } from '@chakra-ui/react'
 import { CgDollar } from 'react-icons/cg'
 import { GiHandBag } from 'react-icons/gi'
@@ -72,79 +73,81 @@ const Inventory = ({
     <Flex direction={'column'} alignItems={'center'}>
       {/* {JSON.stringify(inventory)} */}
       <Text fontSize={'3xl'}>{owner}'s Inventory</Text>
-      <TableContainer>
-        <Table variant="simple" colorScheme="teal">
-          <TableCaption>
-            <Text as={'cite'}>"Every day I'm hustlin'..." - A Comedian</Text>
-          </TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Image</Th>
-              <Th>Description</Th>
-              <Th>Type</Th>
-              <Th>Price</Th>
-              <Th>For Sale</Th>
-              <Th>Owned</Th>
-              <Th>Ability</Th>
-              <Th>Uses</Th>
-              <Th>Actions</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {sortedInventory.length > 0 &&
-              sortedInventory.map((item) => {
-                return (
-                  <Tr>
-                    <Td>{item.name}</Td>
-                    <Td>
-                      <Image
-                        boxSize={'100px'}
-                        borderRadius={'25%'}
-                        src={item.imgURL}
-                      />
-                    </Td>
-                    <Td> {item.description}</Td>
-                    <Td>{item.type}</Td>
-                    <Td>{`$${item.price}/Unit`}</Td>
-                    <Td>{item.quantity}</Td>
-                    <Td>
-                      {findItemQuantity(
-                        secondaryInventory.find(
-                          (secondaryItem) => secondaryItem.name === item.name
-                        )
-                      )}
-                    </Td>
-                    <Td>{item.ability}</Td>
-                    <Td>{item.uses}</Td>
-                    <Td>
-                      {isShop && (
-                        <BuySellMenu
-                          item={item}
-                          merchantId={merchantId}
-                          characterId={characterId}
+      <Center w={'100%'}>
+        <TableContainer>
+          <Table variant="simple" size="sm" colorScheme="teal">
+            <TableCaption>
+              <Text as={'cite'}>"Every day I'm hustlin'..." - A Comedian</Text>
+            </TableCaption>
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Image</Th>
+                <Th>Description</Th>
+                <Th>Type</Th>
+                <Th>Price</Th>
+                <Th>For Sale</Th>
+                <Th>Owned</Th>
+                {/* <Th>Ability</Th> */}
+                {/* <Th>Uses</Th> */}
+                <Th>Actions</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {sortedInventory.length > 0 &&
+                sortedInventory.map((item) => {
+                  return (
+                    <Tr>
+                      <Td>{item.name}</Td>
+                      <Td>
+                        <Image
+                          boxSize={'100px'}
+                          borderRadius={'25%'}
+                          src={item.imgURL}
                         />
-                      )}
-                    </Td>
-                  </Tr>
-                )
-              })}
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Image</Th>
-              <Th>Description</Th>
-              <Th>Type</Th>
-              <Th>Price</Th>
-              <Th>Quantity</Th>
-              <Th>Ability</Th>
-              <Th>Uses</Th>
-              <Th>Actions</Th>
-            </Tr>
-          </Tfoot>
-        </Table>
-      </TableContainer>
+                      </Td>
+                      <Td> {item.description}</Td>
+                      <Td>{item.type}</Td>
+                      <Td>{`$${item.price}/Unit`}</Td>
+                      <Td>{item.quantity}</Td>
+                      <Td>
+                        {findItemQuantity(
+                          secondaryInventory.find(
+                            (secondaryItem) => secondaryItem.name === item.name
+                          )
+                        )}
+                      </Td>
+                      {/* <Td>{item.ability}</Td> */}
+                      {/* <Td>{item.uses}</Td> */}
+                      <Td>
+                        {isShop && (
+                          <BuySellMenu
+                            item={item}
+                            merchantId={merchantId}
+                            characterId={characterId}
+                          />
+                        )}
+                      </Td>
+                    </Tr>
+                  )
+                })}
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Image</Th>
+                <Th>Description</Th>
+                <Th>Type</Th>
+                <Th>Price</Th>
+                <Th>Quantity</Th>
+                {/* <Th>Ability</Th> */}
+                {/* <Th>Uses</Th> */}
+                <Th>Actions</Th>
+              </Tr>
+            </Tfoot>
+          </Table>
+        </TableContainer>
+      </Center>
 
       {mainInventory.length <= 0 && (
         <>

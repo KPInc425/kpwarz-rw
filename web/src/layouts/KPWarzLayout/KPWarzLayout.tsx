@@ -1,7 +1,26 @@
 type KPWarzLayoutProps = {
   children?: React.ReactNode
 }
-import { Flex } from '@chakra-ui/react'
+import { useRef } from 'react'
+
+import {
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  Stack,
+  Tag,
+  Text,
+  useColorMode,
+  useColorModeValue,
+  useDisclosure,
+} from '@chakra-ui/react'
 
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/dist/toast'
@@ -11,6 +30,10 @@ import AdminMenu from 'src/components/AdminMenu/AdminMenu'
 
 const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
   const { isAuthenticated, currentUser, logOut, hasRole } = useAuth()
+  const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = useRef()
+  const linkColor = useColorModeValue('black', 'white')
   // console.log(currentUser?.email)
   const userRoutes = [
     {
@@ -30,8 +53,16 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
   return (
     <>
       <Toaster />
-      <header className="relative sticky top-0 flex items-center justify-between bg-blue-700/75 py-4 px-8 text-white dark:bg-green-900/75">
-        <div className="flex-between">
+      <header>
+        <Stack
+          position={'sticky'}
+          top={0}
+          alignItems={'center'}
+          bg={'green.900'}
+          p={4}
+          direction={['column', 'row']}
+          justify={'space-between'}
+        >
           <h1 className="text-5xl font-semibold tracking-tight">
             <Link
               className="text-blue-400 transition duration-100 hover:text-blue-100 dark:text-green-400 dark:hover:text-green-100"
@@ -41,57 +72,83 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
               KPWarz'
             </Link>
           </h1>
-        </div>
-        <nav>
-          <ul className="relative flex items-center font-light">
+
+          <Stack direction={'row'}>
             {hasRole(['admin']) && <AdminMenu />}
-            {userRoutes.map((userRoute, index) => {
-              return (
-                <li key={index}>
-                  <Link
-                    className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
-                    to={userRoute.route}
-                  >
-                    {userRoute.name}
-                  </Link>
-                </li>
-              )
-            })}
-            <li>
-              {isAuthenticated ? (
-                <Flex>
-                  {/* <span>Logged in as {currentUser.email}</span>{' '} */}
-                  <Link
-                    type="button"
-                    className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
-                    to={routes.KPWarzLoadGame()}
-                  >
-                    Games
-                  </Link>
-                  <button
-                    type="button"
-                    className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
-                    onClick={logOut}
-                  >
-                    Logout
-                  </button>
-                </Flex>
-              ) : (
-                <Link
-                  className="rounded py-2 px-4 transition duration-100 hover:bg-blue-600 dark:hover:bg-green-600"
-                  to={routes.login()}
-                >
-                  Login
-                </Link>
+            <Button colorScheme="blue" onClick={toggleColorMode}>
+              Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+            </Button>
+            <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+              Open Nav
+            </Button>
+          </Stack>
+        </Stack>
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent color={linkColor}>
+            <DrawerCloseButton />
+            <DrawerHeader>
+              Nav Menu
+              {isAuthenticated && <Tag>Logged in as {currentUser?.email}</Tag>}
+            </DrawerHeader>
+
+            <DrawerBody>
+              <nav>
+                <ul>
+                  {userRoutes.map((userRoute, index) => {
+                    return (
+                      <li key={index}>
+                        <Button
+                          as={Link}
+                          to={userRoute.route}
+                          variant={'ghost'}
+                          onClick={onClose}
+                          color={linkColor}
+                        >
+                          {userRoute.name}
+                        </Button>
+                      </li>
+                    )
+                  })}
+                  <li>
+                    {isAuthenticated && (
+                      <Button
+                        as={Link}
+                        type="button"
+                        to={routes.KPWarzLoadGame()}
+                        variant={'ghost'}
+                        onClick={onClose}
+                        color={linkColor}
+                      >
+                        <Text>Games</Text>
+                      </Button>
+                    )}
+                  </li>
+                </ul>
+              </nav>
+            </DrawerBody>
+            <DrawerFooter>
+              <Button colorScheme="blue" onClick={toggleColorMode}>
+                Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+              </Button>
+              {isAuthenticated && (
+                <Button variant="outline" mr={3} onClick={logOut}>
+                  Logout
+                </Button>
               )}
-            </li>
-          </ul>
-          {isAuthenticated && (
-            <div className="absolute bottom-1 right-0 mr-12 text-xs text-blue-300 dark:text-green-300">
-              Logged in as {currentUser?.email}
-            </div>
-          )}
-        </nav>
+              {!isAuthenticated && (
+                <Button as={Link} variant="outline" mr={3} to={routes.login()}>
+                  Login
+                </Button>
+              )}
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </header>
       <main className="bg-white-400 mx-auto mt-4 max-w-4xl rounded-xl p-12 text-slate-900 shadow dark:bg-slate-700 dark:text-slate-200">
         {children}

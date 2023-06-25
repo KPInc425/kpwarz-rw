@@ -15,6 +15,7 @@ const CurrentGameView = ({
   characterId,
   cityId,
   merchantId,
+  updateCurrentView,
 }) => {
   return (
     <div>
@@ -24,7 +25,9 @@ const CurrentGameView = ({
       {currentView === 3 && (
         <Trader id={merchantId} characterId={characterId} gameId={gameId} />
       )}
-      {currentView === 4 && <Travel id={regionId} />}
+      {currentView === 4 && (
+        <Travel id={regionId} updateCurrentView={updateCurrentView} />
+      )}
       {currentView === 5 && <LegitimateStores />}
       {currentView === 6 && <PlayerFinances />}
       {currentView === 7 && <GameDarkWeb />}

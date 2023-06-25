@@ -26,7 +26,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { QUERY as FindCurrentMerchantQuery } from 'src/components/CurrentMerchantCell'
 import { QUERY as FindPlayerInventoryQuery } from 'src/components/PlayerInventoryCell'
 
-const TransactionBuy = ({ item, characterId, merchantId }) => {
+const TransactionBuy = ({ item, characterId, merchantId, onClose }) => {
   const [qtyBuy, setQtyBuy] = useState(1)
   const [createTransaction, { loading, error }] = useMutation(CREATE, {
     onCompleted: () => {
@@ -43,6 +43,7 @@ const TransactionBuy = ({ item, characterId, merchantId }) => {
 
   const onSubmit = () => {
     console.log(characterId)
+    onClose()
     const input = {
       boughtItemId: item.id,
       itemName: item.name,

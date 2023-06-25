@@ -67,6 +67,7 @@ export const Success = ({
         characterId={Number(KPWarzGamePlay.characterId)}
         cityId={Number(KPWarzGamePlay.currentCity.id)}
         merchantId={Number(KPWarzGamePlay.currentCity.merchantId)}
+        updateCurrentView={updateCurrentView}
       />
     </div>
   )

@@ -85,6 +85,7 @@ export const Failure = ({
 
 export const Success = ({
   currentRegion,
+  updateCurrentView,
 }: CellSuccessProps<
   FindCurrentRegionQuery,
   FindCurrentRegionQueryVariables
@@ -98,10 +99,11 @@ export const Success = ({
     {
       onCompleted: (r) => {
         toast.success('Game updated')
+        updateCurrentView(3)
         console.log(r)
         console.log('navigating')
-        setReRender(true)
-        setReRender(false)
+        // setReRender(true)
+        // setReRender(false)
         setCurrentCity(
           currentRegion.cities.find((c) => c.id === r.updateGame.currentCity.id)
         )

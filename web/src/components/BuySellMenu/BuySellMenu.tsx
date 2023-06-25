@@ -15,6 +15,7 @@ import {
   PopoverTrigger,
   Portal,
   Stack,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { CgDollar } from 'react-icons/cg'
 import { GiHandBag } from 'react-icons/gi'
@@ -26,52 +27,74 @@ import TransactionSell from '../TransactionSell/TransactionSell'
 const BuySellMenu = ({ item, merchantId, characterId }) => {
   return (
     <Stack>
-      <Popover closeOnBlur={true}>
-        <PopoverTrigger>
-          <Button>
-            <Icon as={CgDollar} w="20px" h="20px" color={'green.400'} mr={2} />
-            <span>Buy</span>
-          </Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            {/* <PopoverArrow /> */}
-            <PopoverHeader>{item.name}</PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              <TransactionBuy
-                item={item}
-                characterId={characterId}
-                merchantId={merchantId}
-              />
-            </PopoverBody>
-            <PopoverFooter>Lookin to Buy?</PopoverFooter>
-          </PopoverContent>
-        </Portal>
+      <Popover closeOnBlur={false}>
+        {({ onClose }) => (
+          <>
+            <PopoverTrigger>
+              <Button>
+                <Icon
+                  as={CgDollar}
+                  w="20px"
+                  h="20px"
+                  color={'green.400'}
+                  mr={2}
+                />
+                <span>Buy</span>
+              </Button>
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent>
+                {/* <PopoverArrow /> */}
+                <PopoverHeader>{item.name}</PopoverHeader>
+                <PopoverCloseButton />
+                <PopoverBody>
+                  <TransactionBuy
+                    item={item}
+                    characterId={characterId}
+                    merchantId={merchantId}
+                    onClose={onClose}
+                  />
+                </PopoverBody>
+                <PopoverFooter>Lookin to Buy?</PopoverFooter>
+              </PopoverContent>
+            </Portal>
+          </>
+        )}
       </Popover>
 
       <Popover closeOnBlur={true}>
-        <PopoverTrigger>
-          <Button>
-            <Icon as={GiHandBag} w="20px" h="20px" color={'red.400'} mr={2} />
-            <span>Sell</span>
-          </Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            {/* <PopoverArrow /> */}
-            <PopoverHeader>{item.name}</PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              <TransactionSell
-                item={item}
-                characterId={characterId}
-                merchantId={merchantId}
-              />
-            </PopoverBody>
-            <PopoverFooter>Lookin to Sell?</PopoverFooter>
-          </PopoverContent>
-        </Portal>
+        {({ onClose }) => (
+          <>
+            <PopoverTrigger>
+              <Button>
+                <Icon
+                  as={GiHandBag}
+                  w="20px"
+                  h="20px"
+                  color={'red.400'}
+                  mr={2}
+                />
+                <span>Sell</span>
+              </Button>
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent>
+                {/* <PopoverArrow /> */}
+                <PopoverHeader>{item.name}</PopoverHeader>
+                <PopoverCloseButton />
+                <PopoverBody>
+                  <TransactionSell
+                    item={item}
+                    characterId={characterId}
+                    merchantId={merchantId}
+                    onClose={onClose}
+                  />
+                </PopoverBody>
+                <PopoverFooter>Lookin to Sell?</PopoverFooter>
+              </PopoverContent>
+            </Portal>
+          </>
+        )}
       </Popover>
     </Stack>
   )
