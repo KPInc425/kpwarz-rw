@@ -74,102 +74,104 @@ const Inventory = ({
     <Flex direction={'column'} alignItems={'center'}>
       {/* {JSON.stringify(inventory)} */}
       <Text fontSize={'3xl'}>{owner}'s Inventory</Text>
-      <Center w={'100%'}>
-        <TableContainer>
-          <Table variant="simple" size="sm" colorScheme="teal">
-            <TableCaption>
-              <Text as={'cite'}>"Every day I'm hustlin'..." - A Comedian</Text>
-            </TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>
-                  Description
-                </Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
-                <Th>Price</Th>
-                <Th>For Sale</Th>
-                <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
-                {/* <Th>Ability</Th> */}
-                {/* <Th>Uses</Th> */}
-                <Th>Actions</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {sortedInventory.length > 0 &&
-                sortedInventory.map((item) => {
-                  return (
-                    <Tr>
-                      <Td>{item.name}</Td>
-                      <Td display={{ base: 'none', lg: 'table-cell' }}>
-                        <Image
-                          boxSize={'100px'}
-                          borderRadius={'25%'}
-                          src={item.imgURL}
-                        />
-                      </Td>
-                      <Td display={{ base: 'none', lg: 'table-cell' }}>
-                        {' '}
-                        {item.description}
-                      </Td>
-                      <Td display={{ base: 'none', lg: 'table-cell' }}>
-                        {item.type}
-                      </Td>
-                      <Td>
-                        {`$${item.price}/U`}
-                        <Box display={{ base: 'none', lg: 'inline' }}>nit</Box>
-                      </Td>
-                      <Td>{item.quantity}</Td>
-                      <Td display={{ base: 'none', md: 'table-cell' }}>
-                        {findItemQuantity(
-                          secondaryInventory.find(
-                            (secondaryItem) => secondaryItem.name === item.name
-                          )
-                        )}
-                      </Td>
-                      {/* <Td>{item.ability}</Td> */}
-                      {/* <Td>{item.uses}</Td> */}
-                      <Td>
-                        {isShop && (
-                          <BuySellMenu
-                            item={item}
-                            merchantId={merchantId}
-                            characterId={characterId}
+      {mainInventory.length > 0 && (
+        <Center w={'100%'}>
+          <TableContainer>
+            <Table variant="simple" size="sm" colorScheme="teal">
+              <TableCaption>
+                <Text as={'cite'}>
+                  "Every day I'm hustlin'..." - A Comedian
+                </Text>
+              </TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>Name</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>
+                    Description
+                  </Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
+                  <Th>Price</Th>
+                  <Th>For Sale</Th>
+                  <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
+                  {/* <Th>Ability</Th> */}
+                  {/* <Th>Uses</Th> */}
+                  <Th>Actions</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {sortedInventory.length > 0 &&
+                  sortedInventory.map((item) => {
+                    return (
+                      <Tr>
+                        <Td>{item.name}</Td>
+                        <Td display={{ base: 'none', lg: 'table-cell' }}>
+                          <Image
+                            boxSize={'100px'}
+                            borderRadius={'25%'}
+                            src={item.imgURL}
                           />
-                        )}
-                      </Td>
-                    </Tr>
-                  )
-                })}
-            </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th>Name</Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>
-                  Description
-                </Th>
-                <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
-                <Th>Price</Th>
-                <Th>Quantity</Th>
-                {/* <Th>Ability</Th> */}
-                {/* <Th>Uses</Th> */}
-                <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
-                <Th>Actions</Th>
-              </Tr>
-            </Tfoot>
-          </Table>
-        </TableContainer>
-      </Center>
+                        </Td>
+                        <Td display={{ base: 'none', lg: 'table-cell' }}>
+                          {' '}
+                          {item.description}
+                        </Td>
+                        <Td display={{ base: 'none', lg: 'table-cell' }}>
+                          {item.type}
+                        </Td>
+                        <Td>
+                          {`$${item.price}/U`}
+                          <Box display={{ base: 'none', lg: 'inline' }}>
+                            nit
+                          </Box>
+                        </Td>
+                        <Td>{item.quantity}</Td>
+                        <Td display={{ base: 'none', md: 'table-cell' }}>
+                          {findItemQuantity(
+                            secondaryInventory.find(
+                              (secondaryItem) =>
+                                secondaryItem.name === item.name
+                            )
+                          )}
+                        </Td>
+                        {/* <Td>{item.ability}</Td> */}
+                        {/* <Td>{item.uses}</Td> */}
+                        <Td>
+                          {isShop && (
+                            <BuySellMenu
+                              item={item}
+                              merchantId={merchantId}
+                              characterId={characterId}
+                            />
+                          )}
+                        </Td>
+                      </Tr>
+                    )
+                  })}
+              </Tbody>
+              <Tfoot>
+                <Tr>
+                  <Th>Name</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>
+                    Description
+                  </Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
+                  <Th>Price</Th>
+                  <Th>Quantity</Th>
+                  {/* <Th>Ability</Th> */}
+                  {/* <Th>Uses</Th> */}
+                  <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
+                  <Th>Actions</Th>
+                </Tr>
+              </Tfoot>
+            </Table>
+          </TableContainer>
+        </Center>
+      )}
 
       {mainInventory.length <= 0 && (
         <>
-          {/* <ProductCard
-              item={emptyItem}
-              merchantId={merchantId}
-              characterId={characterId}
-            /> */}
           <TableContainer>
             <Table variant="simple" colorScheme="teal">
               <TableCaption>
@@ -181,32 +183,41 @@ const Inventory = ({
               <Thead>
                 <Tr>
                   <Th>Name</Th>
-                  <Th>Image</Th>
-                  <Th>Description</Th>
-                  <Th>Type</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>
+                    Description
+                  </Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
                   <Th>Price</Th>
-                  <Th>Quantity</Th>
-                  <Th>Ability</Th>
-                  <Th>Uses</Th>
+                  <Th>For Sale</Th>
+                  <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
+                  {/* <Th>Ability</Th> */}
+                  {/* <Th>Uses</Th> */}
                   <Th>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
                   <Td>{emptyItem.name}</Td>
-                  <Td>
+                  <Td display={{ base: 'none', lg: 'table-cell' }}>
                     <Image
                       boxSize={'100px'}
                       borderRadius={'25%'}
                       src={emptyItem.imgURL}
                     />
                   </Td>
-                  <Td> {emptyItem.description}</Td>
-                  <Td>{emptyItem.type}</Td>
+                  <Td display={{ base: 'none', lg: 'table-cell' }}>
+                    {' '}
+                    {emptyItem.description}
+                  </Td>
+                  <Td display={{ base: 'none', lg: 'table-cell' }}>
+                    {emptyItem.type}
+                  </Td>
                   <Td>{emptyItem.price}</Td>
                   <Td>{emptyItem.quantity}</Td>
-                  <Td>{emptyItem.ability}</Td>
-                  <Td>{emptyItem.uses}</Td>
+                  <Td display={{ base: 'none', lg: 'table-cell' }}>0</Td>
+                  {/* <Td>{emptyItem.ability}</Td>
+                  <Td>{emptyItem.uses}</Td> */}
                   <Td>
                     {isShop && (
                       <BuySellMenu
@@ -221,13 +232,16 @@ const Inventory = ({
               <Tfoot>
                 <Tr>
                   <Th>Name</Th>
-                  <Th>Image</Th>
-                  <Th>Description</Th>
-                  <Th>Type</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>
+                    Description
+                  </Th>
+                  <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
                   <Th>Price</Th>
-                  <Th>Quantity</Th>
-                  <Th>Ability</Th>
-                  <Th>Uses</Th>
+                  <Th>For Sale</Th>
+                  <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
+                  {/* <Th>Ability</Th> */}
+                  {/* <Th>Uses</Th> */}
                   <Th>Actions</Th>
                 </Tr>
               </Tfoot>
