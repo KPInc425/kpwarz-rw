@@ -98,7 +98,13 @@ export const Success = ({
   return (
     <div>
       {/* {JSON.stringify(currentMerchant.location.region.game.character.items)} */}
-      <Flex sx={{ overflowX: 'auto' }} justifyContent={'center'} gap={4}>
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        sx={{ overflowX: 'auto' }}
+        justifyContent={'center'}
+        alignItems={'center'}
+        gap={4}
+      >
         <ProfileCard
           profileName={currentMerchant.name}
           profileDescription={currentMerchant.description}
@@ -140,16 +146,6 @@ export const Success = ({
             },
           ]}
         />
-        {/* {currentMerchant.items.map((item) => {
-          return (
-            <ProductCard
-              key={item.id}
-              item={item}
-              characterId={currentMerchant.location.region.game.characterId}
-              merchantId={currentMerchant.id}
-            />
-          )
-        })} */}
       </Flex>
       <Flex justify={'center'} gap={8}>
         <Inventory
@@ -162,9 +158,6 @@ export const Success = ({
           merchantId={currentMerchant.id}
           isShop={true}
         />
-        {/* <PlayerInventoryCell
-          id={currentMerchant.location.region.game.character.id}
-        /> */}
       </Flex>
     </div>
   )
