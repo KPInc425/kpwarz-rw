@@ -158,7 +158,7 @@ const Inventory = ({
                   </Th>
                   <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
                   <Th>Price</Th>
-                  <Th>Quantity</Th>
+                  <Th>For Sale</Th>
                   {/* <Th>Ability</Th> */}
                   {/* <Th>Uses</Th> */}
                   <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
