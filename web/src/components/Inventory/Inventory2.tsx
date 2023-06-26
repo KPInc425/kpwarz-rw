@@ -103,7 +103,7 @@ const Inventory = ({
                 {sortedInventory.length > 0 &&
                   sortedInventory.map((item) => {
                     return (
-                      <Tr>
+                      <Tr key={item.id}>
                         <Td>{item.name}</Td>
                         <Td display={{ base: 'none', lg: 'table-cell' }}>
                           <Image
