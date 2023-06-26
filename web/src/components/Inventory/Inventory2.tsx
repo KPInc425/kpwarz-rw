@@ -26,6 +26,7 @@ import {
   PopoverBody,
   PopoverFooter,
   Center,
+  Container,
 } from '@chakra-ui/react'
 import { CgDollar } from 'react-icons/cg'
 import { GiHandBag } from 'react-icons/gi'
@@ -82,12 +83,14 @@ const Inventory = ({
             <Thead>
               <Tr>
                 <Th>Name</Th>
-                <Th>Image</Th>
-                <Th>Description</Th>
-                <Th>Type</Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>
+                  Description
+                </Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
                 <Th>Price</Th>
                 <Th>For Sale</Th>
-                <Th>Owned</Th>
+                <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
                 {/* <Th>Ability</Th> */}
                 {/* <Th>Uses</Th> */}
                 <Th>Actions</Th>
@@ -99,18 +102,26 @@ const Inventory = ({
                   return (
                     <Tr>
                       <Td>{item.name}</Td>
-                      <Td>
+                      <Td display={{ base: 'none', lg: 'table-cell' }}>
                         <Image
                           boxSize={'100px'}
                           borderRadius={'25%'}
                           src={item.imgURL}
                         />
                       </Td>
-                      <Td> {item.description}</Td>
-                      <Td>{item.type}</Td>
-                      <Td>{`$${item.price}/Unit`}</Td>
-                      <Td>{item.quantity}</Td>
+                      <Td display={{ base: 'none', lg: 'table-cell' }}>
+                        {' '}
+                        {item.description}
+                      </Td>
+                      <Td display={{ base: 'none', lg: 'table-cell' }}>
+                        {item.type}
+                      </Td>
                       <Td>
+                        {`$${item.price}/U`}
+                        <Box display={{ base: 'none', lg: 'inline' }}>nit</Box>
+                      </Td>
+                      <Td>{item.quantity}</Td>
+                      <Td display={{ base: 'none', md: 'table-cell' }}>
                         {findItemQuantity(
                           secondaryInventory.find(
                             (secondaryItem) => secondaryItem.name === item.name
@@ -135,13 +146,16 @@ const Inventory = ({
             <Tfoot>
               <Tr>
                 <Th>Name</Th>
-                <Th>Image</Th>
-                <Th>Description</Th>
-                <Th>Type</Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>Image</Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>
+                  Description
+                </Th>
+                <Th display={{ base: 'none', lg: 'table-cell' }}>Type</Th>
                 <Th>Price</Th>
                 <Th>Quantity</Th>
                 {/* <Th>Ability</Th> */}
                 {/* <Th>Uses</Th> */}
+                <Th display={{ base: 'none', md: 'table-cell' }}>Owned</Th>
                 <Th>Actions</Th>
               </Tr>
             </Tfoot>
