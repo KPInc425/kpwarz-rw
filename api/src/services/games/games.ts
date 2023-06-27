@@ -67,6 +67,11 @@ export const updateGameOnTravel: MutationResolvers['updateGameOnTravel'] =
       input.avgPrice
     )
 
+    await db.merchant.update({
+      data: merchant,
+      where: { id: input.merchantId },
+    })
+
     newMerchantProductList.forEach(async (item) => {
       await db.item.create({
         data: {
