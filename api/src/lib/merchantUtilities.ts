@@ -48,6 +48,16 @@ export const removeItemFromMerchant = async (itemId, quantity) => {
     },
   })
 
+  const merchant = await db.merchant.findUnique({
+    where: { id: item.merchantId },
+  })
+
+  await db.merchant.update({
+    where: { id: item.merchantId },
+    data: {
+      currentItems: merchant.currentItems - quantity,
+    },
+  })
   // if (updatedItem.quantity === 0) {
   //   return db.item.delete({
   //     where: { id: itemId },
@@ -65,6 +75,17 @@ export const addItemToMerchant = async (itemName, merchantId, quantity) => {
     where: { id: itemFound.id },
     data: {
       quantity: itemFound.quantity + quantity,
+    },
+  })
+
+  const merchant = await db.merchant.findUnique({
+    where: { id: merchantId },
+  })
+
+  await db.merchant.update({
+    where: { id: merchantId },
+    data: {
+      currentItems: merchant.currentItems + quantity,
     },
   })
 

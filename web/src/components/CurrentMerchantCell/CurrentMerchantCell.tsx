@@ -111,7 +111,9 @@ export const Success = ({
           profileBio={currentMerchant.bio}
           misc={`${currentMerchant.name}'s temperament is ${temperamentToString(
             currentMerchant.temperament
-          )}`}
+          )}. They have ${currentMerchant.currentItems} / ${
+            currentMerchant.maxItems
+          } items in their inventory.`}
         />
         <LocationCard
           name={currentMerchant.location.name}
