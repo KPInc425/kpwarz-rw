@@ -7,6 +7,7 @@ import type {
 import { db } from 'src/lib/db'
 import {
   checkTravelTime,
+  randomDailyItemEconomy,
   randomizeMerchantProducts,
 } from 'src/lib/gameUtilities'
 import pickRandomItems from 'src/lib/PickRandomItems'
@@ -59,12 +60,13 @@ export const updateGameOnTravel: MutationResolvers['updateGameOnTravel'] =
     const merchant = await db.merchant.findUnique({
       where: { id: input.merchantId },
     })
-
+    merchant.currentItems = randomDailyItemEconomy(merchant)
     const newMerchantProductList = randomizeMerchantProducts(
       merchant,
       chosenItems,
       input.avgPrice
     )
+
     newMerchantProductList.forEach(async (item) => {
       await db.item.create({
         data: {

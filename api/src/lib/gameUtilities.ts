@@ -66,6 +66,7 @@ export const checkTravelTime = (game, character) => {
 }
 
 export const randomizeMerchantProducts = (merchant, items, averagePrice) => {
+  let totalItemsAvailable = merchant.currentItems
   const data = []
   for (const item of items) {
     console.log('item', item)
@@ -74,10 +75,9 @@ export const randomizeMerchantProducts = (merchant, items, averagePrice) => {
     )
     console.log('randomPrice', randomPrice)
     const randomQty = Math.floor(
-      (Math.random() * (merchant.maxItems - merchant.currentItems + 1) +
-        merchant.currentItems) /
-        merchant.temperament
+      (Math.random() * totalItemsAvailable + 1) / merchant.temperament
     )
+    totalItemsAvailable = totalItemsAvailable - randomQty
     data.push({
       name: item.name,
       description: item.description,
@@ -88,4 +88,11 @@ export const randomizeMerchantProducts = (merchant, items, averagePrice) => {
     })
   }
   return data
+}
+
+export const randomDailyItemEconomy = (merchant) => {
+  return Math.floor(
+    Math.random() * (merchant.maxItems + 1) +
+      merchant.currentItems / merchant.temperament
+  )
 }

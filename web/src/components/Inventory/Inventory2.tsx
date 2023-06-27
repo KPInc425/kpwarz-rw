@@ -11,33 +11,13 @@ import {
   TableCaption,
   TableContainer,
   Image,
-  Menu,
-  MenuButton,
-  Icon,
-  MenuList,
-  MenuItem,
-  Popover,
-  PopoverTrigger,
   Box,
-  Portal,
-  PopoverContent,
-  PopoverHeader,
-  PopoverCloseButton,
-  PopoverBody,
-  PopoverFooter,
   Center,
-  Container,
 } from '@chakra-ui/react'
-import { CgDollar } from 'react-icons/cg'
-import { GiHandBag } from 'react-icons/gi'
-import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 import { sortByName } from 'src/lib/sortById'
 
 import BuySellMenu from '../BuySellMenu/BuySellMenu'
-import ProductCard from '../ProductCard/ProductCard'
-import TransactionBuy from '../TransactionBuy/TransactionBuy'
-import TransactionSell from '../TransactionSell/TransactionSell'
 
 const Inventory = ({
   mainInventory,
