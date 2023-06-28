@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import {
   Box,
   Button,
+  Container,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -150,8 +151,10 @@ const KPWarzLayout = ({ children }: KPWarzLayoutProps) => {
           </DrawerContent>
         </Drawer>
       </header>
-      <main className="bg-white-400 mx-auto mt-4 max-w-4xl rounded-xl p-12 text-slate-900 shadow dark:bg-slate-700 dark:text-slate-200">
-        {children}
+      <main>
+        <Container maxW={'container.lg'} p={4}>
+          {children}
+        </Container>
       </main>
     </>
   )

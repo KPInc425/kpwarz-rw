@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Text } from '@chakra-ui/react'
 import type {
   FindKPWarzLoadGameQuery,
   FindKPWarzLoadGameQueryVariables,
@@ -6,6 +6,8 @@ import type {
 
 import { navigate, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
+import LoadGameCard from '../LoadGameCard/LoadGameCard'
 
 export const QUERY = gql`
   query FindKPWarzLoadGameQuery {
@@ -53,26 +55,24 @@ export const Success = ({
   }
   return (
     <>
-      <Text fontSize={'6xl'} textAlign={'center'}>
-        Choose a game to load
-      </Text>
-      <Flex wrap={'wrap'}>
+      <Container
+        maxW={'container.md'}
+        border={'2px outset rgba(0,0,0,0.25)'}
+        my={4}
+        borderRadius={'1rem'}
+        boxShadow={'2xl'}
+      >
+        <Text
+          fontSize={'6xl'}
+          textAlign={'center'}
+          sx={{ textWrap: 'balance' }}
+        >
+          Choose a Game to Load
+        </Text>
+      </Container>
+      <Flex wrap={'wrap'} gap={4} justify={'center'}>
         {KPWarzLoadGame.map((game) => {
-          return (
-            <div key={game.id}>
-              <div>{game.name}</div>
-              <div>{game.description}</div>
-              <div>{game.startLocation}</div>
-              <div>{game.currentDay}</div>
-              <div>{game.maxDays}</div>
-              <div>{game.timeOfDay}</div>
-              {/* <div>{game.regions}</div> */}
-              <div>{JSON.stringify(game.currentCity)}</div>
-              <div>{JSON.stringify(game.character)}</div>
-              <div>{game.createdAt}</div>
-              <Button onClick={() => handleClick(game.id)}>Load</Button>
-            </div>
-          )
+          return <LoadGameCard key={game.id} game={game} />
         })}
         {/* {JSON.stringify(KPWarzLoadGame)} */}
       </Flex>

@@ -1,3 +1,4 @@
+import { Container, Text } from '@chakra-ui/react'
 import type { ArticlesQuery } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
@@ -29,7 +30,16 @@ export const Loading = () => (
 )
 
 export const Empty = () => (
-  <div>These are not the droids you are looking for...</div>
+  <Container
+    maxW={'container.lg'}
+    p={4}
+    border={'2px outset rgba(0,0,0,0.25)'}
+    borderRadius={'1rem'}
+  >
+    <Text textAlign={'center'}>
+      These are not the droids you are looking for...
+    </Text>
+  </Container>
 )
 
 export const Failure = ({ error }: CellFailureProps) => (
