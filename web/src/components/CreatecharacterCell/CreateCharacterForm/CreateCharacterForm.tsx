@@ -1,4 +1,11 @@
-import { RadioGroup } from '@chakra-ui/react'
+import {
+  Box,
+  FormLabel,
+  Input,
+  RadioGroup,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { Stack, HStack } from '@chakra-ui/react'
 import type { EditCharacterById, UpdateCharacterInput } from 'types/graphql'
 
@@ -8,6 +15,7 @@ import {
   FieldError,
   Label,
   TextField,
+  TextAreaField,
   NumberField,
   Submit,
   RadioField,
@@ -27,40 +35,15 @@ interface CharacterFormProps {
 
 const CharacterForm = (props: CharacterFormProps) => {
   const { currentUser } = useAuth()
+  const inputBackgroundColor = useColorModeValue('green.100', 'green.700')
+
   const onSubmit = (data: FormCharacter) => {
-    // generateCharacter(data)
     console.log(data)
     props.onSave(data, props?.character?.id)
   }
 
-  // const generateCharacter = (data) => {
-  //   console.log(typeof currentUser.id)
-  //   data.userId = currentUser.id
-  //   data.health = 100
-  //   data.maxHealth = 100
-  //   data.currentItems = 0
-  //   data.maxItems = 100
-  //   data.luck = generateLuck(data)
-  //   data.storageType = 'Pockets'
-  // }
-
-  // const generateLuck = (data) => {
-  //   let modifier = 0
-  //   if (data.background === 'Plebian') {
-  //     modifier = 0.33
-  //   } else if (data.background === 'Suburban_Kid') {
-  //     modifier = 0.5
-  //   } else if (data.background === 'Affluenza') {
-  //     modifier = 1
-  //   }
-  //   // console.log(data.background)
-  //   // console.log(modifier)
-  //   // console.log(Math.floor(Math.random() * 100 * modifier))
-  //   return Math.floor(Math.random() * 100 * modifier)
-  // }
-
   return (
-    <div className="rw-form-wrapper">
+    <Box className="rw-form-wrapper">
       <Form<FormCharacter> onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -69,56 +52,65 @@ const CharacterForm = (props: CharacterFormProps) => {
           listClassName="rw-form-error-list"
         />
 
-        <Label
+        <FormLabel
+          as={Label}
           name="name"
-          className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Name
-        </Label>
+        </FormLabel>
 
-        <TextField
+        <Input
+          as={TextField}
           name="name"
+          backgroundColor={inputBackgroundColor}
           defaultValue={props.character?.name}
-          className="rw-input"
+          variant={'filled'}
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
         <FieldError name="name" className="rw-field-error" />
 
-        <Label
+        <FormLabel
+          as={Label}
           name="bio"
-          className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Bio
-        </Label>
+        </FormLabel>
 
-        <TextField
+        <Input
+          as={TextAreaField}
           name="bio"
           defaultValue={props.character?.bio}
-          className="rw-input"
+          variant={'filled'}
+          backgroundColor={inputBackgroundColor}
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+          h={'100px'}
         />
 
         <FieldError name="bio" className="rw-field-error" />
 
-        <Label
+        <FormLabel
+          as={Label}
           name="description"
-          className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Physical Description
-        </Label>
+        </FormLabel>
 
-        <TextField
+        <Input
+          as={TextAreaField}
           name="description"
           defaultValue={props.character?.description}
-          className="rw-input"
+          variant={'filled'}
+          backgroundColor={inputBackgroundColor}
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+          multiple={true}
+          h={'100px'}
         />
 
         <FieldError name="description" className="rw-field-error" />
@@ -141,13 +133,13 @@ const CharacterForm = (props: CharacterFormProps) => {
 
         <FieldError name="startLocation" className="rw-field-error" /> */}
 
-        <Label
+        <FormLabel
+          as={Label}
           name="background"
-          className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Rootz?
-        </Label>
+        </FormLabel>
 
         <div className="rw-check-radio-items">
           <RadioField
@@ -172,7 +164,7 @@ const CharacterForm = (props: CharacterFormProps) => {
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
-          <div>Suburban Kid</div>
+          <Text>Suburban Kid</Text>
         </div>
 
         <div className="rw-check-radio-items">
@@ -195,7 +187,7 @@ const CharacterForm = (props: CharacterFormProps) => {
           </Submit>
         </div>
       </Form>
-    </div>
+    </Box>
   )
 }
 

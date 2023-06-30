@@ -1,14 +1,26 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import {
   Badge,
   Button,
+  Container,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
   Grid,
   GridItem,
   Heading,
+  Show,
   Stack,
   Text,
   useColorMode,
+  useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react'
 import type {
   FindIntroSceneQuery,
@@ -55,7 +67,19 @@ export const Success = ({
   introScene,
 }: CellSuccessProps<FindIntroSceneQuery, FindIntroSceneQueryVariables>) => {
   const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [introView, setIntroView] = useState(5)
+  const toggleButtonColor = useColorModeValue('yellow', 'yellow')
+  const btnRef = useRef()
+  const labels = [
+    'Mug Shot',
+    'Character Backstory',
+    'Plot Thickens',
+    'Buffs/Debuffs',
+    'Starting Info',
+    'Breaking Newz!',
+    'Locations',
+  ]
 
   const startGame = () => {
     console.log('start game')
@@ -69,159 +93,125 @@ export const Success = ({
   }
   return (
     <div>
-      {/* {JSON.stringify(characterIntro)} */}
-      <Grid
-        h="100vh"
-        templateColumns="repeat(12, minmax(0, 1fr))"
-        templateRows="repeat(12, minmax(0, 1fr))"
-        gap={2}
-      >
-        <GridItem
-          colSpan={{ base: '12', lg: '2' }}
-          rowSpan={{ base: '6', lg: '12' }}
-          rowStart={{ base: '7', lg: '1' }}
-          border="4px solid rgb(184, 182, 182)"
-          borderRadius="12px"
-        >
-          <Heading textAlign={'center'}>Character Intro</Heading>
-          <Stack px={2}>
+      <Container maxW={'container.lg'} minW={'fit-content'}>
+        <Show below="sm">
+          <Button
+            ref={btnRef}
+            colorScheme="teal"
+            variant="solid"
+            onClick={onOpen}
+            w={'100%'}
+            my={4}
+          >
+            Open Menu
+          </Button>
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            finalFocusRef={btnRef}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>
+                <Heading textAlign={'center'}>Character Intro</Heading>
+              </DrawerHeader>
+
+              <DrawerBody>
+                <Stack px={2}>
+                  <IntroMenu
+                    labels={labels}
+                    handleClick={handleClick}
+                    onClose={onClose}
+                  />
+                </Stack>
+                <Stack px={2} mt={2}>
+                  <Button
+                    size="sm"
+                    colorScheme={'yellow'}
+                    onClick={toggleColorMode}
+                  >
+                    Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+                  </Button>
+                </Stack>
+              </DrawerBody>
+
+              <DrawerFooter>
+                <Button variant="outline" mr={3} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button size="sm" colorScheme="green" onClick={startGame}>
+                  Start Game
+                </Button>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </Show>
+        <Show above="sm">
+          <Flex justify={'space-between'} m={4} wrap={'wrap'} gap={1}>
+            <IntroMenu
+              labels={labels}
+              handleClick={handleClick}
+              onClose={onClose}
+            />
             <Button
-              disabled={true}
-              onClick={() => handleClick(1)}
-              colorScheme="green"
+              size="sm"
+              colorScheme={toggleButtonColor}
+              onClick={toggleColorMode}
+              flexGrow={1}
             >
-              Mug Shot
+              Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
             </Button>
+
             <Button
-              disabled={true}
-              onClick={() => handleClick(2)}
+              size="sm"
               colorScheme="green"
+              onClick={startGame}
+              flexGrow={1}
             >
-              Character Backstory
-            </Button>
-            <Button
-              disabled={true}
-              onClick={() => handleClick(3)}
-              colorScheme="green"
-            >
-              Plot Thickens
-            </Button>
-            <Button
-              disabled={true}
-              onClick={() => handleClick(4)}
-              colorScheme="green"
-            >
-              Buffs/Debuffs
-            </Button>
-            <Button onClick={() => handleClick(5)} colorScheme="green">
-              Starting Info
-            </Button>
-            <Button
-              disabled={true}
-              onClick={() => handleClick(6)}
-              colorScheme="green"
-            >
-              Breaking Newz!
-            </Button>
-            <Button onClick={() => handleClick(7)} colorScheme="green">
-              Locations
-            </Button>
-            <Button size="sm" colorScheme="blue" onClick={startGame}>
               Start Game
             </Button>
-            <Button size="sm" colorScheme="blue" onClick={toggleColorMode}>
-              Toggle Mode
-            </Button>
-          </Stack>
-        </GridItem>
-        {introView === 1 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            MugShot (Coming Soon)
-          </GridItem>
-        )}
-        {introView === 2 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            Chatacter Backstory: Inspired by Bio (Coming Soon)
-          </GridItem>
-        )}
-        {introView === 3 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            Current Plot Point (Coming Soon)
-          </GridItem>
-        )}
-        {introView === 4 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            Buffs and Debuffs (Coming Soon)
-          </GridItem>
-        )}
-        {introView === 5 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            <Badge m={4} p={4} borderRadius={'12px'}>
-              <Text fontSize="4xl">Starting Info</Text>
-            </Badge>
-            <CharacterIntroCell id={Number(introScene.characterId)} />
-          </GridItem>
-        )}
-        {introView === 6 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            First News (Coming Soon)
-          </GridItem>
-        )}
-        {introView === 7 && (
-          <GridItem
-            colSpan={{ base: '12', lg: '10' }}
-            rowSpan={{ base: '6', lg: '12' }}
-            colStart={{ base: '1', lg: '3' }}
-            rowStart={{ base: '1', lg: '1' }}
-            border="4px solid rgb(184, 182, 182)"
-            borderRadius="12px"
-          >
-            <CurrentRegionCell id={Number(introScene.currentRegionId)} />
-          </GridItem>
-        )}
-      </Grid>
+          </Flex>
+        </Show>
+      </Container>
+      {introView === 1 && <Text>MugShot (Coming Soon)</Text>}
+      {introView === 2 && (
+        <Text>Chatacter Backstory: Inspired by Bio (Coming Soon)</Text>
+      )}
+      {introView === 3 && <Text>Current Plot Point (Coming Soon)</Text>}
+      {introView === 4 && <Text>Buffs and Debuffs (Coming Soon)</Text>}
+      {introView === 5 && (
+        <CharacterIntroCell id={Number(introScene.characterId)} />
+      )}
+      {introView === 6 && <Text>First News (Coming Soon)</Text>}
+      {introView === 7 && (
+        <CurrentRegionCell id={Number(introScene.currentRegionId)} />
+      )}
     </div>
+  )
+}
+
+const IntroMenu = ({ labels, handleClick, onClose }) => {
+  const handleButtonClick = (view) => {
+    console.log('view', view)
+    console.log(onClose())
+    handleClick(view)
+    onClose()
+  }
+  return (
+    <>
+      {labels.map((label, index) => (
+        <Button
+          key={index}
+          size={'sm'}
+          flexGrow={1}
+          onClick={() => handleButtonClick(index + 1)}
+          colorScheme="blue"
+        >
+          {label}
+        </Button>
+      ))}
+    </>
   )
 }

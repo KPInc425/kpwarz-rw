@@ -1,3 +1,12 @@
+import {
+  Box,
+  Card,
+  CardBody,
+  CardHeader,
+  Container,
+  Heading,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import type { CreateCharacterAndGameInput } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -30,6 +39,10 @@ const CREATE_CHARACTER_AND_GAME_MUTATION = gql`
 `
 
 const CreateCharacter = () => {
+  const headerBackgroundColor = useColorModeValue(
+    'rgba(99,179,96,0.8)',
+    'rgba(9,79,0,0.8)'
+  )
   const [createCharacterAndGame, { loading, error }] = useMutation(
     CREATE_CHARACTER_AND_GAME_MUTATION,
     {
@@ -62,14 +75,23 @@ const CreateCharacter = () => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New Character</h2>
-      </header>
-      <div className="rw-segment-main">
-        <CreateCharacterForm onSave={onSave} loading={loading} error={error} />
-      </div>
-    </div>
+    <Container>
+      <Card p={0} mt={4}>
+        <CardHeader
+          backgroundColor={headerBackgroundColor}
+          borderRadius={'0.5rem 0.5rem 0 0'}
+        >
+          <Heading>New Character</Heading>
+        </CardHeader>
+        <CardBody>
+          <CreateCharacterForm
+            onSave={onSave}
+            loading={loading}
+            error={error}
+          />
+        </CardBody>
+      </Card>
+    </Container>
   )
 }
 
