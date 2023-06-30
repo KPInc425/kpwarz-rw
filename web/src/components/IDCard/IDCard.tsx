@@ -110,7 +110,8 @@ const IDCard = ({ characterInfo }) => {
               </Text>
               <Text fontSize="md" fontWeight="bold" mb={'-2px'}>
                 {Math.floor(Math.random() * (99999999 - 10000000) + 10000000) +
-                  characterInfo.name.split(' ')[0].slice(0, 1).toUpperCase() +
+                  characterInfo.name.split(' ')[0].slice(0, 1).toUpperCase()}
+                {characterInfo.name.split(' ')[1] &&
                   characterInfo.name.split(' ')[1].slice(0, 1).toUpperCase()}
               </Text>
             </Flex>
@@ -119,7 +120,9 @@ const IDCard = ({ characterInfo }) => {
                 {'1'}
               </Text>
               <Text fontSize="md" fontWeight="bold" mb={'-2px'}>
-                {characterInfo.name.split(' ')[1]}
+                {characterInfo.name.split(' ')[1]
+                  ? characterInfo.name.split(' ')[1]
+                  : 'Warz'}
               </Text>
             </Flex>
             <Flex alignItems={'flex-end'}>
