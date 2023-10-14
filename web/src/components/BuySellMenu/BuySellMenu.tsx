@@ -24,7 +24,7 @@ import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 import TransactionBuy from '../TransactionBuy/TransactionBuy'
 import TransactionSell from '../TransactionSell/TransactionSell'
 
-const BuySellMenu = ({ item, merchantId, characterId }) => {
+const BuySellMenu = ({ item, merchant, character }) => {
   return (
     <Stack>
       <Popover closeOnBlur={false}>
@@ -50,8 +50,8 @@ const BuySellMenu = ({ item, merchantId, characterId }) => {
                 <PopoverBody>
                   <TransactionBuy
                     item={item}
-                    characterId={characterId}
-                    merchantId={merchantId}
+                    character={character}
+                    merchant={merchant}
                     onClose={onClose}
                   />
                 </PopoverBody>
@@ -85,8 +85,8 @@ const BuySellMenu = ({ item, merchantId, characterId }) => {
                 <PopoverBody>
                   <TransactionSell
                     item={item}
-                    characterId={characterId}
-                    merchantId={merchantId}
+                    character={character}
+                    merchant={merchant}
                     onClose={onClose}
                   />
                 </PopoverBody>

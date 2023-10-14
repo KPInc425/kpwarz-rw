@@ -156,8 +156,8 @@ export const Success = ({
             currentMerchant.location.region.game.character.items
           }
           owner={currentMerchant.name}
-          characterId={currentMerchant.location.region.game.character.id}
-          merchantId={currentMerchant.id}
+          character={currentMerchant.location.region.game.character}
+          merchant={currentMerchant}
           isShop={true}
         />
       </Flex>

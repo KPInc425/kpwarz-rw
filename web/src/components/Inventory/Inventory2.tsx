@@ -23,8 +23,8 @@ const Inventory = ({
   mainInventory,
   secondaryInventory,
   owner,
-  characterId,
-  merchantId,
+  character,
+  merchant,
   isShop,
 }) => {
   console.log('inventory', mainInventory)
@@ -120,8 +120,8 @@ const Inventory = ({
                           {isShop && (
                             <BuySellMenu
                               item={item}
-                              merchantId={merchantId}
-                              characterId={characterId}
+                              merchant={merchant}
+                              character={character}
                             />
                           )}
                         </Td>
@@ -202,8 +202,8 @@ const Inventory = ({
                     {isShop && (
                       <BuySellMenu
                         item={item}
-                        merchantId={merchantId}
-                        characterId={characterId}
+                        merchant={merchant}
+                        character={character}
                       />
                     )}
                   </Td>

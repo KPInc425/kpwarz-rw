@@ -26,31 +26,39 @@ import { toast } from '@redwoodjs/web/toast'
 import { QUERY as FindCurrentMerchantQuery } from 'src/components/CurrentMerchantCell'
 import { QUERY as FindPlayerInventoryQuery } from 'src/components/PlayerInventoryCell'
 
-const TransactionBuy = ({ item, characterId, merchantId, onClose }) => {
+import DialogueModal from '../DialogueModal/DialogueModal'
+
+const TransactionBuy = ({ item, character, merchant, onClose }) => {
   const [qtyBuy, setQtyBuy] = useState(1)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [showFailureModal, setShowFailureModal] = useState(false)
+  const [failureMessage, setFailureMessage] = useState('')
   const [createTransaction, { loading, error }] = useMutation(CREATE, {
     onCompleted: () => {
       toast.success('Thank you for your purchase!')
+      setShowSuccessModal(true)
     },
     onError: (error) => {
       toast.error(error.message)
+      setShowFailureModal(true)
+      setFailureMessage(error.message)
     },
     refetchQueries: [
-      { query: FindCurrentMerchantQuery, variables: { id: merchantId } },
-      { query: FindPlayerInventoryQuery, variables: { id: characterId } },
+      { query: FindCurrentMerchantQuery, variables: { id: merchant.id } },
+      { query: FindPlayerInventoryQuery, variables: { id: character.id } },
     ],
   })
 
   const onSubmit = () => {
-    console.log(characterId)
+    console.log(character.id)
     onClose()
     const input = {
       boughtItemId: item.id,
       itemName: item.name,
       quantity: qtyBuy,
       price: item.price,
-      characterId: characterId,
-      merchantId: merchantId,
+      characterId: character.id,
+      merchantId: merchant.id,
     }
     createTransaction({ variables: { input: input } })
   }
@@ -75,7 +83,7 @@ const TransactionBuy = ({ item, characterId, merchantId, onClose }) => {
           name="quantity"
           validation={{ required: true }}
           min={1}
-          max={item.quantity}
+          max={10}
           defaultValue={1}
           onChange={(e) => setQtyBuy(Number(e.target.value))}
           className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -84,6 +92,26 @@ const TransactionBuy = ({ item, characterId, merchantId, onClose }) => {
           Buy
         </Button>
       </Form>
+      {showSuccessModal && (
+        <DialogueModal
+          title={`${merchant.name}`}
+          dialogue={`Thanks for the dough, enjoy the ${item.name}`}
+          primaryAction={{
+            name: 'Thanks',
+            action: () => setShowSuccessModal(false),
+          }}
+        />
+      )}
+      {showFailureModal && (
+        <DialogueModal
+          title={`${merchant.name}`}
+          dialogue={`Too bad buddy, ${failureMessage}`}
+          primaryAction={{
+            name: 'Thanks',
+            action: () => setShowFailureModal(false),
+          }}
+        />
+      )}
     </div>
   )
 }
